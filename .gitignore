@@ -1,0 +1,11 @@
+bin/
+obj/
+packages/
+# The following line ignores packages when setup as a symlink
+packages 
+.vs/
+*.suo
+*.user
+*.orig
+*_actual.txt
+Robotmaster.Rise.Test/Cells/cell_Kr60_Maka_proc/
