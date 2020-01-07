@@ -10,6 +10,13 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 
         internal string LastName { get; }
 
-        internal DateTime Birthday { get; } 
+        internal DateTime Birthday { get; }
+
+        internal SimplePerson(string firstName, string lastName, DateTime birthday)
+        {
+            FirstName = !string.IsNullOrEmpty(firstName) ? firstName : throw new ArgumentNullException(nameof(firstName));
+            LastName = !string.IsNullOrEmpty(lastName) ? lastName: throw new ArgumentNullException(nameof(lastName));
+            Birthday = birthday != DateTime.MaxValue || birthday != DateTime.MinValue ? birthday : throw new ArgumentException(nameof(birthday));
+        }
     }
 }
