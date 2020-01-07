@@ -51,97 +51,97 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
         }
 
         [Benchmark]
-        public IEnumerable<int> ComputingUniqueValueInIntegerArrays()
+        public void ComputingUniqueValueInIntegerArrays()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<string> ComputingUniqueValuesinStringArrays()
+        public void ComputingUniqueValuesinStringArrays()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<SimplePerson> ComputingUniqueValueForSimpleObjectArrays()
+        public void ComputingUniqueValueForSimpleObjectArrays()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<ComplexPerson> ComputingUniqueValuesForComplexObjectArrays()
+        public void ComputingUniqueValuesForComplexObjectArrays()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<int> ComputingUniqueValuesForIntegerLists()
+        public void ComputingUniqueValuesForIntegerLists()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<string> ComputingUniqueValuesForStringLists()
+        public void ComputingUniqueValuesForStringLists()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<SimplePerson> ComputingUniqueValuesForSimpleObjectLists()
+        public void ComputingUniqueValuesForSimpleObjectLists()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<ComplexPerson> ComputingUniqueValuesForComplexObjectLists()
+        public void ComputingUniqueValuesForComplexObjectLists()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<int> ComputingUniqueValuesForIntegerHashSets()
+        public void ComputingUniqueValuesForIntegerHashSets()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<string> ComputingUniqueValuesForStringHashSets()
+        public void ComputingUniqueValuesForStringHashSets()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<SimplePerson> ComputingUniqueValuesForSimpleObjectHashSets()
+        public void ComputingUniqueValuesForSimpleObjectHashSets()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<ComplexPerson> ComputingUniqueValuesForComplexHashSets()
+        public void ComputingUniqueValuesForComplexHashSets()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<int> ComputingUniqueValuesFromArrayExpression()
+        public void ComputingUniqueValuesFromArrayExpression()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<string> ComputingUniqueValuesFromListExpression()
+        public void ComputingUniqueValuesFromListExpression()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<SimplePerson> ComputingUniqueValuesForSimplePersoonFromHashSetExpression()
+        public void ComputingUniqueValuesFromHashSetExpression()
         {
 
         }
 
         [Benchmark]
-        public IEnumerable<ComplexPerson> ComputingUniqueValuesForComplexPersoonFromHashSetExpression()
+        public void ComputingUniqueValuesForSimplPersoonFromHashSetExpression()
         {
 
         }
