@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
@@ -29,7 +29,7 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
         private List<SimplePerson> sampleSimplePersonsList;
         private List<ComplexPerson> sampleComplexPersonsList;
 
-        [Params(100, 1_000, 10_000)]
+        [Params(100, 1_000, 10_000, 100_000)]
         public int collectionSize;
 
 
