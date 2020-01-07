@@ -23,8 +23,8 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
             DateTime.Now,
             GenerateRandomStringBasedOnLength(20),
             GenerateRandomStringBasedOnLength(20),
-            Citizenship.CANADA,
-            Gender.Man,
+            (Citizenship)random.Next(0, 4),
+            (Gender)random.Next(0, 3),
             Enumerable.Range(0, 50).Select(_ => GenerateRandomStringBasedOnLength(50)).ToList()
         );
 
