@@ -26,16 +26,16 @@ namespace Robotmaster.CollectionRecommendation.DynamicCollections
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);
             context.EnableConcurrentExecution();
-            context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, SyntaxKind.MethodDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, SyntaxKind.LocalDeclarationStatement);
         }
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            if (context.Node is MethodDeclarationSyntax methodDeclaration)
+            if (context.Node is LocalDeclarationStatementSyntax localDeclaration)
             {
-                var localDeclarations = methodDeclaration.Body.Statements
-                    .SelectMany(statement => statement.ChildNodes())
-                    .Cast<LocalDeclarationStatementSyntax>()
+                var symbolInfo = context.SemanticModel.GetSymbolInfo(localDeclaration.Declaration.Type);
+                if (symbolInfo.Symbol is INamedTypeSymbol namedTypeSymbol && IsADynamicCollection(namedTypeSymbol))
+                {
                     .ToList();
 
                 foreach (var localDeclaration in localDeclarations)
@@ -43,10 +43,9 @@ namespace Robotmaster.CollectionRecommendation.DynamicCollections
                     var localVariableTypeSymbol = context.SemanticModel.GetSymbolInfo(localDeclaration.Declaration.Type).Symbol;
                 }
 
-                IEnumerable<string> GetTypeSpecificInterfaces(SemanticModel model, IdentifierNameSyntax identifier) =>
-                    model.GetTypeInfo(identifier).Type is ITypeSymbol typeSymbol
+                bool IsADynamicCollection(INamedTypeSymbol symbol) => symbol.ConstructedFrom.AllInterfaces.Select(x => x.Name).Any(x => string.Equals(x, "IList<T>"));
+
                         ? typeSymbol.Interfaces.Select(x => x.Name)
-                        : Enumerable.Empty<string>();
             }
         }
     }
