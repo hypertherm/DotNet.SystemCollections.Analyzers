@@ -32,6 +32,6 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 
         internal static List<ComplexPerson> GenerateRandomComplexPersons(int peopleCount) => Enumerable.Range(0, peopleCount).Select(_ => GenerateRandomComplexPerson()).ToList();
 
-        private static string GenerateRandomStringBasedOnLength(int length) => new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        internal static string GenerateRandomStringBasedOnLength(int length) => new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
     }
 }
