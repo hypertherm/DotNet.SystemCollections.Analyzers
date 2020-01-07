@@ -1,12 +1,10 @@
 ﻿using System;
+using BenchmarkDotNet.Running;
 
 namespace Robotmaster.CollectionRecommendation.Benchmarks
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
+        private static void Main(string[] args) => BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
     }
 }
