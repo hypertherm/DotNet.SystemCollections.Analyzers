@@ -54,7 +54,7 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
         public void ComputingUniqueValueInIntegerArrays() => sampleIntsArray.Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueValuesinStringArrays() => sampleStringsArray.Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueValuesInStringArrays() => sampleStringsArray.Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
         public void ComputingUniqueValueForSimpleObjectArrays() => sampleSimplePersonsArray.Distinct().Consume(iEnumerableConsumer);
