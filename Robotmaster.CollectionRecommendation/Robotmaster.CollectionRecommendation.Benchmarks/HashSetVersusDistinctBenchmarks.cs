@@ -75,28 +75,28 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
         public void ComputingUniqueValuesForComplexObjectLists() => sampleComplexPersonsList.Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueValuesForIntegerHashSets()
-        {
-
-        }
+        public HashSet<int> ComputingUniqueValuesForIntegerHashSetsFromArray() => new HashSet<int>(sampleIntsArray);
 
         [Benchmark]
-        public void ComputingUniqueValuesForStringHashSets()
-        {
-
-        }
+        public HashSet<int> ComputingUniqueValuesForIntegerHashSetsFromList() => new HashSet<int>(sampleIntsList);
 
         [Benchmark]
-        public void ComputingUniqueValuesForSimpleObjectHashSets()
-        {
-
-        }
+        public HashSet<string> ComputingUniqueValuesForStringHashSetsFromArray() => new HashSet<string>(sampleStringsArray);
 
         [Benchmark]
-        public void ComputingUniqueValuesForComplexHashSets()
-        {
+        public HashSet<string> ComputingUniqueValuesForStringHashSetsFromList() => new HashSet<string>(sampleStringsList);
 
-        }
+        [Benchmark]
+        public HashSet<SimplePerson> ComputingUniqueValuesForSimpleObjectHashSetsFromArray() => new HashSet<SimplePerson>(sampleSimplePersonsArray);
+
+        [Benchmark]
+        public HashSet<SimplePerson> ComputingUniqueValuesForSimpleObjectHashSetsFromList() => new HashSet<SimplePerson>(sampleSimplePersonsList);
+
+        [Benchmark]
+        public HashSet<ComplexPerson> ComputingUniqueValuesForComplexHashSetsFromArray() => new HashSet<ComplexPerson>(sampleComplexPersonsArray);
+
+        [Benchmark]
+        public HashSet<ComplexPerson> ComputingUniqueValuesForComplexHashSetsFromList() => new HashSet<ComplexPerson>(sampleComplexPersonsList);
 
         [Benchmark]
         public void ComputingUniqueValuesFromArrayExpression()
