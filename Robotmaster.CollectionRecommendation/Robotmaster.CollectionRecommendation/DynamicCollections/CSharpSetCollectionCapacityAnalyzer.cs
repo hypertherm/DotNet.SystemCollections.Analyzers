@@ -36,7 +36,11 @@ namespace Robotmaster.CollectionRecommendation.DynamicCollections
                 var symbolInfo = context.SemanticModel.GetSymbolInfo(localDeclaration.Declaration.Type);
                 if (symbolInfo.Symbol is INamedTypeSymbol namedTypeSymbol && IsADynamicCollection(namedTypeSymbol))
                 {
-                    .ToList();
+                    // No problem if the collection is defined with an initial set of values; the capacity will be set then.
+                    if (IsCollectionDefinedWithInitializer(localDeclaration.Declaration.Variables))
+                    {
+                        return;
+                    }
 
                 foreach (var localDeclaration in localDeclarations)
                 {
@@ -45,7 +49,7 @@ namespace Robotmaster.CollectionRecommendation.DynamicCollections
 
                 bool IsADynamicCollection(INamedTypeSymbol symbol) => symbol.ConstructedFrom.AllInterfaces.Select(x => x.Name).Any(x => string.Equals(x, "IList<T>"));
 
-                        ? typeSymbol.Interfaces.Select(x => x.Name)
+                bool IsCollectionDefinedWithInitializer(IEnumerable<VariableDeclaratorSyntax> declaratorCollection) => declaratorCollection.Any(declarator => (declarator.Initializer.Value as ObjectCreationExpressionSyntax).Initializer.IsKind(SyntaxKind.CollectionInitializerExpression));
             }
         }
     }
