@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 
-namespace Robotmaster.CollectionRecommendation.Test
+namespace Robotmaster.CollectionRecommendation.Test.Verifiers
 {
     /// <summary>
     /// Class for turning strings into documents and getting the diagnostics on them
