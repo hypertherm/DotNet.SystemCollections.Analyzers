@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 {
-    internal enum Profession
+    public enum Profession
     {
         Student = 0,
         Professor = 1,

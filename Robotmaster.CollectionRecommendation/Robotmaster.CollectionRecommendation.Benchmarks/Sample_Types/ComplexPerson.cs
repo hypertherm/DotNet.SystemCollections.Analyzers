@@ -5,7 +5,7 @@ using Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types;
 
 namespace Robotmaster.CollectionRecommendation.Benchmarks
 {
-    internal class ComplexPerson
+    public class ComplexPerson
     {
         internal string FirstName { get; }
 
@@ -27,7 +27,7 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
 
         internal IList<string> Interests { get; }
 
-        internal ComplexPerson(
+        public ComplexPerson(
             string firstName,
             string lastName,
             float weight,

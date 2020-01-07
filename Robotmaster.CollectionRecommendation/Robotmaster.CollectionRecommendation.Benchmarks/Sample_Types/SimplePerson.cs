@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 {
-    internal class SimplePerson
+    public class SimplePerson
     {
         internal string FirstName { get; }
 
@@ -12,7 +12,7 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 
         internal DateTime Birthday { get; }
 
-        internal SimplePerson(string firstName, string lastName, DateTime birthday)
+        public SimplePerson(string firstName, string lastName, DateTime birthday)
         {
             FirstName = !string.IsNullOrEmpty(firstName) ? firstName : throw new ArgumentNullException(nameof(firstName));
             LastName = !string.IsNullOrEmpty(lastName) ? lastName: throw new ArgumentNullException(nameof(lastName));

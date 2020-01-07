@@ -1,6 +1,6 @@
 ﻿namespace Robotmaster.CollectionRecommendation.Benchmarks
 {
-    internal enum Citizenship
+    public enum Citizenship
     {
         CANADA = 0,
         US = 1,

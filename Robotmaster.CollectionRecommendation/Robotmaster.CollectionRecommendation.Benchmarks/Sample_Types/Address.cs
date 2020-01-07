@@ -6,7 +6,7 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 {
     using System;
 
-    internal class Address
+    public class Address
     {
         public string StreetAddress { get; }
         public string PostalCode { get; }

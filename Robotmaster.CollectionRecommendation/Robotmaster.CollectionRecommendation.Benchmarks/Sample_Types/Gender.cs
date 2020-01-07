@@ -1,6 +1,6 @@
 ﻿namespace Robotmaster.CollectionRecommendation.Benchmarks
 {
-    internal enum Gender
+    public enum Gender
     {
         Man = 0,
         Woman = 1,
