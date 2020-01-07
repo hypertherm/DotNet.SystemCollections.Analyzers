@@ -63,28 +63,16 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
         public void ComputingUniqueValuesForComplexObjectArrays() => sampleComplexPersonsArray.Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueValuesForIntegerLists()
-        {
-
-        }
+        public void ComputingUniqueValuesForIntegerLists() => sampleIntsList.Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueValuesForStringLists()
-        {
-
-        }
+        public void ComputingUniqueValuesForStringLists() => sampleStringsList.Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueValuesForSimpleObjectLists()
-        {
-
-        }
+        public void ComputingUniqueValuesForSimpleObjectLists() => sampleSimplePersonsList.Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueValuesForComplexObjectLists()
-        {
-
-        }
+        public void ComputingUniqueValuesForComplexObjectLists() => sampleComplexPersonsList.Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
         public void ComputingUniqueValuesForIntegerHashSets()
