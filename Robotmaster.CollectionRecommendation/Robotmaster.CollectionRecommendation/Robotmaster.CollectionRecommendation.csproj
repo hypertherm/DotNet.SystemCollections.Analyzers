@@ -37,6 +37,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Collections\AnyCallOnICollectionAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Collections\LongCountCallOnICollectionAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
   </ItemGroup>
 

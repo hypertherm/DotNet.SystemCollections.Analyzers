@@ -2,6 +2,8 @@
 // Copyright (c) Hypertherm Robotic Software Inc. All rights reserved.
 // </copyright>
 
+using Microsoft.CodeAnalysis;
+
 namespace Robotmaster.CollectionRecommendation.Helpers
 {
     using System;
@@ -21,6 +23,11 @@ namespace Robotmaster.CollectionRecommendation.Helpers
         ///     This is the common prefix for the complete analyzer ID, used to identify all of the RCR-related analyzer rules.
         /// </summary>
         private const string AnalyzerIdPrefix = "RCR";
+
+        /// <summary>
+        ///     This is the prefix represents the Global prefix for full (i.e. fully qualified) names of types.
+        /// </summary>
+        private const string GlobalFullNamePrefix = "global::";
 
         /// <summary>
         ///     This is the minimum number of digits in the ID number portion of the analyzer ID; if less than the specified number is provided, zero padding will occur.
@@ -67,5 +74,16 @@ namespace Robotmaster.CollectionRecommendation.Helpers
             // Return the complete analyzer ID string.
             return AnalyzerIdPrefix + idNumber.ToString($"D{AnalyzerIdMinimumNumberOfDigits}");
         }
+
+        /// <summary>
+        ///     This is used to get the full name of the given <paramref name="iNamedTypeSymbol"/> without any prefix.
+        /// </summary>
+        /// <param name="iNamedTypeSymbol">
+        ///     The <see cref="INamedTypeSymbol"/> 
+        /// </param>
+        /// <returns>
+        ///     This returns the full name of the <paramref name="iNamedTypeSymbol"/> without any prefix.
+        /// </returns>
+        internal static string GetFullNameWithoutPrefix(this INamedTypeSymbol iNamedTypeSymbol) => iNamedTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat).Substring(GlobalFullNamePrefix.Length);
     }
 }
