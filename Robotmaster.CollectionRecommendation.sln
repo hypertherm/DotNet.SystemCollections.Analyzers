@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Robotmaster.CollectionRecom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robotmaster.CollectionRecommendation.Vsix", "Robotmaster.CollectionRecommendation\Robotmaster.CollectionRecommendation.Vsix\Robotmaster.CollectionRecommendation.Vsix.csproj", "{FFAE75A4-1A29-408F-8C9D-5799772147A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robotmaster.CollectionRecommendation.Performance", "ConsoleApp1\Robotmaster.CollectionRecommendation.Performance.csproj", "{6E872FC4-651E-4A8F-9DB7-EDAFF0CF52B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robotmaster.CollectionRecommendation.Performance", "Robotmaster.CollectionRecommendation\Robotmaster.CollectionRecommendation.Performance\Robotmaster.CollectionRecommendation.Performance.csproj", "{6E872FC4-651E-4A8F-9DB7-EDAFF0CF52B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
