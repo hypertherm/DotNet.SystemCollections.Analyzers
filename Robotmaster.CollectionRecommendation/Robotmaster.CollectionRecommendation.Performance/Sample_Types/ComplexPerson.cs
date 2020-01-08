@@ -39,8 +39,8 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
             Gender gender,
             IList<string> interests)
         {
-            FirstName = !string.IsNullOrEmpty(firstName) ? firstName : throw new ArgumentNullException(nameof(firstName));
-            LastName = !string.IsNullOrEmpty(lastName) ? lastName : throw new ArgumentNullException(nameof(lastName));
+            FirstName = !string.IsNullOrEmpty(firstName) ? firstName  :"Some Name";
+            LastName = !string.IsNullOrEmpty(lastName) ? lastName : "Some Name";
             Weight = weight > 0.00 && weight <= 635.00 ? weight : throw new ArgumentException(nameof(weight));
             HomeAddress = address ?? throw new ArgumentNullException(nameof(address));
             Birthday = birthday != DateTime.MaxValue || birthday != DateTime.MinValue ? birthday : throw new ArgumentException(nameof(birthday));

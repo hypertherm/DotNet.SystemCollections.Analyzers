@@ -13,8 +13,8 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 
         public Address(string streetName, string postalCode)
         {
-            StreetAddress = !string.IsNullOrEmpty(streetName) ? streetName : throw new ArgumentNullException(nameof(streetName));
-            PostalCode = !string.IsNullOrEmpty(postalCode) ? postalCode : throw new ArgumentNullException(nameof(postalCode));
+            StreetAddress = !string.IsNullOrEmpty(streetName) ? streetName : "Some street name 8888";
+            PostalCode = !string.IsNullOrEmpty(postalCode) ? postalCode : "012 345";
         }
     }
 }

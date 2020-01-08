@@ -7,24 +7,24 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 {
     internal static class PersonInstanceCreator
     {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        private static readonly Random random = new Random();
+        private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        private static readonly Random Random = new Random();
 
         internal static SimplePerson GenerateRandomSimplePerson() => new SimplePerson(
-            GenerateRandomStringBasedOnLength(random.Next(100)), GenerateRandomStringBasedOnLength(random.Next(100)),
+            GenerateRandomStringBasedOnLength(Random.Next(100)), GenerateRandomStringBasedOnLength(Random.Next(100)),
             DateTime.Now);
 
         internal static ComplexPerson GenerateRandomComplexPerson() => new ComplexPerson
         (
-            GenerateRandomStringBasedOnLength(random.Next(100)),
-            GenerateRandomStringBasedOnLength(random.Next(100)),
-            ((float) random.NextDouble()) * 635.0f,
+            GenerateRandomStringBasedOnLength(Random.Next(100)),
+            GenerateRandomStringBasedOnLength(Random.Next(100)),
+            ((float) Random.NextDouble()) * 635.0f,
             new Address(GenerateRandomStringBasedOnLength(30), GenerateRandomStringBasedOnLength(6)),
             DateTime.Now,
             GenerateRandomStringBasedOnLength(20),
             GenerateRandomStringBasedOnLength(20),
-            (Citizenship)random.Next(0, 4),
-            (Gender)random.Next(0, 3),
+            (Citizenship)Random.Next(0, 4),
+            (Gender)Random.Next(0, 3),
             Enumerable.Range(0, 50).Select(_ => GenerateRandomStringBasedOnLength(50)).ToList()
         );
 
@@ -32,6 +32,6 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
 
         internal static List<ComplexPerson> GenerateRandomComplexPersons(int peopleCount) => Enumerable.Range(0, peopleCount).Select(_ => GenerateRandomComplexPerson()).ToList();
 
-        internal static string GenerateRandomStringBasedOnLength(int length) => new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+        internal static string GenerateRandomStringBasedOnLength(int length) => new string(Enumerable.Repeat(Chars, length).Select(s => s[Random.Next(s.Length)]).ToArray());
     }
 }
