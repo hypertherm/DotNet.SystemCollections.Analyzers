@@ -31,23 +31,24 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
     <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.8" PrivateAssets="all" />
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.10" PrivateAssets="all" />
     <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Collections\AnyCallOnICollectionAnalyzer.cs">
+    <Compile Update="Collections\DoNotUseAnyAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Collections\LongCountCallOnICollectionAnalyzer.cs">
+    <Compile Update="Collections\DoNotUseLongCountAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Arrays\PropertyOfArrayAnalyzer.cs">
+    <Compile Update="Arrays\DoNotHavePropertyOfArrayTypeAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

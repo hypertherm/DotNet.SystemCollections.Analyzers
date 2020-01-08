@@ -1,15 +1,16 @@
 namespace Robotmaster.CollectionRecommendation.Arrays
 {
+    using System.Collections.Generic;
     using System.Collections.Immutable;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Diagnostics;
     using Robotmaster.CollectionRecommendation.Helpers;
 
     /// <summary>
-    ///     This is used
+    ///     This is used to analyze and detect for situations where properties are arrays instead of <see cref="IReadOnlyList{T}"/>.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class PropertyOfArrayAnalyzer : DiagnosticAnalyzer
+    public class DoNotHavePropertyOfArrayTypeAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         ///     This is the complete diagnostic ID for this analyzer.
@@ -34,7 +35,7 @@ namespace Robotmaster.CollectionRecommendation.Arrays
         /// <summary>
         ///     The number portion of the analyzer's <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 1;
+        private const int IdNumber = 3;
 
 #pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
@@ -57,7 +58,7 @@ namespace Robotmaster.CollectionRecommendation.Arrays
             // If the type of the property symbol is an array.
             if (propertySymbol.Type is IArrayTypeSymbol)
             {
-                // For every location where it is defined.
+                // For every location where the property is defined.
                 foreach (var location in propertySymbol.Locations)
                 {
                     // Report a diagnostic that IReadOnlyList should be the type instead.

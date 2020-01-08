@@ -8,7 +8,7 @@ using Robotmaster.CollectionRecommendation.Test.Verifiers;
 namespace Robotmaster.CollectionRecommendation.Test.Arrays
 {
     [TestClass]
-    public class MethodReturnedArrayAnalyzerTest : DiagnosticVerifier
+    public class DoNotHaveMethodReturnArrayTypeAnalyzerTest : DiagnosticVerifier
     {
         //No diagnostics expected to show up
         [TestMethod]
@@ -42,8 +42,8 @@ namespace Robotmaster.CollectionRecommendation.Test.Arrays
     }";
             var expected = new DiagnosticResult
             {
-                Id = MethodReturnedArrayAnalyzer.DiagnosticId,
-                Message = String.Format(MethodReturnedArrayAnalyzer.MessageFormat, "MethodName"),
+                Id = DoNotHaveMethodReturnArrayTypeAnalyzer.DiagnosticId,
+                Message = String.Format(DoNotHaveMethodReturnArrayTypeAnalyzer.MessageFormat, "MethodName"),
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[]
@@ -57,7 +57,7 @@ namespace Robotmaster.CollectionRecommendation.Test.Arrays
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new MethodReturnedArrayAnalyzer();
+            return new DoNotHaveMethodReturnArrayTypeAnalyzer();
         }
     }
 }
