@@ -16,8 +16,12 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
     /// </remarks>
     public class HashSetVersusDistinctBenchmarks
     {
-        private static readonly Random random = new Random();
+        private static readonly Random Random = new Random();
         private readonly Consumer iEnumerableConsumer = new Consumer();
+        private readonly SimplePerson sampleSimplePerson = new SimplePerson("Some First Name", "Some Last Name", DateTime.Now);
+        private readonly ComplexPerson sampleComplexPerson = new ComplexPerson("Some First Complex Long Name", "Some Complex Short Name", 100, new Address("Some Street Name,", "102 203"), DateTime.Now, "Profession", "Phone Number", Citizenship.CANADA, Gender.Man, new List<string> { "coding", "sports" });
+        private readonly string sampleRandomGenerateString = PersonInstanceCreator.GenerateRandomStringBasedOnLength(500);
+        private readonly int sampleRandomGeneratedInteger = Random.Next(0, 500);
 
         private int[] sampleIntsArray;
         private string[] sampleStringsArray;
@@ -29,7 +33,7 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
         private List<SimplePerson> sampleSimplePersonsList;
         private List<ComplexPerson> sampleComplexPersonsList;
 
-        [Params(100, 1_000, 10_000, 100_000)]
+        [Params(5, 10, 25)]
         public int collectionSize;
 
 
@@ -41,13 +45,10 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
         {
             sampleIntsArray = Enumerable.Range(0, collectionSize).ToArray();
             sampleStringsArray = Enumerable.Range(0, collectionSize).Select(_ => PersonInstanceCreator.GenerateRandomStringBasedOnLength(collectionSize)).ToArray();
-            sampleSimplePersonsArray = PersonInstanceCreator.GenerateRandomSimplePersons(collectionSize).ToArray();
-            sampleComplexPersonsArray = PersonInstanceCreator.GenerateRandomComplexPersons(collectionSize).ToArray();
-
-            sampleIntsList = Enumerable.Range(0, collectionSize).ToList();
-            sampleStringsList = Enumerable.Range(0, collectionSize).Select(_ => PersonInstanceCreator.GenerateRandomStringBasedOnLength(collectionSize)).ToList();
-            sampleSimplePersonsList = PersonInstanceCreator.GenerateRandomSimplePersons(collectionSize);
-            sampleComplexPersonsList = PersonInstanceCreator.GenerateRandomComplexPersons(collectionSize);
+            sampleSimplePersonsArray = Enumerable.Repeat(sampleSimplePerson, collectionSize).ToArray();
+            sampleComplexPersonsArray = Enumerable.Repeat(sampleComplexPerson, collectionSize).ToArray();
+            sampleSimplePersonsList = Enumerable.Repeat(sampleSimplePerson, collectionSize).ToList();
+            sampleComplexPersonsList = Enumerable.Repeat(sampleComplexPerson, collectionSize).ToList();
         }
 
         [Benchmark]
@@ -99,51 +100,51 @@ namespace Robotmaster.CollectionRecommendation.Benchmarks
         public HashSet<ComplexPerson> ComputingUniqueValuesForComplexHashSetsFromList() => new HashSet<ComplexPerson>(sampleComplexPersonsList);
 
         [Benchmark]
-        public void ComputingUniqueIntsFromArrayExpression() => Enumerable.Range(0, collectionSize).Select(i => i + random.Next(0, 500)).ToArray().Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueIntsFromArrayExpression() => Enumerable.Repeat(sampleRandomGeneratedInteger, collectionSize).ToArray().Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueIntsFromListExpression() => Enumerable.Range(0, collectionSize).Select(i => i + random.Next(0, 500)).ToList().Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueIntsFromListExpression() => Enumerable.Repeat(sampleRandomGeneratedInteger, collectionSize).ToList().Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueIntsFromSequenceExpression() => Enumerable.Range(0, collectionSize).Select(i => i + random.Next(0, 500)).Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueIntsFromSequenceExpression() => Enumerable.Repeat(sampleRandomGeneratedInteger, collectionSize).Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public HashSet<int> ComputingUniqueIntsInHashSetsFromSequenceExpression() => new HashSet<int>(Enumerable.Range(0, collectionSize).Select(i => i + random.Next(0, 500)));
+        public HashSet<int> ComputingUniqueIntsInHashSetsFromSequenceExpression() => new HashSet<int>(Enumerable.Range(0, collectionSize).Select(i => i + Random.Next(0, 500)));
 
         [Benchmark]
-        public void ComputingUniqueStringsFromArrayExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomStringBasedOnLength(500)).ToArray().Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueStringsFromArrayExpression() => Enumerable.Repeat(sampleRandomGenerateString, collectionSize).ToArray().Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueStringsFromListExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomStringBasedOnLength(500)).ToList().Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueStringsFromListExpression() => Enumerable.Repeat(sampleRandomGenerateString, collectionSize).ToList().Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueStringsFromSequenceExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomStringBasedOnLength(500)).Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueStringsFromSequenceExpression() => Enumerable.Repeat(sampleRandomGenerateString, collectionSize).Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public HashSet<string> ComputingUniqueStringFromHashSetExpression() => new HashSet<string>(Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomStringBasedOnLength(500)));
+        public HashSet<string> ComputingUniqueStringFromHashSetExpression() => new HashSet<string>(Enumerable.Repeat(sampleRandomGenerateString, collectionSize));
 
         [Benchmark]
-        public void ComputingUniqueSimplePersonsFromArrayExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomSimplePerson()).ToArray().Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueSimplePersonsFromArrayExpression() => Enumerable.Repeat(sampleSimplePerson, collectionSize).ToArray().Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueSimplePersonsFromListExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomSimplePerson()).ToList().Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueSimplePersonsFromListExpression() => Enumerable.Repeat(sampleSimplePerson, collectionSize).ToList().Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueSimplePersonsFromSequenceExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomSimplePerson()).Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueSimplePersonsFromSequenceExpression() => Enumerable.Repeat(sampleSimplePerson, collectionSize).Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public HashSet<SimplePerson> ComputingUniqueSimplePersonsFromHashSetExpression() => new HashSet<SimplePerson>(Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomSimplePerson()));
+        public HashSet<SimplePerson> ComputingUniqueSimplePersonsFromHashSetExpression() => new HashSet<SimplePerson>(Enumerable.Repeat(sampleSimplePerson, collectionSize));
 
         [Benchmark]
-        public void ComputingUniqueComplexPersonsFromArrayExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomComplexPerson()).ToArray().Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueComplexPersonsFromArrayExpression() => Enumerable.Repeat(sampleComplexPerson, collectionSize).ToArray().Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueComplexPersonsFromListExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomComplexPerson()).ToList().Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueComplexPersonsFromListExpression() => Enumerable.Repeat(sampleComplexPerson, collectionSize).ToList().Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public void ComputingUniqueComplexPersonsFromSequenceExpression() => Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomComplexPerson()).Distinct().Consume(iEnumerableConsumer);
+        public void ComputingUniqueComplexPersonsFromSequenceExpression() => Enumerable.Repeat(sampleComplexPerson, collectionSize).Distinct().Consume(iEnumerableConsumer);
 
         [Benchmark]
-        public HashSet<ComplexPerson> ComputingUniqueComplexPersonsFromHashSetExpression() => new HashSet<ComplexPerson>(Enumerable.Range(0, collectionSize).Select(i => PersonInstanceCreator.GenerateRandomComplexPerson()));
+        public HashSet<ComplexPerson> ComputingUniqueComplexPersonsFromHashSetExpression() => new HashSet<ComplexPerson>(Enumerable.Repeat(sampleComplexPerson, collectionSize));
     }
 }
