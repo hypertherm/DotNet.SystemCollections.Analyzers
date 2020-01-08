@@ -8,18 +8,44 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Robotmaster.CollectionRecommendation.Helpers;
+using Robotmaster.CollectionRecommendation.Helpers.Lists;
 
 namespace Robotmaster.CollectionRecommendation
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class DoNotUseDistinctAnalyzer : DiagnosticAnalyzer
     {
-        public static readonly  string DiagnosticId = AnalyzerHelper.GetCompleteAnalyzerId(3);
+        /// <summary>
+        ///     This is the complete ID of the rule for this analyzer.
+        /// </summary>
+        public static readonly  string DiagnosticId = AnalyzerHelper.GetCompleteAnalyzerId(IdNumber);
+
+        /// <summary>
+        ///     This is the format of the analyzer's rule.
+        /// </summary>
         internal static readonly LocalizableString Title = "Use a set-based collection instead of Distinct()";
+
+        /// <summary>
+        ///     This is the message of the analyzer's rule.
+        /// </summary>
         internal static readonly LocalizableString MessageFormat = "Instead of using the Distinct extension method, which is linear O(n), use a set-based collection (i.e. HashSet<T>) instead. They have a constant time (i.e. O(1)) lookups and additions are O(1) while the size doesn't exceeds the capacity, otherwise it's O(n).";
-        internal const string Category = "Performance";
+
+        /// <summary>
+        ///     The category of the analyzer's rule.
+        /// </summary>
+        private const string Category = "Collections";
+
+        /// <summary>
+        ///     The number portion of the above <see cref="DiagnosticId"/>.
+        /// </summary>
+        private const int IdNumber = 7;
 
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
+
+        /// <summary>
+        ///     This is the name of the <see cref="Enumerable.LongCount{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        private static readonly string DistinctMethodName = nameof(Enumerable.Distinct);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -32,16 +58,11 @@ namespace Robotmaster.CollectionRecommendation
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            if (context.Node is MemberAccessExpressionSyntax memberAccessExpression && memberAccessExpression.Name.Identifier.ValueText.Equals("Distinct", StringComparison.Ordinal))
+            // If this corresponds to an IList invoking the Distinct() method.
+            if (CollectionHelper.IsICollectionInvokingRedundantLinqMethod(context, DistinctMethodName))
             {
-                var methodSymbol = context.SemanticModel.GetSymbolInfo(memberAccessExpression).Symbol;
-                if (methodSymbol.ContainingNamespace.Name.Equals("Linq", StringComparison.Ordinal))
-                {
-                    // For all such symbols, produce a diagnostic.
-                    var diagnostic = Diagnostic.Create(Rule, memberAccessExpression.GetLocation(), memberAccessExpression.Name);
-
-                    context.ReportDiagnostic(diagnostic);
-                }
+                // Report a diagnostic for this invocations expression.
+                context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));
             }
         }
     }
