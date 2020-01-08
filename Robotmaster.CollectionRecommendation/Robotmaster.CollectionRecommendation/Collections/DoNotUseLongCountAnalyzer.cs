@@ -1,3 +1,5 @@
+using Robotmaster.CollectionRecommendation.Helpers.Collections;
+
 namespace Robotmaster.CollectionRecommendation.Collections
 {
     using System.Collections.Immutable;
@@ -6,13 +8,12 @@ namespace Robotmaster.CollectionRecommendation.Collections
     using Microsoft.CodeAnalysis.CSharp;
     using Microsoft.CodeAnalysis.Diagnostics;
     using Robotmaster.CollectionRecommendation.Helpers;
-    using Robotmaster.CollectionRecommendation.Helpers.Lists;
 
     /// <summary>
     ///     This analyzer is used to monitor and detect when an ICollection calls the LINQ <see cref="Enumerable.LongCount{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class LongCountCallOnICollectionAnalyzer : DiagnosticAnalyzer
+    public class DoNotUseLongCountAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         ///     This is the complete ID of the rule for this analyzer.

@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Robotmaster.CollectionRecommendation.Helpers;
-using Robotmaster.CollectionRecommendation.Helpers.Lists;
+using Robotmaster.CollectionRecommendation.Helpers.Collections;
 
 namespace Robotmaster.CollectionRecommendation
 {
@@ -40,7 +36,9 @@ namespace Robotmaster.CollectionRecommendation
         /// </summary>
         private const int IdNumber = 7;
 
+#pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, Title, MessageFormat, Category, DiagnosticSeverity.Warning, true);
+#pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
 
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.LongCount{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
