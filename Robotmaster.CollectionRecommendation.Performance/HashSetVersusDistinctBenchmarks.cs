@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
-using Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types;
+using Robotmaster.CollectionRecommendation.Performance.SampleTypes;
 
-namespace Robotmaster.CollectionRecommendation.Benchmarks
+namespace Robotmaster.CollectionRecommendation.Performance
 {
     /// <summary>
-    /// 
+    ///     This is used to gather benchmarks to compare using HashSets Vs. LINQ Distinct() fot determining uniqueness.
     /// </summary>
     /// <remarks>
     ///     In the case of HashSets, the purpose here is to show the "power" of using set based collection over invoking the Distinct method.

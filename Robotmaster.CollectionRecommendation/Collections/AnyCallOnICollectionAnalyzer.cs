@@ -1,3 +1,5 @@
+using Robotmaster.CollectionRecommendation.Helpers.Collections;
+
 namespace Robotmaster.CollectionRecommendation.Collections
 {
     using System.Linq;
@@ -6,7 +8,6 @@ namespace Robotmaster.CollectionRecommendation.Collections
     using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.CSharp;
     using Robotmaster.CollectionRecommendation.Helpers;
-    using Robotmaster.CollectionRecommendation.Helpers.Lists;
 
     /// <summary>
     ///     This analyzer is used to monitor and detect when an ICollection calls the LINQ <see cref="Enumerable.Any{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.

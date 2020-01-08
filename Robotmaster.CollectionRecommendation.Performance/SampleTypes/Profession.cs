@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types
+﻿namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
 {
     public enum Profession
     {
