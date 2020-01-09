@@ -10,7 +10,7 @@ namespace ConsoleApp1
     /// <summary>
     ///     This is used to gather benchmarks to compare using items lookups in IList collections Vs. LINQ <see cref="Enumerable.Single{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> to return the only item of the collection.
     /// </summary>
-    public class SingleVersusIListCollectionItemLookup
+    public class SingleVersusIListCollectionItemLookupBenchmarks
     {
         private readonly SimplePerson sampleSimplePerson = new SimplePerson("Some First Name", "Some Last Name", DateTime.Now);
         private readonly ComplexPerson sampleComplexPerson = new ComplexPerson("Some First Complex Long Name", "Some Complex Short Name", 100, new Address("Some Street Name,", "102 203"), DateTime.Now, "Profession", "Phone Number", Citizenship.CANADA, Gender.Man, new List<string> { "coding", "sports" });
@@ -22,7 +22,6 @@ namespace ConsoleApp1
 
         [Params(1, 5, 10, 25)]
         public int collectionSize;
-
 
         /// <summary>
         ///     Setup method for the benchmarks.
