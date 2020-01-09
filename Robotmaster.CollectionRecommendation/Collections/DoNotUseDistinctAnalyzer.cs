@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Robotmaster.CollectionRecommendation.Helpers;
 using Robotmaster.CollectionRecommendation.Helpers.Collections;
 
-namespace Robotmaster.CollectionRecommendation
+namespace Robotmaster.CollectionRecommendation.Collections
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class DoNotUseDistinctAnalyzer : DiagnosticAnalyzer

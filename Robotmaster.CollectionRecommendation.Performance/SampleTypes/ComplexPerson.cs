@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Robotmaster.CollectionRecommendation.Benchmarks.Sample_Types;
 
-namespace Robotmaster.CollectionRecommendation.Benchmarks
+namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
 {
     public class ComplexPerson
     {
