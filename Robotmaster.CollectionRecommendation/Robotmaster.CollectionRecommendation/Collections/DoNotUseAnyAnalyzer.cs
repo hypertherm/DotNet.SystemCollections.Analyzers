@@ -61,7 +61,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the Any() method.
-            if (CollectionHelper.IsICollectionInvokingRedundantLinqMethod(context, AnyMethodName))
+            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, AnyMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));

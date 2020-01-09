@@ -1,4 +1,4 @@
-namespace Robotmaster.CollectionRecommendation.Helpers.Collections
+﻿namespace Robotmaster.CollectionRecommendation.Helpers.Collections
 {
     using System;
     using System.Collections;
@@ -36,7 +36,7 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
         /// <returns>
         ///     This returns whether or not this corresponds to an IList invoking a LINQ method.
         /// </returns>
-        internal static bool IsICollectionInvokingRedundantLinqMethod(SyntaxNodeAnalysisContext context, string linqMethodName)
+        internal static bool IsCollectionInvokingRedundantLinqMethod(SyntaxNodeAnalysisContext context, string linqMethodName)
         {
             // If the node is not an InvocationExpression.
             if (!(context.Node is InvocationExpressionSyntax syntaxNode))
