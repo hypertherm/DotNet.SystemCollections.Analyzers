@@ -57,7 +57,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the Distinct() method.
-            if (CollectionHelper.IsICollectionInvokingRedundantLinqMethod(context, DistinctMethodName))
+            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, DistinctMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));

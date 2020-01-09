@@ -53,12 +53,6 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Robotmaster.CollectionRecommendation\Robotmaster.CollectionRecommendation.csproj">
-      <Project>{7E1E4B6F-FC95-42D8-AEB6-5BB87FB867CD}</Project>
-      <Name>Robotmaster.CollectionRecommendation</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>
