@@ -41,20 +41,25 @@
         /// <returns>
         ///     This returns whether or not this corresponds to an IList invoking a LINQ method.
         /// </returns>
-        internal static bool IsCollectionInvokingRedundantLinqMethod(SyntaxNodeAnalysisContext context, string linqMethodName)
+        internal static bool IsCollectionInvokingRedundantLinqMethod(SyntaxNodeAnalysisContext context, string linqMethodName, bool isExpectedToBeAnExtensionMethod = false)
         {
-            // If the node is not an InvocationExpression.
-            if (!(context.Node is InvocationExpressionSyntax syntaxNode))
+            switch (context.Node)
             {
-                // It is not an invocation expression; return false.
-                return false;
+                case InvocationExpressionSyntax syntaxNode when ShouldReportMisuseOfLinqApi(syntaxNode, context, linqMethodName):
+                    return true;
+                case MemberAccessExpressionSyntax syntaxNode when ShouldReportMisuseOfLinqApi(syntaxNode, context, linqMethodName):
+                    return true;
+                default:
+                    return false;
             }
+        }
 
-            // Get the information for the method.
-            ISymbol symbol = context.SemanticModel.GetSymbolInfo(syntaxNode).Symbol;
+        private static bool ShouldReportMisuseOfLinqApi(SyntaxNode syntaxNode, SyntaxNodeAnalysisContext context, string linqMethodName)
+        {
+            bool isInvocationExpression = syntaxNode is InvocationExpressionSyntax;
+            bool isMemberAccessExpression = syntaxNode is MemberAccessExpressionSyntax;
 
-            // If it is not an extension method.
-            if (!(symbol is IMethodSymbol methodSymbol) || !methodSymbol.IsExtensionMethod)
+            if (!(context.SemanticModel.GetSymbolInfo(syntaxNode).Symbol is IMethodSymbol methodSymbol) || isInvocationExpression && !methodSymbol.IsExtensionMethod)
             {
                 // It cannot be the correct method; return false.
                 return false;
@@ -84,70 +89,76 @@
                 return false;
             }
 
-            // The method being called is the exact method that needs to be analyzed.
+            ITypeSymbol expressionTypeSymbol = null;
 
-            // If the expression is not a MemberAccessExpressionSyntax.
-            if (!(syntaxNode.Expression is MemberAccessExpressionSyntax memberAccessExpressionSyntax))
+            if (isInvocationExpression && ((InvocationExpressionSyntax)syntaxNode).Expression is MemberAccessExpressionSyntax memberAccessExpressionSyntax)
+            {
+                expressionTypeSymbol = context.SemanticModel.GetTypeInfo(memberAccessExpressionSyntax.Expression).Type;
+            }
+
+            if (isMemberAccessExpression)
+            {
+                expressionTypeSymbol = context.SemanticModel.GetTypeInfo(((MemberAccessExpressionSyntax)syntaxNode).Expression).Type;
+            }
+
+            if (expressionTypeSymbol == null)
             {
                 // The expression is not in the correct form; return false.
                 return false;
             }
-
-            // Get the type of the expression.
-            ITypeSymbol expressionTypeSymbol = context.SemanticModel.GetTypeInfo(memberAccessExpressionSyntax.Expression).Type;
 
             // Switch on the type of the expression.
             switch (expressionTypeSymbol)
             {
                 // If it is an array type.
                 case IArrayTypeSymbol _:
-                {
-                    // An array is a collection; return true.
-                    return true;
-                }
+                    {
+                        // An array is a collection; return true.
+                        return true;
+                    }
 
                 // If it is a INamedTypeSymbol.
                 case INamedTypeSymbol namedTypeSymbol:
-                {
-                    // Go through all of the expression named type's interfaces.
-                    foreach (var interfaceNamedTypeSymbol in namedTypeSymbol.AllInterfaces)
                     {
-                        // Going from the more to less specific high level interface.
-                        
-                        // If the collection is an IList<T>
-                        if (DoesSymbolMatchOnCollectionTypeFullName(interfaceNamedTypeSymbol, ListInterfaceFullType))
+                        // Go through all of the expression named type's interfaces.
+                        foreach (var interfaceNamedTypeSymbol in namedTypeSymbol.AllInterfaces)
                         {
-                            // A match was found; return true.
-                            return true;
+                            // Going from the more to less specific high level interface.
+
+                            // If the collection is an IList<T>
+                            if (DoesSymbolMatchOnCollectionTypeFullName(interfaceNamedTypeSymbol, ListInterfaceFullType))
+                            {
+                                // A match was found; return true.
+                                return true;
+                            }
+
+                            // If the collection is an ICollection<T>
+                            if (DoesSymbolMatchOnCollectionTypeFullName(interfaceNamedTypeSymbol, CollectionInterfaceFullType))
+                            {
+                                // A match was found; return true.
+                                return true;
+                            }
+
+                            // If the collection is an IEnumerable<T>
+                            if (DoesSymbolMatchOnCollectionTypeFullName(interfaceNamedTypeSymbol, EnumerableInterfaceFullType))
+                            {
+                                // A match was found; return true.
+                                return true;
+                            }
                         }
 
-                        // If the collection is an ICollection<T>
-                        if (DoesSymbolMatchOnCollectionTypeFullName(interfaceNamedTypeSymbol, CollectionInterfaceFullType))
-                        {
-                            // A match was found; return true.
-                            return true;
-                        }
+                        // This is used to determine if the given INamedTypedSymbol is the high level interface we're interested in.
+                        bool DoesSymbolMatchOnCollectionTypeFullName(INamedTypeSymbol iNamedTypeSymbol, string collectionInterfaceFullTypeName) => string.Equals(iNamedTypeSymbol.GetFullNameWithoutPrefix(), collectionInterfaceFullTypeName, StringComparison.Ordinal);
 
-                        // If the collection is an IEnumerable<T>
-                        if(DoesSymbolMatchOnCollectionTypeFullName(interfaceNamedTypeSymbol, EnumerableInterfaceFullType))
-                        {
-                            // A match was found; return true.
-                            return true;
-                        }
+                        // No match was found; just return false.
+                        return false;
                     }
 
-                    // This is used to determine if the given INamedTypedSymbol is the high level interface we're interested in.
-                    bool DoesSymbolMatchOnCollectionTypeFullName(INamedTypeSymbol iNamedTypeSymbol, string collectionInterfaceFullTypeName) => string.Equals(iNamedTypeSymbol.GetFullNameWithoutPrefix(), collectionInterfaceFullTypeName, StringComparison.Ordinal);
-
-                    // No match was found; just return false.
-                    return false;
-                }
-
                 default:
-                {
-                    // The type of the expression is not a collection.
-                    return false;
-                }
+                    {
+                        // The type of the expression is not a collection.
+                        return false;
+                    }
             }
         }
     }
