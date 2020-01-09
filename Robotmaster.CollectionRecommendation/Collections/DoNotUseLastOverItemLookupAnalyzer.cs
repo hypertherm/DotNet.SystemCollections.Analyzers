@@ -1,19 +1,18 @@
+﻿using System.Collections.Immutable;
+using System.Linq;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Diagnostics;
+using Robotmaster.CollectionRecommendation.Helpers;
 using Robotmaster.CollectionRecommendation.Helpers.Collections;
 
 namespace Robotmaster.CollectionRecommendation.Collections
 {
-    using System.Linq;
-    using System.Collections.Immutable;
-    using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.Diagnostics;
-    using Microsoft.CodeAnalysis.CSharp;
-    using Robotmaster.CollectionRecommendation.Helpers;
-
     /// <summary>
-    ///     This analyzer is used to monitor and detect when an ICollection calls the LINQ <see cref="Enumerable.Any{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+    ///     This analyzer is used to monitor and detect when an IList calls the LINQ <see cref="Enumerable.Last{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> or <see cref="Enumerable.LastOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DoNotUseAnyAnalyzer : DiagnosticAnalyzer
+    public class DoNotUseLastOverItemLookupAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         ///     This is the complete ID of the rule for this analyzer.
@@ -23,12 +22,12 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        internal const string MessageFormat = "This ICollection is calling the Any() extension method; it should use the Count property and compare it to 0 instead.";
+        internal const string MessageFormat = "This IList is calling the Last()/LastOrDefault() extension method; it should access the item directly instead.";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        private const string Description = "All ICollections should use the Count property and compare it to 0 instead of using the Enumerable.Any() extension method.";
+        private const string Description = "All IList should access their last item directly instead using of the Enumerable.Last()/Enumerable.LastOrDefault() extension method.";
 
         /// <summary>
         ///     The category of the analyzer's rule.
@@ -38,12 +37,17 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 6;
-        
+        private const int IdNumber = 9;
+
         /// <summary>
-        ///     This is the name of the <see cref="Enumerable.Any{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        ///     This is the name of the <see cref="Enumerable.Last{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
         /// </summary>
-        private static readonly string AnyMethodName = nameof(Enumerable.Any);
+        private const string LastMethodName = nameof(Enumerable.Last);
+
+        /// <summary>
+        ///     This is the name of the <see cref="Enumerable.LastOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        private const string LastOrDefaultMethodName = nameof(Enumerable.LastOrDefault);
 
 #pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
@@ -58,10 +62,10 @@ namespace Robotmaster.CollectionRecommendation.Collections
             context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, SyntaxKind.InvocationExpression);
         }
 
-        private void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+        private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the Any() method.
-            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, AnyMethodName))
+            // If this corresponds to an IList invoking the LongCount() method.
+            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, LastMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, LastOrDefaultMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));

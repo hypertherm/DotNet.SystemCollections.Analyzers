@@ -15,9 +15,14 @@
         internal static readonly string EnumerableClassFullName = typeof(Enumerable).FullName;
 
         /// <summary>
-        ///     This is the full name of the <see cref="ICollection"/> class.
+        ///     This is the full name of the <see cref="ICollection"/> interface.
         /// </summary>
         private static readonly string CollectionInterfaceFullType = typeof(ICollection).FullName;
+
+        /// <summary>
+        ///     This is the full name of the <see cref="IList"/> interface.
+        /// </summary>
+        private static readonly string ListInterfaceFullType = typeof(IList).FullName;
 
         /// <summary>
         ///     This is used to determine if a IList is invoking the specified no-parameter overload of a LINQ method in <see cref="Enumerable"/> called <paramref name="linqMethodName"/>.
@@ -31,7 +36,7 @@
         /// <returns>
         ///     This returns whether or not this corresponds to an IList invoking a LINQ method.
         /// </returns>
-        internal static bool IsICollectionInvokingRedundantLinqMethod(SyntaxNodeAnalysisContext context, string linqMethodName)
+        internal static bool IsCollectionInvokingRedundantLinqMethod(SyntaxNodeAnalysisContext context, string linqMethodName)
         {
             // If the node is not an InvocationExpression.
             if (!(context.Node is InvocationExpressionSyntax syntaxNode))
@@ -102,6 +107,11 @@
                     // Go through all of the expression named type's interfaces.
                     foreach (var interfaceNamedTypeSymbol in namedTypeSymbol.AllInterfaces)
                     {
+                        if (IsIList(interfaceNamedTypeSymbol))
+                        {
+                            return true;
+                        }
+
                         // If the current interface is an ICollection.
                         if (IsICollection(interfaceNamedTypeSymbol))
                         {
@@ -123,12 +133,26 @@
         }
 
         /// <summary>
-        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref=""/>
+        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref="ICollection{T}"/> interface type.
         /// </summary>
         /// <param name="iNamedTypeSymbol">
-        ///     The 
+        ///     The named type.
         /// </param>
-        /// <returns></returns>
+        /// <returns>
+        ///     Whether or not there was a match on the <see cref="ICollection{T}" /> interface type.
+        /// </returns>
         private static bool IsICollection(INamedTypeSymbol iNamedTypeSymbol) => string.Equals(iNamedTypeSymbol.GetFullNameWithoutPrefix(), CollectionInterfaceFullType, StringComparison.Ordinal);
+
+
+        /// <summary>
+        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref="IList{T}" /> interface type.
+        /// </summary>
+        /// <param name="iNamedTypeSymbol">
+        ///     The named type.
+        /// </param>
+        /// <returns>
+        ///     Whether or not there was a match on the <see cref="IList{T}" /> interface type.
+        /// </returns>
+        private static bool IsIList(INamedTypeSymbol iNamedTypeSymbol) => string.Equals(iNamedTypeSymbol.GetFullNameWithoutPrefix(), ListInterfaceFullType, StringComparison.Ordinal);
     }
 }
