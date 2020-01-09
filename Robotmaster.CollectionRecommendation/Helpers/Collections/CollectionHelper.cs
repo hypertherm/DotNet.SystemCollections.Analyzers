@@ -1,4 +1,6 @@
-﻿namespace Robotmaster.CollectionRecommendation.Helpers.Collections
+﻿using System.Collections.Generic;
+
+namespace Robotmaster.CollectionRecommendation.Helpers.Collections
 {
     using System;
     using System.Collections;
@@ -28,6 +30,11 @@
         ///     This is the full name of the <see cref="IEnumerable"/> interface.
         /// </summary>
         private static readonly string EnumerableInterfaceFullType = typeof(IEnumerable).FullName;
+
+
+        private static readonly HashSet<string> MethodRequiringSpecificChecks = new HashSet<string> { "Contains" };
+
+
 
         /// <summary>
         ///     This is used to determine if a IList is invoking the specified no-parameter overload of a LINQ method in <see cref="Enumerable"/> called <paramref name="linqMethodName"/>.
@@ -59,14 +66,14 @@
             bool isInvocationExpression = syntaxNode is InvocationExpressionSyntax;
             bool isMemberAccessExpression = syntaxNode is MemberAccessExpressionSyntax;
 
-            if (!(context.SemanticModel.GetSymbolInfo(syntaxNode).Symbol is IMethodSymbol methodSymbol) || isInvocationExpression && !methodSymbol.IsExtensionMethod)
+            if (!(context.SemanticModel.GetSymbolInfo(syntaxNode).Symbol is IMethodSymbol methodSymbol))
             {
                 // It cannot be the correct method; return false.
                 return false;
             }
 
             // If the name of the method does not match the one parameter overload of the Count() method.
-            if (!string.Equals(methodSymbol.Name, linqMethodName, StringComparison.Ordinal) || methodSymbol.Parameters.Length != 0)
+            if (!string.Equals(methodSymbol.Name, linqMethodName, StringComparison.Ordinal) && (!MethodRequiringSpecificChecks.Contains(methodSymbol.Name) || methodSymbol.Parameters.Length != 0))
             {
                 // This is not the correct method; return false.
                 return false;
@@ -83,7 +90,7 @@
             string fullDisplayString = containingNamedTypeSymbol.GetFullNameWithoutPrefix();
 
             // If the Count() method does not belong to the Enumerable class.
-            if (!string.Equals(fullDisplayString, CollectionHelper.EnumerableClassFullName, StringComparison.Ordinal))
+            if (!string.Equals(fullDisplayString, EnumerableClassFullName, StringComparison.Ordinal) && !MethodRequiringSpecificChecks.Contains(methodSymbol.Name))
             {
                 // This is not the correct Count() method; return false.
                 return false;
