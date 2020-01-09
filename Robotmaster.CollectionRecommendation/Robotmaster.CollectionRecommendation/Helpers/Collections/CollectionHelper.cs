@@ -1,4 +1,4 @@
-﻿namespace Robotmaster.CollectionRecommendation.Helpers.Collections
+namespace Robotmaster.CollectionRecommendation.Helpers.Collections
 {
     using System;
     using System.Collections;
@@ -15,7 +15,7 @@
         internal static readonly string EnumerableClassFullName = typeof(Enumerable).FullName;
 
         /// <summary>
-        ///     This is the full name of the <see cref="ICollection"/> class.
+        ///     This is the full name of the <see cref="ICollection"/> interface.
         /// </summary>
         private static readonly string CollectionInterfaceFullType = typeof(ICollection).FullName;
 
@@ -123,12 +123,14 @@
         }
 
         /// <summary>
-        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref=""/>
+        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref="ICollection{T}"/> interface type.
         /// </summary>
         /// <param name="iNamedTypeSymbol">
-        ///     The 
+        ///     The named type.
         /// </param>
-        /// <returns></returns>
+        /// <returns>
+        ///     Whether or not there was a match on the <see cref="ICollection{T}" /> interface type.
+        /// </returns>
         private static bool IsICollection(INamedTypeSymbol iNamedTypeSymbol) => string.Equals(iNamedTypeSymbol.GetFullNameWithoutPrefix(), CollectionInterfaceFullType, StringComparison.Ordinal);
     }
 }
