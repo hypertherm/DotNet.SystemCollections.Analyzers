@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.Diagnostics;
-
-namespace Robotmaster.CollectionRecommendation.Helpers.Collections
+﻿namespace Robotmaster.CollectionRecommendation.Helpers.Collections
 {
+    using System;
+    using System.Collections;
+    using System.Linq;
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.CSharp.Syntax;
+    using Microsoft.CodeAnalysis.Diagnostics;
+
     internal class CollectionHelper
     {
         /// <summary>
