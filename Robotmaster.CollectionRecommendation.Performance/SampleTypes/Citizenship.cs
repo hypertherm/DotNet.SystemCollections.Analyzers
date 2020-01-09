@@ -1,4 +1,4 @@
-﻿namespace Robotmaster.CollectionRecommendation.Benchmarks
+﻿namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
 {
     public enum Citizenship
     {
