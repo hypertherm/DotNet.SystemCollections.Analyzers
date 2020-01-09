@@ -25,6 +25,11 @@
         private static readonly string ListInterfaceFullType = typeof(IList).FullName;
 
         /// <summary>
+        ///     This is the fully qualified namespace for old-style collections (residing in System.Collections).
+        /// </summary>
+        private static readonly string OldStyleCollectionNamespace = typeof(ICollection).Namespace;
+
+        /// <summary>
         ///     This is used to determine if a IList is invoking the specified no-parameter overload of a LINQ method in <see cref="Enumerable"/> called <paramref name="linqMethodName"/>.
         /// </summary>
         /// <param name="context">
@@ -133,16 +138,22 @@
         }
 
         /// <summary>
-        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref="ICollection{T}"/> interface type.
+        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to an old-style collection type 
+        /// </summary>
+        /// <param name="iNamedTypeSymbol"></param>
+        /// <returns></returns>
+        internal static bool IsOldStyleCollectionClass(INamedTypeSymbol iNamedTypeSymbol) => iNamedTypeSymbol.TypeKind == TypeKind.Class && string.Equals(iNamedTypeSymbol.ContainingNamespace.GetFullNameWithoutPrefix(), OldStyleCollectionNamespace, StringComparison.Ordinal);
+
+        /// <summary>
+        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref="ICollection"/> interface type.
         /// </summary>
         /// <param name="iNamedTypeSymbol">
-        ///     The named type.
+        ///     The <see cref="INamedTypeSymbol"/> to check.
         /// </param>
         /// <returns>
-        ///     Whether or not there was a match on the <see cref="ICollection{T}" /> interface type.
+        ///     This returns a <see cref="bool"/> indicating whether or not the given collection corresponds to the <see cref="ICollection"/> interface type.
         /// </returns>
         private static bool IsICollection(INamedTypeSymbol iNamedTypeSymbol) => string.Equals(iNamedTypeSymbol.GetFullNameWithoutPrefix(), CollectionInterfaceFullType, StringComparison.Ordinal);
-
 
         /// <summary>
         ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref="IList{T}" /> interface type.
