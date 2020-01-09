@@ -1,14 +1,10 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using System.Threading;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Robotmaster.CollectionRecommendation.Helpers;
-using Robotmaster.CollectionRecommendation.Helpers.Lists;
+using Robotmaster.CollectionRecommendation.Helpers.Collections;
 
 namespace Robotmaster.CollectionRecommendation.Collections
 {
@@ -66,7 +62,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the LongCount() method.
-            if (CollectionHelper.IsICollectionInvokingRedundantLinqMethod(context, SingleMethodName) || CollectionHelper.IsICollectionInvokingRedundantLinqMethod(context, SingleOrDefaultMethodName) && !IsSingleInvokedLazySequence())
+            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleOrDefaultMethodName) && !IsSingleInvokedLazySequence())
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));
