@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using BenchmarkDotNet.Running;
-using Robotmaster.CollectionRecommendation.Performance.SampleTypes;
+﻿using BenchmarkDotNet.Running;
 
 namespace Robotmaster.CollectionRecommendation.Performance
 {
