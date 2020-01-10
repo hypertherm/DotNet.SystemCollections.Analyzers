@@ -12,6 +12,11 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
     internal class CollectionHelper
     {
         /// <summary>
+        ///     The reserved prefix used for the getter methods of properties.
+        /// </summary>
+        internal const string PropertyGetterPrefix = "get_";
+
+        /// <summary>
         ///     This is the full name of the <see cref="Enumerable"/> class
         /// </summary>
         internal static readonly string EnumerableClassFullName = typeof(Enumerable).FullName;
