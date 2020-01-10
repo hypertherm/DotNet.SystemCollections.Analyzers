@@ -207,5 +207,16 @@
             // It is not an IList; return false.
             return false;
         }
+
+        public static bool IsConcreteListType(SyntaxNodeAnalysisContext context)
+        {
+            // Get the information for the parameter.
+            if (context.SemanticModel.GetSymbolInfo(context.Node).Symbol is IParameterSymbol parameterSymbol)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
