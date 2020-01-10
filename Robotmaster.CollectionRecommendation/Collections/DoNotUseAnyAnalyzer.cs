@@ -61,6 +61,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the Any() method.
+            // TODO: This should call an API exclusively for IEnumerable, not ICollection.
             if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, AnyMethodName))
             {
                 // Report a diagnostic for this invocations expression.

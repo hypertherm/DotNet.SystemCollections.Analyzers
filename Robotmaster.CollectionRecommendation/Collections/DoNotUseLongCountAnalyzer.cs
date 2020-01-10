@@ -61,6 +61,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the LongCount() method.
+            // TODO: Should call API for IList, not ICollection.
             if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, LongCountMethodName))
             {
                 // Report a diagnostic for this invocations expression.
