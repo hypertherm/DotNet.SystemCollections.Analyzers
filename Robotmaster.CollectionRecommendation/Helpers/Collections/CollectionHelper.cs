@@ -39,7 +39,19 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
 
         private static readonly HashSet<string> MethodRequiringSpecificChecks = new HashSet<string> { "Contains" };
 
-
+        /// <summary>
+        ///     This is used to determine if a IList is invoking the specified no-parameter overload of a LINQ method in <see cref="Enumerable"/> called <paramref name="linqMethodName"/>.
+        /// </summary>
+        /// <param name="context">
+        ///     The <see cref="SymbolAnalysisContext"/> to use.
+        /// </param>
+        /// <param name="linqMethodName">
+        ///     The name of the no-parameter overload of a LINQ method in <see cref="Enumerable"/>.
+        /// </param>
+        /// <returns>
+        ///     This returns whether or not this corresponds to an IList invoking a LINQ method.
+        /// </returns>
+        internal static bool IsIEnumerableInvokingRedundantLinqMethod(SyntaxNodeAnalysisContext context, string linqMethodName) => IsTypeInvokingRedundantLinqMethod(context, linqMethodName, IsIEnumerable);
 
         /// <summary>
         ///     This is used to determine if a IList is invoking the specified no-parameter overload of a LINQ method in <see cref="Enumerable"/> called <paramref name="linqMethodName"/>.
@@ -113,6 +125,17 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
         private static bool IsIList(INamedTypeSymbol iNamedTypeSymbol) => HasExpectedInterface(iNamedTypeSymbol, ListInterfaceFullType);
 
         /// <summary>
+        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref="IEnumerable{T}" /> interface type.
+        /// </summary>
+        /// <param name="iNamedTypeSymbol">
+        ///     The named type.
+        /// </param>
+        /// <returns>
+        ///     Whether or not there was a match on the <see cref="IEnumerable{T}" /> interface type.
+        /// </returns>
+        private static bool IsIEnumerable(INamedTypeSymbol iNamedTypeSymbol) => HasExpectedInterface(iNamedTypeSymbol, EnumerableInterfaceFullType);
+
+        /// <summary>
         ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> does not correspond to the <see cref="IList{T}" /> interface type.
         /// </summary>
         /// <param name="iNamedTypeSymbol">
@@ -127,16 +150,16 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
         {
             switch (context.Node)
             {
-                case InvocationExpressionSyntax syntaxNode when ShouldReportMisuseOfLinqApi(syntaxNode, context, linqMethodName):
+                case InvocationExpressionSyntax syntaxNode when ShouldReportMisuseOfLinqApi(syntaxNode, context, linqMethodName, typeMatchFunc):
                     return true;
-                case MemberAccessExpressionSyntax syntaxNode when ShouldReportMisuseOfLinqApi(syntaxNode, context, linqMethodName):
+                case MemberAccessExpressionSyntax syntaxNode when ShouldReportMisuseOfLinqApi(syntaxNode, context, linqMethodName, typeMatchFunc):
                     return true;
                 default:
                     return false;
             }
         }
 
-        private static bool ShouldReportMisuseOfLinqApi(SyntaxNode syntaxNode, SyntaxNodeAnalysisContext context, string linqMethodName)
+        private static bool ShouldReportMisuseOfLinqApi(SyntaxNode syntaxNode, SyntaxNodeAnalysisContext context, string linqMethodName, Func<INamedTypeSymbol, bool> typeMatchFunc)
         {
             bool isInvocationExpression = syntaxNode is InvocationExpressionSyntax;
             bool isMemberAccessExpression = syntaxNode is MemberAccessExpressionSyntax;
@@ -194,10 +217,10 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
             {
                 // If it is an array type.
                 case IArrayTypeSymbol _:
-                    {
-                        // An array is a collection; return true.
-                        return true;
-                    }
+                {
+                    // An array is a collection; return true.
+                    return true;
+                }
 
                 // If it is a INamedTypeSymbol.
                 case INamedTypeSymbol namedTypeSymbol:
@@ -207,10 +230,10 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
                 }
 
                 default:
-                    {
-                        // The type of the expression is not a collection.
-                        return false;
-                    }
+                {
+                    // The type of the expression is not a collection.
+                    return false;
+                }
             }
         }
 
@@ -220,7 +243,7 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
             foreach (var interfaceNamedTypeSymbol in iNamedTypeSymbol.AllInterfaces)
             {
                 // If the full name of this interface matches that of the expected interface.
-                if (string.Equals(iNamedTypeSymbol.GetFullNameWithoutPrefix(), expectedInterfaceFullType, StringComparison.Ordinal))
+                if (string.Equals(interfaceNamedTypeSymbol.GetFullNameWithoutPrefix(), expectedInterfaceFullType, StringComparison.Ordinal))
                 {
                     // Return true;
                     return true;
