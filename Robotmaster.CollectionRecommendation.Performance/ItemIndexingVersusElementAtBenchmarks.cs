@@ -4,7 +4,7 @@ using BenchmarkDotNet.Attributes;
 
 namespace Robotmaster.CollectionRecommendation.Performance
 {
-    public class IListIndexingVersusLinqFirstBenchmarks
+    public class IListIndexingVersusElementAtBenchmarks
     {
         public int[] sampleIntsArray;
         public List<int> sampleIntsList;
