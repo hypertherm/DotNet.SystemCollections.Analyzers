@@ -24,7 +24,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        private const string Description = "This is used to indicate that a non-List IEnumerable is calling the ToList() method; ; this should be avoided for lazily constructed collections or enumerations.";
+        private const string Description = "This is used to indicate that a non-List IEnumerable is calling the ToList() method; this should be avoided for lazily constructed collections or enumerations.";
 
         /// <summary>
         ///     The category of the analyzer's rule.
@@ -34,7 +34,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 14;
+        private const int IdNumber = 15;
 
 #pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
@@ -56,7 +56,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the ToList() method.
+            // If this corresponds to an non-IList invoking the ToList() method.
             if (CollectionHelper.IsNonListInvokingRedundantLinqMethod(context, ToListMethodName))
             {
                 // Report a diagnostic for this invocations expression.

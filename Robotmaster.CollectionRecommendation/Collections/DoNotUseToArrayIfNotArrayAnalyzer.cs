@@ -1,19 +1,15 @@
-﻿using Robotmaster.CollectionRecommendation.Helpers.Collections;
+﻿using System.Collections.Immutable;
+using System.Linq;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.Diagnostics;
+using Robotmaster.CollectionRecommendation.Helpers;
+using Robotmaster.CollectionRecommendation.Helpers.Collections;
 
 namespace Robotmaster.CollectionRecommendation.Collections
 {
-    using System.Collections.Immutable;
-    using System.Linq;
-    using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.CSharp;
-    using Microsoft.CodeAnalysis.Diagnostics;
-    using Robotmaster.CollectionRecommendation.Helpers;
-
-    /// <summary>
-    ///     This analyzer is used to monitor and detect when an IList calls the LINQ <see cref="Enumerable.First{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> or <see cref="Enumerable.FirstOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
-    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DoNotUseFirstAndFirstOrDefaultAnalyzer : DiagnosticAnalyzer
+    public class DoNotUseToArrayIfNotArrayAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         ///     This is the complete ID of the rule for this analyzer.
@@ -23,12 +19,12 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        internal const string MessageFormat = "This IList is calling the First() or FirstOrDefault() extension method; it should use indexing instead.";
+        internal const string MessageFormat = "This non-Array IEnumerable is calling the ToArray() method.";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        private const string Description = "All IList collections can access their first element by indexing the underlying data structure instead using of the Enumerable.First() or Enumerable.FirstOrDefault() extension method.";
+        private const string Description = "This is used to indicate that a non-Array IEnumerable is calling the ToArray() method; this should be avoided for lazily constructed collections or enumerations.";
 
         /// <summary>
         ///     The category of the analyzer's rule.
@@ -38,21 +34,16 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 16;
-
-        /// <summary>
-        ///     This is the name of the <see cref="Enumerable.First{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
-        /// </summary>
-        private const string FirstMethodName = nameof(Enumerable.First);
-
-        /// <summary>
-        ///     This is the name of the <see cref="Enumerable.FirstOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
-        /// </summary>
-        private const string FirstOrDefaultMethodName = nameof(Enumerable.FirstOrDefault);
+        private const int IdNumber = 14;
 
 #pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
 #pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
+
+        /// <summary>
+        ///     This is the name of the <see cref="Enumerable.ToArray{TSource}"/> extension method.
+        /// </summary>
+        private static readonly string ToArrayMethodName = nameof(Enumerable.ToArray);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -65,8 +56,8 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the First() or FirstOrDefault() methods.
-            if (CollectionHelper.IsListInvokingRedundantLinqMethod(context, FirstMethodName) || CollectionHelper.IsListInvokingRedundantLinqMethod(context, FirstOrDefaultMethodName))
+            // If this corresponds to an IList invoking the ToList() method.
+            if (CollectionHelper.IsNonArrayInvokingRedundantLinqMethod(context, ToArrayMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));
