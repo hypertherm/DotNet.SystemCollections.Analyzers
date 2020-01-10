@@ -64,8 +64,8 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the LongCount() method.
-            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, LastMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, LastOrDefaultMethodName))
+            // If this corresponds to an IList invoking the Last() method.
+            if (CollectionHelper.IsListInvokingRedundantLinqMethod(context, LastMethodName) || CollectionHelper.IsListInvokingRedundantLinqMethod(context, LastOrDefaultMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));

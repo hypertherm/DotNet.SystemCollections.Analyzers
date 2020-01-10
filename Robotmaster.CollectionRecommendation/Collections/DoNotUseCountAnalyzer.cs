@@ -58,7 +58,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
             context.RegisterSyntaxNodeAction(AnalyzeSyntaxNode, SyntaxKind.InvocationExpression);
         }
 
-        private void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
+        private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the Count() method.
             if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, CountMethodName))
