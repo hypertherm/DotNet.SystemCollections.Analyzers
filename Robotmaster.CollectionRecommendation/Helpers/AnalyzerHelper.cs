@@ -76,6 +76,80 @@ namespace Robotmaster.CollectionRecommendation.Helpers
         }
 
         /// <summary>
+        ///     This is used to attempt to get the <see cref="INamedTypeSymbol"/> from the given <paramref name="iTypeSymbol"/>.
+        /// </summary>
+        /// <param name="iTypeSymbol">
+        ///     The given <see cref="ITypeSymbol"/>.
+        /// </param>
+        /// <returns>
+        ///     If possible, the corresponding <see cref="INamedTypeSymbol"/> will be returned; otherwise, <see langword="null"/> will be returned.
+        /// </returns>
+        internal static INamedTypeSymbol GetNamedTypeSymbol(ITypeSymbol iTypeSymbol)
+        {
+            // Keep going until one of the cases returns.
+            while (true)
+            {
+                // Depending on the kind of type symbol.
+                switch (iTypeSymbol)
+                {
+                    // If it is an ArrayTypeSymbol.
+                    case IArrayTypeSymbol arrayTypeSymbol:
+                    {
+                        // Use the element as the next type to evaluate.
+                        iTypeSymbol = arrayTypeSymbol.ElementType;
+
+                        // Break out of the switch.
+                        break;
+                    }
+
+                    // If it is a PointerTypeSymbol.
+                    case IPointerTypeSymbol pointerTypeSymbol:
+                    {
+                        // Use the element as the next type to evaluate.
+                        iTypeSymbol = pointerTypeSymbol.PointedAtType;
+
+                        // Break out of the switch.
+                        break;
+                    }
+
+                    // If it is an ErrorTypeSymbol.
+                    case IErrorTypeSymbol _:
+                    {
+                        // There is no named type here; just return null.
+                        return null;
+                    }
+
+                    // If it is a NamedTypeSymbol.
+                    case INamedTypeSymbol namedTypeSymbol:
+                    {
+                        // The named type symbol has been found; just return it.
+                        return namedTypeSymbol;
+                    }
+
+                    // If it is a DynamicTypeSymbol.
+                    case IDynamicTypeSymbol _:
+                    {
+                        // There is no named type here; just return null.
+                        return null;
+                    }
+
+                    // If it is a TypeParameterSymbol.
+                    case ITypeParameterSymbol _:
+                    {
+                        // There is no named type here; just return null.
+                        return null;
+                    }
+
+                    default:
+                    {
+                        // Unsupported Symbol.
+                        throw new NotSupportedException("The current Symbol type is not supported.");
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         ///     This is used to get the full name of the given <paramref name="iNamedTypeSymbol"/> without any prefix.
         /// </summary>
         /// <param name="iNamedTypeSymbol">
@@ -84,6 +158,32 @@ namespace Robotmaster.CollectionRecommendation.Helpers
         /// <returns>
         ///     This returns the full name of the <paramref name="iNamedTypeSymbol"/> without any prefix.
         /// </returns>
-        internal static string GetFullNameWithoutPrefix(this INamedTypeSymbol iNamedTypeSymbol) => iNamedTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat).Substring(GlobalFullNamePrefix.Length);
+        internal static string GetFullNameWithoutPrefix(this INamedTypeSymbol iNamedTypeSymbol)
+        {
+            // Get the fully qualified name for this named type symbol.
+            string fullName = iNamedTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+
+            // If it is not a special type.
+            if (iNamedTypeSymbol.SpecialType == SpecialType.None)
+            {
+                // Remove the global substring from the type's full name.
+                fullName = fullName.Substring(GlobalFullNamePrefix.Length);
+            }
+
+            // Return the type's full name.
+            return fullName;
+        }
+        
+
+        /// <summary>
+        ///     This is used to get the full name of the given <paramref name="iNamespaceSymbol"/> without any prefix.
+        /// </summary>
+        /// <param name="iNamespaceSymbol">
+        ///     The <see cref="INamespaceSymbol"/> 
+        /// </param>
+        /// <returns>
+        ///     This returns the full name of the <paramref name="iNamespaceSymbol"/> without any prefix.
+        /// </returns>
+        internal static string GetFullNameWithoutPrefix(this INamespaceSymbol iNamespaceSymbol) => iNamespaceSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat).Substring(GlobalFullNamePrefix.Length);
     }
 }

@@ -51,6 +51,9 @@
     <Compile Update="Arrays\DoNotHavePropertyOfArrayTypeAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="OldStyleCollections\DoNotHavePropertyOfOldStyleCollectionTypeAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>
