@@ -62,18 +62,10 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the LongCount() method.
-            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleOrDefaultMethodName) && !IsSingleInvokedLazySequence())
+            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleOrDefaultMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));
-            }
-
-            bool IsSingleInvokedLazySequence()
-            {
-                // Get the information for the method.
-                ISymbol symbol = context.SemanticModel.GetSymbolInfo(context.Node).Symbol;
-
-                return false;
             }
         }
     }
