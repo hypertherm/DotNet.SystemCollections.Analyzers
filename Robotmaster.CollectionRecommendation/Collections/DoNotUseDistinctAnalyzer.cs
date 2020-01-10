@@ -43,7 +43,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.LongCount{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
         /// </summary>
-        private static readonly string DistinctMethodName = nameof(Enumerable.Distinct);
+        private const string DistinctMethodName = nameof(Enumerable.Distinct);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 

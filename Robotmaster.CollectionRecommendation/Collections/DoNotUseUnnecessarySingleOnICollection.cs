@@ -43,12 +43,12 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.Single{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
         /// </summary>
-        private static readonly string SingleMethodName = nameof(Enumerable.Single);
+        private const string SingleMethodName = nameof(Enumerable.Single);
 
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.SingleOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
         /// </summary>
-        private static readonly string SingleOrDefaultMethodName = nameof(Enumerable.SingleOrDefault);
+        private const string SingleOrDefaultMethodName = nameof(Enumerable.SingleOrDefault);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
