@@ -229,6 +229,7 @@
   <ItemGroup>
     <Compile Include="CollectionCountVersusLinqCountBenchmarks.cs" />
     <Compile Include="HashSetVersusDistinctBenchmarks.cs" />
+    <Compile Include="IListIndexingVersusLinqFirstBenchmarks.cs" />
     <Compile Include="IEnumerableContainsVersusSetBenchmarks.cs" />
     <Compile Include="ItemIndexingVersusElementAtBenchmarks.cs" />
     <Compile Include="LastVersusItemLookupBenchmarks.cs" />
