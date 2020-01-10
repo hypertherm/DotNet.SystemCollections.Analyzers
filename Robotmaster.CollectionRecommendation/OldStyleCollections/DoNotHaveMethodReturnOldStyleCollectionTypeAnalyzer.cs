@@ -35,11 +35,6 @@ namespace Robotmaster.CollectionRecommendation.OldStyleCollections
         private const string Category = "Old-Style Collections";
 
         /// <summary>
-        ///     The reserved prefix used for the getter methods of properties.
-        /// </summary>
-        private const string PropertyGetterPrefix = "get_";
-
-        /// <summary>
         ///     The number portion of the analyzer's <see cref="DiagnosticId"/>.
         /// </summary>
         private const int IdNumber = 13;
@@ -70,7 +65,7 @@ namespace Robotmaster.CollectionRecommendation.OldStyleCollections
             }
 
             // If the method starts with the special prefix reserved for property getters.
-            if (methodSymbol.Name.StartsWith(PropertyGetterPrefix, StringComparison.Ordinal))
+            if (methodSymbol.Name.StartsWith(CollectionHelper.PropertyGetterPrefix, StringComparison.Ordinal))
             {
                 // This is a getter.
 

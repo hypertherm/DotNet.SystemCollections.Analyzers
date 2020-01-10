@@ -1,9 +1,11 @@
 namespace Robotmaster.CollectionRecommendation.Arrays
 {
+    using System;
     using System.Collections.Immutable;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Diagnostics;
     using Robotmaster.CollectionRecommendation.Helpers;
+    using Robotmaster.CollectionRecommendation.Helpers.Collections;
 
     /// <summary>
     ///     This is used to analyze and detect for situations where methods return arrays instead of <see cref="IReadOnlyList{T}"/>.
@@ -54,8 +56,24 @@ namespace Robotmaster.CollectionRecommendation.Arrays
             // Cast down to a IMethodSymbol.
             var methodSymbol = (IMethodSymbol)context.Symbol;
 
+            // If the method returns void.
+            if (methodSymbol.ReturnsVoid)
+            {
+                // Nothing more needs to be done here; just return null.
+                return;
+            }
+
+            // If the method starts with the special prefix reserved for property getters.
+            if (methodSymbol.Name.StartsWith(CollectionHelper.PropertyGetterPrefix, StringComparison.Ordinal))
+            {
+                // This is a getter.
+
+                // Any diagnostic will be raised by another analyzer to avoid duplication.
+                return;
+            }
+
             // If the method returns an array type.
-            if (!methodSymbol.ReturnsVoid && methodSymbol.ReturnType is IArrayTypeSymbol)
+            if (methodSymbol.ReturnType is IArrayTypeSymbol)
             {
                 // For every location where the method is defined.
                 foreach (var location in methodSymbol.Locations)
