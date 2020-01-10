@@ -168,15 +168,15 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
         private static bool IsIList(ITypeSymbol iTypeSymbol) => (iTypeSymbol is INamedTypeSymbol iNamedTypeSymbol) && HasExpectedInterface(iNamedTypeSymbol, ListInterfaceFullType);
 
         /// <summary>
-        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> corresponds to the <see cref="IEnumerable{T}" /> interface type.
+        ///     This is used to determine if the given <paramref name="iTypeSymbol"/> corresponds to the <see cref="IEnumerable{T}" /> interface type.
         /// </summary>
-        /// <param name="iNamedTypeSymbol">
-        ///     The named type.
+        /// <param name="iTypeSymbol">
+        ///     The type.
         /// </param>
         /// <returns>
         ///     Whether or not there was a match on the <see cref="IEnumerable{T}" /> interface type.
         /// </returns>
-        private static bool IsIEnumerable(INamedTypeSymbol iNamedTypeSymbol) => HasExpectedInterface(iNamedTypeSymbol, EnumerableInterfaceFullType);
+        private static bool IsIEnumerable(ITypeSymbol iTypeSymbol) => (iTypeSymbol is INamedTypeSymbol iNamedTypeSymbol) && HasExpectedInterface(iNamedTypeSymbol, EnumerableInterfaceFullType);
 
         /// <summary>
         ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> does not correspond to the <see cref="IList{T}" /> interface type.
@@ -224,7 +224,7 @@ namespace Robotmaster.CollectionRecommendation.Helpers.Collections
             }
         }
 
-        private static bool ShouldReportMisuseOfLinqApi(SyntaxNode syntaxNode, SyntaxNodeAnalysisContext context, string linqMethodName, Func<INamedTypeSymbol, bool> typeMatchFunc)
+        private static bool ShouldReportMisuseOfLinqApi(SyntaxNode syntaxNode, SyntaxNodeAnalysisContext context, string linqMethodName, Func<ITypeSymbol, bool> typeMatchFunc)
         {
             bool isInvocationExpression = syntaxNode is InvocationExpressionSyntax;
             bool isMemberAccessExpression = syntaxNode is MemberAccessExpressionSyntax;

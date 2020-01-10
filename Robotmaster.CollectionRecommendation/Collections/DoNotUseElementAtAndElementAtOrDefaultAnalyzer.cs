@@ -13,7 +13,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
     ///     This analyzer is used to monitor and detect when an IList calls the LINQ <see cref="Enumerable.ElementAt{TSource}"/> or <see cref="Enumerable.ElementAtOrDefault{TSource}"/> extension method.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DoNotUseFirstAndFirstOrDefaultAnalyzer : DiagnosticAnalyzer
+    public class DoNotUseElementAtAndElementAtOrDefaultAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         ///     This is the complete ID of the rule for this analyzer.
@@ -66,7 +66,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the LongCount() method.
-            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, ElementAtMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, ElementAtOrDefaultMethodName))
+            if (CollectionHelper.IsListInvokingRedundantLinqMethod(context, ElementAtMethodName) || CollectionHelper.IsListInvokingRedundantLinqMethod(context, ElementAtOrDefaultMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));

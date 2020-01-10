@@ -9,7 +9,7 @@ using Robotmaster.CollectionRecommendation.Helpers.Collections;
 namespace Robotmaster.CollectionRecommendation.Collections
 {
     /// <summary>
-    ///     This analyzer is used to monitor and detect when an IList calls the LINQ <see cref="Enumerable.Last{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> or <see cref="Enumerable.LastOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+    ///     This analyzer is used to monitor and detect when an collection calls the LINQ <see cref="Enumerable.Distinct{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class DoNotUseDistinctAnalyzer : DiagnosticAnalyzer

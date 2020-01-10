@@ -41,9 +41,9 @@ namespace Robotmaster.CollectionRecommendation.Collections
 #pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
 
         /// <summary>
-        ///     This is the name of the <see cref="Enumerable.ToList{TSource}"/> extension method.
+        ///     This is the name of the <see cref="Enumerable.ToArray{TSource}"/> extension method.
         /// </summary>
-        private static readonly string ToListMethodName = nameof(Enumerable.ToList);
+        private static readonly string ToArrayMethodName = nameof(Enumerable.ToArray);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -57,7 +57,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the ToList() method.
-            if (CollectionHelper.IsNonArrayInvokingRedundantLinqMethod(context, ToListMethodName))
+            if (CollectionHelper.IsNonArrayInvokingRedundantLinqMethod(context, ToArrayMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));

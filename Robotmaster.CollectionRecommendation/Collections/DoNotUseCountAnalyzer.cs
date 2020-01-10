@@ -60,7 +60,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the Count() method.
+            // If this corresponds to an ICollection invoking the Count() method.
             if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, CountMethodName))
             {
                 // Report a diagnostic for this invocations expression.

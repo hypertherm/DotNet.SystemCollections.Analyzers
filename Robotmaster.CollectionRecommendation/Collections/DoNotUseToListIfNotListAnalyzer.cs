@@ -56,7 +56,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the ToList() method.
+            // If this corresponds to an non-IList invoking the ToList() method.
             if (CollectionHelper.IsNonListInvokingRedundantLinqMethod(context, ToListMethodName))
             {
                 // Report a diagnostic for this invocations expression.
