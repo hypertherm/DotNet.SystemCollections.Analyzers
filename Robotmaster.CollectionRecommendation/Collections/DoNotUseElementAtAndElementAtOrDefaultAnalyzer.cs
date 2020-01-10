@@ -13,7 +13,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
     ///     This analyzer is used to monitor and detect when an IList calls the LINQ <see cref="Enumerable.ElementAt{TSource}"/> or <see cref="Enumerable.ElementAtOrDefault{TSource}"/> extension method.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DoNotUseFirstAndFirstOrDefaultAnalyzer : DiagnosticAnalyzer
+    public class DoNotUseelementAtAndElementAtOrDefaultAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         ///     This is the complete ID of the rule for this analyzer.
