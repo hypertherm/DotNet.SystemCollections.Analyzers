@@ -43,12 +43,12 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.Single{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
         /// </summary>
-        private static readonly string SingleMethodName = nameof(Enumerable.Single);
+        private const string SingleMethodName = nameof(Enumerable.Single);
 
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.SingleOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
         /// </summary>
-        private static readonly string SingleOrDefaultMethodName = nameof(Enumerable.SingleOrDefault);
+        private const string SingleOrDefaultMethodName = nameof(Enumerable.SingleOrDefault);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -61,19 +61,11 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the LongCount() method.
-            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleOrDefaultMethodName) && !IsSingleInvokedLazySequence())
+            // If this corresponds to an ICollection invoking the Single()/SingleOrDefault() method.
+            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleOrDefaultMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));
-            }
-
-            bool IsSingleInvokedLazySequence()
-            {
-                // Get the information for the method.
-                ISymbol symbol = context.SemanticModel.GetSymbolInfo(context.Node).Symbol;
-
-                return false;
             }
         }
     }

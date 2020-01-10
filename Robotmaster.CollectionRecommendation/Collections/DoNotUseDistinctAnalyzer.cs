@@ -8,6 +8,9 @@ using Robotmaster.CollectionRecommendation.Helpers.Collections;
 
 namespace Robotmaster.CollectionRecommendation.Collections
 {
+    /// <summary>
+    ///     This analyzer is used to monitor and detect when an IList calls the LINQ <see cref="Enumerable.Last{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> or <see cref="Enumerable.LastOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class DoNotUseDistinctAnalyzer : DiagnosticAnalyzer
     {
@@ -43,7 +46,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.LongCount{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
         /// </summary>
-        private static readonly string DistinctMethodName = nameof(Enumerable.Distinct);
+        private const string DistinctMethodName = nameof(Enumerable.Distinct);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -56,8 +59,8 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the Distinct() method.
-            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, DistinctMethodName))
+            // If this corresponds to an IEnumerable invoking the Distinct() method.
+            if (CollectionHelper.IsIEnumerableInvokingRedundantLinqMethod(context, DistinctMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));

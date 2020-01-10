@@ -1,19 +1,19 @@
-using Robotmaster.CollectionRecommendation.Helpers.Collections;
+﻿using Robotmaster.CollectionRecommendation.Helpers.Collections;
 
 namespace Robotmaster.CollectionRecommendation.Collections
 {
-    using System.Linq;
     using System.Collections.Immutable;
+    using System.Linq;
     using Microsoft.CodeAnalysis;
-    using Microsoft.CodeAnalysis.Diagnostics;
     using Microsoft.CodeAnalysis.CSharp;
+    using Microsoft.CodeAnalysis.Diagnostics;
     using Robotmaster.CollectionRecommendation.Helpers;
 
     /// <summary>
-    ///     This analyzer is used to monitor and detect when an ICollection calls the LINQ <see cref="Enumerable.Any{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+    ///     This analyzer is used to monitor and detect when an IList calls the LINQ <see cref="Enumerable.ElementAt{TSource}"/> or <see cref="Enumerable.ElementAtOrDefault{TSource}"/> extension method.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DoNotUseAnyAnalyzer : DiagnosticAnalyzer
+    public class DoNotUseFirstAndFirstOrDefaultAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         ///     This is the complete ID of the rule for this analyzer.
@@ -23,12 +23,12 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        internal const string MessageFormat = "This ICollection is calling the Any() extension method; it should use the Count property and compare it to 0 instead.";
+        internal const string MessageFormat = "This IList is calling the ElementAt() or ElementAtOrDefault() extension method; it should use indexing instead.";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        private const string Description = "All ICollections should use the Count property and compare it to 0 instead of using the Enumerable.Any() extension method.";
+        private const string Description = "All IList collections can access any item by using the Item indexer property which is a O(1) operation instead using of the Enumerable.ElementAt() or Enumerable.ElementAt() extension method.";
 
         /// <summary>
         ///     The category of the analyzer's rule.
@@ -38,12 +38,17 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 6;
+        private const int IdNumber = 18;
 
         /// <summary>
-        ///     This is the name of the <see cref="Enumerable.Any{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        ///     This is the name of the <see cref="Enumerable.ElementAt{TSource}"/> extension method.
         /// </summary>
-        private const string AnyMethodName = nameof(Enumerable.Any);
+        private const string ElementAtMethodName = nameof(Enumerable.ElementAt);
+
+        /// <summary>
+        ///     This is the name of the <see cref="Enumerable.ElementAtOrDefault{TSource}"/> extension method.
+        /// </summary>
+        private const string ElementAtOrDefaultMethodName = nameof(Enumerable.ElementAtOrDefault);
 
 #pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
@@ -60,8 +65,8 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an ICollection invoking the Any() method.
-            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, AnyMethodName))
+            // If this corresponds to an IList invoking the LongCount() method.
+            if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, ElementAtMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, ElementAtOrDefaultMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));

@@ -43,7 +43,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.ToList{TSource}"/> extension method.
         /// </summary>
-        private static readonly string ToListMethodName = nameof(Enumerable.ToList);
+        private const string ToListMethodName = nameof(Enumerable.ToList);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
