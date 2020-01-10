@@ -9,7 +9,7 @@ using Robotmaster.CollectionRecommendation.Helpers.Collections;
 namespace Robotmaster.CollectionRecommendation.Collections
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class DoNotUseToListIfNotListAnalyzer : DiagnosticAnalyzer
+    public class DoNotUseToArrayIfNotArrayAnalyzer : DiagnosticAnalyzer
     {
         /// <summary>
         ///     This is the complete ID of the rule for this analyzer.
@@ -19,12 +19,12 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        internal const string MessageFormat = "This non-List IEnumerable is calling the ToList() method.";
+        internal const string MessageFormat = "This non-Array IEnumerable is calling the ToArray() method.";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        private const string Description = "This is used to indicate that a non-List IEnumerable is calling the ToList() method; this should be avoided for lazily constructed collections or enumerations.";
+        private const string Description = "This is used to indicate that a non-Array IEnumerable is calling the ToArray() method; this should be avoided for lazily constructed collections or enumerations.";
 
         /// <summary>
         ///     The category of the analyzer's rule.
@@ -34,7 +34,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 15;
+        private const int IdNumber = 14;
 
 #pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
@@ -57,7 +57,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
             // If this corresponds to an IList invoking the ToList() method.
-            if (CollectionHelper.IsNonListInvokingRedundantLinqMethod(context, ToListMethodName))
+            if (CollectionHelper.IsNonArrayInvokingRedundantLinqMethod(context, ToListMethodName))
             {
                 // Report a diagnostic for this invocations expression.
                 context.ReportDiagnostic(Diagnostic.Create(Rule, context.Node.GetLocation()));
