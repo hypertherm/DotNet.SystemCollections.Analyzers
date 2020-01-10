@@ -164,7 +164,7 @@ namespace Robotmaster.CollectionRecommendation.Helpers
             string fullName = iNamedTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
 
             // If it is not a special type.
-            if (iNamedTypeSymbol.SpecialType == SpecialType.None)
+            if (iNamedTypeSymbol.SpecialType == SpecialType.None || iNamedTypeSymbol.SpecialType == SpecialType.System_Collections_IEnumerable)
             {
                 // Remove the global substring from the type's full name.
                 fullName = fullName.Substring(GlobalFullNamePrefix.Length);
