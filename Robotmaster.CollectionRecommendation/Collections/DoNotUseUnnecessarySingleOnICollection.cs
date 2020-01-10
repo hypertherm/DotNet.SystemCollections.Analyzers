@@ -61,8 +61,7 @@ namespace Robotmaster.CollectionRecommendation.Collections
 
         private static void AnalyzeSyntaxNode(SyntaxNodeAnalysisContext context)
         {
-            // If this corresponds to an IList invoking the Single()/SingleOrDefault() method.
-            // TODO: This should call an API for IList, not ICollection.
+            // If this corresponds to an ICollection invoking the Single()/SingleOrDefault() method.
             if (CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleMethodName) || CollectionHelper.IsCollectionInvokingRedundantLinqMethod(context, SingleOrDefaultMethodName))
             {
                 // Report a diagnostic for this invocations expression.
