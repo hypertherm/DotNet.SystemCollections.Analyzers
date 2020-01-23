@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>ConsoleApp1.LastVersusItemLookupBenchmarks-20200122-033317</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18363
+Intel Core i7-6820HQ CPU 2.70GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
+  [Host]     : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.8.4018.0
+  DefaultJob : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.8.4018.0
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>                 Method</th><th>collectionSize</th><th>Mean</th><th>Error</th><th>StdDev</th><th>StdErr</th><th> Min</th><th>  Q1</th><th>Median</th><th>  Q3</th><th> Max</th><th>     Op/s</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>GetLastItemOfArrayWithLinq</td><td>5000</td><td>28.4191 ns</td><td>0.5172 ns</td><td>0.4585 ns</td><td>0.1225 ns</td><td>27.5306 ns</td><td>28.2540 ns</td><td>28.5372 ns</td><td>28.6958 ns</td><td>29.0859 ns</td><td>35,187,660.7</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfArrayWithIndexer</td><td>5000</td><td>0.1170 ns</td><td>0.0380 ns</td><td>0.0373 ns</td><td>0.0093 ns</td><td>0.0576 ns</td><td>0.0834 ns</td><td>0.1292 ns</td><td>0.1409 ns</td><td>0.1735 ns</td><td>8,545,113,761.3</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfListWithLinq</td><td>5000</td><td>7.0251 ns</td><td>0.1132 ns</td><td>0.1003 ns</td><td>0.0268 ns</td><td>6.7092 ns</td><td>7.0029 ns</td><td>7.0476 ns</td><td>7.0820 ns</td><td>7.1081 ns</td><td>142,347,692.8</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfListWithIndexer</td><td>5000</td><td>0.8386 ns</td><td>0.0463 ns</td><td>0.0433 ns</td><td>0.0112 ns</td><td>0.7531 ns</td><td>0.8209 ns</td><td>0.8397 ns</td><td>0.8708 ns</td><td>0.9206 ns</td><td>1,192,479,416.2</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfArrayWithLinq</td><td>10000</td><td>29.7489 ns</td><td>0.3829 ns</td><td>0.3395 ns</td><td>0.0907 ns</td><td>28.7490 ns</td><td>29.6781 ns</td><td>29.8098 ns</td><td>29.9738 ns</td><td>30.1038 ns</td><td>33,614,637.7</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfArrayWithIndexer</td><td>10000</td><td>0.1870 ns</td><td>0.0840 ns</td><td>0.0899 ns</td><td>0.0212 ns</td><td>0.0948 ns</td><td>0.1439 ns</td><td>0.1733 ns</td><td>0.1804 ns</td><td>0.4408 ns</td><td>5,346,753,567.6</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfListWithLinq</td><td>10000</td><td>6.9417 ns</td><td>0.1648 ns</td><td>0.1542 ns</td><td>0.0398 ns</td><td>6.7214 ns</td><td>6.8290 ns</td><td>6.9255 ns</td><td>7.0527 ns</td><td>7.2768 ns</td><td>144,057,589.3</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfListWithIndexer</td><td>10000</td><td>0.8620 ns</td><td>0.0264 ns</td><td>0.0247 ns</td><td>0.0064 ns</td><td>0.8317 ns</td><td>0.8390 ns</td><td>0.8535 ns</td><td>0.8803 ns</td><td>0.9190 ns</td><td>1,160,126,314.3</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfArrayWithLinq</td><td>25000</td><td>29.7375 ns</td><td>0.4437 ns</td><td>0.3933 ns</td><td>0.1051 ns</td><td>28.7770 ns</td><td>29.7451 ns</td><td>29.8028 ns</td><td>30.0252 ns</td><td>30.1811 ns</td><td>33,627,542.1</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfArrayWithIndexer</td><td>25000</td><td>0.1062 ns</td><td>0.0382 ns</td><td>0.0319 ns</td><td>0.0088 ns</td><td>0.0749 ns</td><td>0.0877 ns</td><td>0.0911 ns</td><td>0.1218 ns</td><td>0.1872 ns</td><td>9,418,833,689.3</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfListWithLinq</td><td>25000</td><td>7.1985 ns</td><td>0.1308 ns</td><td>0.1223 ns</td><td>0.0316 ns</td><td>7.0609 ns</td><td>7.0788 ns</td><td>7.1712 ns</td><td>7.3093 ns</td><td>7.4252 ns</td><td>138,918,270.3</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>GetLastItemOfListWithIndexer</td><td>25000</td><td>0.8397 ns</td><td>0.0292 ns</td><td>0.0259 ns</td><td>0.0069 ns</td><td>0.7951 ns</td><td>0.8222 ns</td><td>0.8346 ns</td><td>0.8564 ns</td><td>0.8848 ns</td><td>1,190,893,524.6</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>
