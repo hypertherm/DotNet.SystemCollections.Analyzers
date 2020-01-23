@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Robotmaster.CollectionRecommendation.Performance.LastVersusItemLookupBenchmarks-20200122-030305</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18363
+Intel Core i7-6820HQ CPU 2.70GHz (Skylake), 1 CPU, 8 logical and 4 physical cores
+  [Host]     : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.8.4018.0
+  DefaultJob : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.8.4018.0
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>                          Method</th><th>CollectionSize</th><th>   Mean</th><th>  Error</th><th> StdDev</th><th>StdErr</th><th>    Min</th><th>     Q1</th><th> Median</th><th>     Q3</th><th>    Max</th><th>  Op/s</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>RetrieveStringValueInArrayWithContains</td><td>5000</td><td>14,112.44 ns</td><td>269.0383 ns</td><td>287.8680 ns</td><td>67.8511 ns</td><td>13,573.14 ns</td><td>13,946.25 ns</td><td>14,054.53 ns</td><td>14,205.03 ns</td><td>14,996.09 ns</td><td>70,859.5</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RetrieveStringValueInListWithContains</td><td>5000</td><td>27,011.49 ns</td><td>255.9291 ns</td><td>239.3962 ns</td><td>61.8118 ns</td><td>26,330.01 ns</td><td>26,930.03 ns</td><td>27,068.91 ns</td><td>27,169.31 ns</td><td>27,288.54 ns</td><td>37,021.3</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RetrieveStringValueInSetWithContains</td><td>5000</td><td>26.84 ns</td><td>0.3591 ns</td><td>0.3183 ns</td><td>0.0851 ns</td><td>25.79 ns</td><td>26.79 ns</td><td>26.92 ns</td><td>26.97 ns</td><td>27.17 ns</td><td>37,264,685.6</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RetrieveStringValueInArrayWithContains</td><td>10000</td><td>27,848.81 ns</td><td>355.9110 ns</td><td>332.9194 ns</td><td>85.9594 ns</td><td>27,002.48 ns</td><td>27,862.39 ns</td><td>27,926.69 ns</td><td>28,013.59 ns</td><td>28,176.92 ns</td><td>35,908.2</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RetrieveStringValueInListWithContains</td><td>10000</td><td>53,895.48 ns</td><td>806.7588 ns</td><td>754.6427 ns</td><td>194.8479 ns</td><td>52,597.02 ns</td><td>52,958.16 ns</td><td>54,068.69 ns</td><td>54,514.03 ns</td><td>54,924.20 ns</td><td>18,554.4</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RetrieveStringValueInSetWithContains</td><td>10000</td><td>26.56 ns</td><td>0.4812 ns</td><td>0.4501 ns</td><td>0.1162 ns</td><td>25.87 ns</td><td>26.04 ns</td><td>26.82 ns</td><td>26.91 ns</td><td>27.15 ns</td><td>37,648,661.4</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RetrieveStringValueInArrayWithContains</td><td>25000</td><td>69,462.53 ns</td><td>934.0073 ns</td><td>873.6710 ns</td><td>225.5809 ns</td><td>67,300.94 ns</td><td>69,352.38 ns</td><td>69,628.82 ns</td><td>70,000.11 ns</td><td>70,323.89 ns</td><td>14,396.3</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RetrieveStringValueInListWithContains</td><td>25000</td><td>134,994.35 ns</td><td>1,507.8261 ns</td><td>1,410.4215 ns</td><td>364.1693 ns</td><td>132,771.95 ns</td><td>133,412.94 ns</td><td>135,037.82 ns</td><td>136,217.53 ns</td><td>137,504.03 ns</td><td>7,407.7</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr><tr><td>RetrieveStringValueInSetWithContains</td><td>25000</td><td>26.64 ns</td><td>0.4385 ns</td><td>0.4102 ns</td><td>0.1059 ns</td><td>25.95 ns</td><td>26.08 ns</td><td>26.83 ns</td><td>26.90 ns</td><td>27.09 ns</td><td>37,532,702.0</td><td>-</td><td>-</td><td>-</td><td>-</td>
+</tr></tbody></table>
+</body>
+</html>
