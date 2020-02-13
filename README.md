@@ -40,3 +40,12 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 # Release Notes
 
 # Roadmap
+
+# Contributing
+	Filing a bug report
+	Adding documentation on a new/existing rule
+	Requesting a new code analyzer
+	Requesting a new case scenario in an existing code analyzer
+	Requesting a code fix provider
+	Adding test coverage on the analyzers and code fix providers
+	Adding benchmarking coverage on code analyzers
