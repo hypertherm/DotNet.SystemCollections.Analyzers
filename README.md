@@ -49,3 +49,6 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 	Requesting a code fix provider
 	Adding test coverage on the analyzers and code fix providers
 	Adding benchmarking coverage on code analyzers
+
+# About Robotmaster
+Hypertherm's Robotic Software team develops Robotmaster, the world’s leading CAD/CAM robot programming software, used by some of the largest multinationals such as Boeing and Mercedes and the smallest industrial manufacturing shops performing short customized runs. To know more about Robotmaster, you can read more on our [website](https://www.robotmaster.com/en/).
