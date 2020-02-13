@@ -18,3 +18,21 @@ The goal of this library is to analyze the code and pinpoint both quality and pe
 ## Documentation
 You can find more about the current and planned list of rules here: (insert link to file inside the repository)
 Selecting your data structure: (Link to file)
+
+## Installation
+Requirements to use	
+-	Recommended version of Visual Studio: Visual Studio 2015
+-	.Minimal NET Framework supported: 4.6+
+-	Minimal .NET Core : 1.0
+Requirements to build the solution:
+-	Recommended version of Visual Studio: Visual Studio 2017 version 15.3
+-	.Minimal NET Framework supported: 4.6+
+-	Minimal .NET Core : 1.0
+
+Installing the package from the Package Manager: 
+	Install-Package DotNet.SystemCollections.Analyzers
+
+Each project in Visual Studio has a "treat warnings as errors" option. Go through each of your projects and change that setting:
+1.	Right-click on your project, select "Properties".
+2.	Click "Build".
+3.	Switch "Treat warnings as errors" from "All" to "Specific warnings" or "None".
