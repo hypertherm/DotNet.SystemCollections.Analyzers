@@ -1,5 +1,3 @@
-# Robotmaster.CollectionRecommendation
-
 # About the project
 
 ## What Is Roslyn
