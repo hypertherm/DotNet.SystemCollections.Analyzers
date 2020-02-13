@@ -14,3 +14,7 @@ The goal of this library is to analyze the code and pinpoint both quality and pe
 [] Suggesting, for instance, using an HashSet<T> whenever a developer is doing a heavy Contains check on their List<T>.
 [] Suggesting using a for-loop when iterating on a collection that allows random access such as IList<T>.
 [] Suggesting using a separate method to yield values lazily instead of taking the time to create a temporary list.
+
+## Documentation
+You can find more about the current and planned list of rules here: (insert link to file inside the repository)
+Selecting your data structure: (Link to file)
