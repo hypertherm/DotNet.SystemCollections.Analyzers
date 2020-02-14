@@ -65,6 +65,10 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 - Adding test coverage on the analyzers and code fix providers
 - Adding benchmarking coverage on code analyzers
 
+### Why do we use StyleCop.Analyzers
+
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
