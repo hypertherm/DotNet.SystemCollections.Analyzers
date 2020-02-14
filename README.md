@@ -72,6 +72,8 @@ Version 2.0 Automatic code suggestions for best practices
 
 ## Contributing
 
+### How to contribute
+
 - Filing a bug report
 - Adding documentation on a new/existing rule
 - Requesting a new code analyzer
