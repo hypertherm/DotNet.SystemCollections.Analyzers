@@ -64,6 +64,10 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 
 ## Roadmap
 
+Version 1.0 - Finalization of the ruleset covered by the library
+
+Version 2.0 Automatic code suggestions for best practices
+
 ## Contributing
 
 - Filing a bug report
