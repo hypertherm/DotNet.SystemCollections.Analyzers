@@ -10,9 +10,11 @@ An analyzer library for C# and VB.NET empowered by Roslyn to help .NET developer
 Disclaimer: This project was developed as an internal hackathon project. It’s still a prototype so using it could give you false positives. It can provide useful insights to the things we should avoid doing as developers. You can either consult the project’s roadmap to know when the project will move outside of its prototype phase or subscribe on the project’s notifications to made aware of releases and project updates.
 
 ## Goals
-The goal of this library is to analyze the code and pinpoint both quality and performance pitfalls concerning the usage of types found in System.Collections such IEnumerable<T> or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations. The tool will not try to rewrite your LINQ expressions, but it’ll be able of 
-[] Suggesting, for instance, using an HashSet<T> whenever a developer is doing a heavy Contains check on their List<T>.
-[] Suggesting using a for-loop when iterating on a collection that allows random access such as IList<T>.
+
+The goal of this library is to analyze the code and pinpoint both quality and performance pitfalls concerning the usage of types found in System.Collections such `IEnumerable<T>` or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations. The tool will not try to rewrite your LINQ expressions, but it’ll be able of
+
+[] Suggesting, for instance, using an `HashSet<T>` whenever a developer is doing a heavy Contains check on their `List<T>`.
+[] Suggesting using a for-loop when iterating on a collection that allows random access such as `IList<T>`.
 [] Suggesting using a separate method to yield values lazily instead of taking the time to create a temporary list.
 
 ## Documentation
@@ -34,13 +36,12 @@ Requirements to build the solution:
 -Minimal NET Framework supported: 4.6+
 -Minimal .NET Core : 1.0
 
-Installing the package from the Package Manager: 
-	Install-Package DotNet.SystemCollections.Analyzers
+Installing the package from the Package Manager: `Install-Package DotNet.SystemCollections.Analyzers`
 
 Each project in Visual Studio has a "treat warnings as errors" option. Go through each of your projects and change that setting:
-1.	Right-click on your project, select "Properties".
-2.	Click "Build".
-3.	Switch "Treat warnings as errors" from "All" to "Specific warnings" or "None".
+1.Right-click on your project, select "Properties".
+2.Click "Build".
+3.Switch "Treat warnings as errors" from "All" to "Specific warnings" or "None".
 
 ## Release Notes
 
@@ -48,13 +49,13 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 
 ## Contributing
 
-	Filing a bug report
-	Adding documentation on a new/existing rule
-	Requesting a new code analyzer
-	Requesting a new case scenario in an existing code analyzer
-	Requesting a code fix provider
-	Adding test coverage on the analyzers and code fix providers
-	Adding benchmarking coverage on code analyzers
+-Filing a bug report
+-Adding documentation on a new/existing rule
+-Requesting a new code analyzer
+-Requesting a new case scenario in an existing code analyzer
+-Requesting a code fix provider
+-Adding test coverage on the analyzers and code fix providers
+-Adding benchmarking coverage on code analyzers
 
 ## About Robotmaster
 
