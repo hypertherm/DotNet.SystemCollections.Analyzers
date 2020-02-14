@@ -1,6 +1,8 @@
 # About the project
 
 [![License: MIT](https://img.shields.io/github/license/hypertherm/DotNet.SystemCollections.Analyzers?color=brightgreen)](https://opensource.org/licenses/MIT)
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
+[![GitHub Issues](https://img.shields.io/github/issues/hypertherm/DotNet.SystemCollections.Analyzers.svg)](https://github.com/hypertherm/DotNet.SystemCollections.Analyzers/issues)
 
 ## What Is Roslyn
 
