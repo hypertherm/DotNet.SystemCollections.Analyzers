@@ -2,7 +2,8 @@
 
 ## What Is Roslyn
 
-Roslyn is the compiler platform for .NET. It consists of the compiler itself and a powerful set of APIs to interact with the compiler. The Roslyn platform is hosted at github.com/dotnet/roslyn.
+[From Microsoft Docs](https://docs.microsoft.com/en-us/visualstudio/extensibility/dotnet-compiler-platform-roslyn-extensibility?view=vs-2019)
+> The core mission of the .NET Compiler Platform ("Roslyn") is opening up the C# and Visual Basic compilers and allowing tools and developers to share in the rich information compilers have about programs. Code analysis tools improve code quality, and code generators aid in application construction. As tools get smarter, they need access to more and more of the deep code knowledge that only compilers possess.
 
 ## What are DotNet.SystemCollections.Analyzers
 
@@ -13,9 +14,11 @@ Disclaimer: This project was developed as an internal hackathon project. It’s 
 
 The goal of this library is to analyze the code and pinpoint both quality and performance pitfalls concerning the usage of types found in System.Collections such `IEnumerable<T>` or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations. The tool will not try to rewrite your LINQ expressions, but it’ll be able of
 
-[] Suggesting, for instance, using an `HashSet<T>` whenever a developer is doing a heavy Contains check on their `List<T>`.
-[] Suggesting using a for-loop when iterating on a collection that allows random access such as `IList<T>`.
-[] Suggesting using a separate method to yield values lazily instead of taking the time to create a temporary list.
+- Suggesting, for instance, using an `HashSet<T>` whenever a developer is doing a heavy Contains check on their `List<T>`.
+
+- Suggesting using a for-loop when iterating on a collection that allows random access such as `IList<T>`.
+
+- Suggesting using a separate method to yield values lazily instead of taking the time to create a temporary list.
 
 ## Documentation
 
@@ -26,15 +29,15 @@ Selecting your data structure: (Link to file)
 
 Requirements to use:
 
--Recommended version of Visual Studio: Visual Studio 2015
--Minimal NET Framework supported: 4.6+
--Minimal .NET Core : 1.0
+- Recommended version of Visual Studio: Visual Studio 2015
+- Minimal NET Framework supported: 4.6+
+- Minimal .NET Core : 1.0
 
 Requirements to build the solution:
 
--Recommended version of Visual Studio: Visual Studio 2017 version 15.3
--Minimal NET Framework supported: 4.6+
--Minimal .NET Core : 1.0
+- Recommended version of Visual Studio: Visual Studio 2017 version 15.3
+- Minimal NET Framework supported: 4.6+
+- Minimal .NET Core : 1.0
 
 Installing the package from the Package Manager: `Install-Package DotNet.SystemCollections.Analyzers`
 
@@ -49,13 +52,13 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 
 ## Contributing
 
--Filing a bug report
--Adding documentation on a new/existing rule
--Requesting a new code analyzer
--Requesting a new case scenario in an existing code analyzer
--Requesting a code fix provider
--Adding test coverage on the analyzers and code fix providers
--Adding benchmarking coverage on code analyzers
+- Filing a bug report
+- Adding documentation on a new/existing rule
+- Requesting a new code analyzer
+- Requesting a new case scenario in an existing code analyzer
+- Requesting a code fix provider
+- Adding test coverage on the analyzers and code fix providers
+- Adding benchmarking coverage on code analyzers
 
 ## About Robotmaster
 
