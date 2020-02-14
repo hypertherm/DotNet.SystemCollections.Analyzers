@@ -29,6 +29,12 @@ The goal of this library is to analyze the code and pinpoint both quality and pe
 
 - Suggesting using a separate method to yield values lazily instead of taking the time to create a temporary list.
 
+## Disclaimer: the project is still considered a prototype
+
+This project was developed as an internal hackathon project. It’s still a prototype so using it could give you false positives. Moreover, the ruleset in the library hasn't been finalized and is subject to change. We're still working on these ideas to make sure they reflect the best development practices in .NET and welcome and encourage contributions on those ideas. For those interested in helping us that way, please read the contribution guidelines for the project.
+
+ Nonetheless, it can provide useful insights to the things we should avoid doing as developers. You can either consult the project’s roadmap to know when the project will move outside of its prototype phase or subscribe on the project’s notifications to made aware of releases and project updates.
+
 ## Documentation
 
 You can find more about the current and planned list of rules here: (insert link to file inside the repository)
