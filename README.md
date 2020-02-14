@@ -62,6 +62,8 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 
 ## Release Notes
 
+See the [release-notes.md](release-notes.md) file for details.
+
 ## Roadmap
 
 Version 1.0 - Finalization of the ruleset covered by the library
