@@ -10,6 +10,8 @@ This repository contains implementations for common performance and code quality
 
 ## Table of Content
 
+## What is DotNet.SystemCollections.Analyzers
+
 An analyzer library for C# and VB.NET empowered by Roslyn to help .NET developers to harness the full capabilities and performance of the CLR. The set of analyzers will analyze your code for quality, performance and maintainability.
 
 ## What Is Roslyn
