@@ -38,7 +38,6 @@ This project was developed as an internal hackathon project. It’s still a prot
 ## Documentation
 
 You can find more about the current and planned list of rules here: (insert link to file inside the repository)
-Selecting your data structure: (Link to file)
 
 ## Installation
 
