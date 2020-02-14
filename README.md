@@ -4,12 +4,11 @@
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 [![GitHub Issues](https://img.shields.io/github/issues/hypertherm/DotNet.SystemCollections.Analyzers.svg)](https://github.com/hypertherm/DotNet.SystemCollections.Analyzers/issues)
 
-## What Is Roslyn
+## Basic Overview
 
-[From Microsoft Docs](https://docs.microsoft.com/en-us/visualstudio/extensibility/dotnet-compiler-platform-roslyn-extensibility?view=vs-2019)
-> The core mission of the .NET Compiler Platform ("Roslyn") is opening up the C# and Visual Basic compilers and allowing tools and developers to share in the rich information compilers have about programs. Code analysis tools improve code quality, and code generators aid in application construction. As tools get smarter, they need access to more and more of the deep code knowledge that only compilers possess.
+This repository contains implementations for common performance and code quality best practices surronding the use of data structures and their APIs located under System.Collections & System.Linq.
 
-## What are DotNet.SystemCollections.Analyzers
+## Table of Content
 
 An analyzer library for C# and VB.NET empowered by Roslyn to help .NET developers to harness the full capabilities and performance of the CLR. The set of analyzers will analyze your code for quality, performance and maintainability.
 
