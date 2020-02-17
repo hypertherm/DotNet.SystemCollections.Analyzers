@@ -1,8 +1,12 @@
 # About the project
 
 [![License: MIT](https://img.shields.io/github/license/hypertherm/DotNet.SystemCollections.Analyzers?color=brightgreen)](https://opensource.org/licenses/MIT)
-![Contributions welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
-[![GitHub Issues](https://img.shields.io/github/issues/hypertherm/DotNet.SystemCollections.Analyzers.svg)](https://github.com/hypertherm/DotNet.SystemCollections.Analyzers/issues)
+![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
+
+Codacy C# Grade, Code Climate Technical Debt analysis
+
+Azure DevOps (build status), NuGet Downloads, Visual Studio Marketplace Rating
 
 ## Basic Overview
 
