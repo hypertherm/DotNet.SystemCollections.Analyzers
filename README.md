@@ -34,10 +34,8 @@ This repository contains implementations for common performance and code quality
 
 * [Contributing](#contributing)
   
-  * [How to contribute](#how-to-contribute)
+  * [Contribution Checklist](#contribution-checklist)
   
-  * [Why do we use StyleCop.Analyzers](#why-do-we-use-stylecopanalyzers)
-
 * [Release Notes](#release-notes)
 
 * [Roadmap](#roadmap)
@@ -103,26 +101,24 @@ Requirements to build the solution:
 * Minimal NET Framework supported: 4.6+
 * Minimal .NET Core : 1.0
 
-## Contributing
-
-### How to contribute
-
-* Filing a bug report
-* Adding documentation on a new/existing rule
-* Requesting a new code analyzer
-* Requesting a new case scenario in an existing code analyzer
-* Requesting a code fix provider
-* Adding test coverage on the analyzers and code fix providers
-* Adding benchmarking coverage on code analyzers
-
-### Why do we use StyleCop.Analyzers
-
 Installing the package from the Package Manager: `Install-Package DotNet.SystemCollections.Analyzers`
 
 Each project in Visual Studio has a "treat warnings as errors" option. Go through each of your projects and change that setting:
 1.Right-click on your project, select "Properties".
 2.Click "Build".
 3.Switch "Treat warnings as errors" from "All" to "Specific warnings" or "None".
+
+## Contributing
+
+Please note we have a code of conduct, follow it in all your interactions with the project. Also, when contributing to this repository, please make sure to follow this list.
+
+### Contribution Checklist
+
+* Read [contributing guidelines](CONTRIBUTING.md).
+* Read [Code of Conduct](CODE_OF_CONDUCT.md).
+* Check if my changes are consistent with the [guidelines](https://github.com/tensorflow/tensorflow/blob/master/CONTRIBUTING.md#general-guidelines-and-philosophy-for-contribution).
+* Changes are consistent with the [Coding Style](https://github.com/tensorflow/tensorflow/blob/master/CONTRIBUTING.md#c-coding-style).
+* Run [Unit Tests](https://github.com/tensorflow/tensorflow/blob/master/CONTRIBUTING.md#running-unit-tests).
 
 ## Release Notes
 
