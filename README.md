@@ -77,7 +77,7 @@ The tool will not try to rewrite your LINQ expressions, but it’ll be able of
 
 * Suggesting using a separate method to yield values lazily instead of taking the time to create a temporary list.
 
-### Disclaimer
+### __Disclaimer__
 
 This project was developed as an internal hackathon project. It’s still a prototype so using it could give you false positives. Moreover, the ruleset in the library hasn't been finalized and is subject to change. We're still working on these ideas to make sure they reflect the best development practices in .NET and welcome and encourage contributions on those ideas. For those interested in helping us that way, please read the contribution guidelines for the project.
 
