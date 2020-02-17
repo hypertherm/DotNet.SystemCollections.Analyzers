@@ -63,7 +63,7 @@ The purpose of the library is to empower the software developers using __.NET is
 
 ### Goals
 
-The goal of this library is to analyze the code and pinpoint both quality and performance pitfalls concerning the usage of types found in System.Collections such `IEnumerable<T>` or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations.
+The goal of this library is to analyze the code and pinpoint both quality and performance best-practices concerning the usage of types found in System.Collections such `IEnumerable<T>` or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations.
 
 ### Analyzers in action
 
