@@ -59,11 +59,17 @@ An analyzer library for `C#` and `VB.NET` empowered by Roslyn to help .NET devel
 
 ### Why should you use it in your .NET projects
 
+There are many code analysis libraries for .NET, but they do not focused on how we should use data structures such as an `List<T>`. Using a framework like .NET makes it easier for software developers to create an impact on their business and solve problems for their customers. The problem is that even though you can use a list everywhere just because you're used to its APIs doesn't mean you should. Each data structure serves a different purpose and knowing when to use within an algorithm makes the difference between something that is slow between something that is fast.
+
+The purpose of the library is to empower the software developers using __.NET is a fantastic platform for application development__ and leveraging best practices can make the difference between a slow and fast application.
+
 ### Goals
 
 The goal of this library is to analyze the code and pinpoint both quality and performance pitfalls concerning the usage of types found in System.Collections such `IEnumerable<T>` or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations.
 
 ### Analyzers in action
+
+TODO: Missing gif or image of an analyzer in action.
 
 The tool will not try to rewrite your LINQ expressions, but it’ll be able of
 
