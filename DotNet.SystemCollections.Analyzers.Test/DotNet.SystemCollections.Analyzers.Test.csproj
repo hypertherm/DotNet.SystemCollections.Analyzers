@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Robotmaster.CollectionRecommendation\Robotmaster.CollectionRecommendation.csproj" />
+    <ProjectReference Include="..\DotNet.SystemCollections.Analyzers\DotNet.SystemCollections.Analyzers.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using DotNet.SystemCollections.Analyzers.Arrays;
 using DotNet.SystemCollections.Analyzers.Test.Verifiers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
