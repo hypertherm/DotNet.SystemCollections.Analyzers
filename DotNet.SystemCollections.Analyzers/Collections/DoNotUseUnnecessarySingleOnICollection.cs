@@ -24,7 +24,7 @@ namespace DotNet.SystemCollections.Analyzers.Collections
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        private const string Description = "Use the Count property of the collection to validate that it's the only item instead of using the Enumerable.Single/Enumerable.SingleOrDefault extension method.";
+        private const string Description = "Use the Count property of the collection to validate that it's the only item instead of using the Enumerable.Single/Enumerable.SingleOrDefault extension method. Using the extension method requires moving twice inside the collection whereas through the use of a conditional, you can have a O(1) operation accessing the elemnt if present and the collection is of size 1.";
 
         /// <summary>
         ///     The category of the analyzer's rule.

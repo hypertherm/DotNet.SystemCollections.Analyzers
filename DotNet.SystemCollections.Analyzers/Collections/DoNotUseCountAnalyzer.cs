@@ -27,7 +27,7 @@ namespace DotNet.SystemCollections.Analyzers.Collections
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        private const string Description = "All ICollections should use the Count property instead using of the Enumerable.Count() extension method.";
+        private const string Description = "All ICollections should use the Count property instead using of the Enumerable.Count() extension method. Using the Count() extension method will trigger a O(n) whereas retrieving the number of elements from the Count property is an O(1) operation.";
 
         /// <summary>
         ///     The category of the analyzer's rule.

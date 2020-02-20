@@ -27,7 +27,7 @@
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        private const string Description = "All IList should access their last item directly instead using of the Enumerable.Last()/Enumerable.LastOrDefault() extension method.";
+        private const string Description = "All IList should access their last item directly instead using of the Enumerable.Last()/Enumerable.LastOrDefault() extension method. Retrieving the last element of an IList with Last() or LastOrDefault() is going to trigger a O(n) operation whereas accessing the last element of the collection through its index will be a O(1) operation.";
 
         /// <summary>
         ///     The category of the analyzer's rule.
