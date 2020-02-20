@@ -1,7 +1,5 @@
 # Performance (SCA000-)
 
-Rules which provide special functionality like workarounds, configuration errors, etc.
-
 Rule ID | Title | Enabled | Severity | CodeFix | Description |
 --------|-------|---------|----------|---------|----|
 SCA001 | Do not use Any for ICollection-based collections.| True | Warning | False | All ICollections should use the Count property and compare it to 0 instead of using the Enumerable.Any() extension method.
