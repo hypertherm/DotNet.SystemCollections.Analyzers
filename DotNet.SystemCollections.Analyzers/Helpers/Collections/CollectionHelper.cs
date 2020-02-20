@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Robotmaster.CollectionRecommendation.Helpers.Collections
+﻿namespace DotNet.SystemCollections.Analyzers.Helpers.Collections
 {
     using System;
     using System.Collections;
+    using System.Collections.Generic;
     using System.Linq;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.CSharp.Syntax;

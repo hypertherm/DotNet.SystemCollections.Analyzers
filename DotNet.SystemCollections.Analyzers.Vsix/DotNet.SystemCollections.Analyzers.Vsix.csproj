@@ -15,8 +15,8 @@
     <ProjectGuid>{FFAE75A4-1A29-408F-8C9D-5799772147A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Robotmaster.CollectionRecommendation.Vsix</RootNamespace>
-    <AssemblyName>Robotmaster.CollectionRecommendation</AssemblyName>
+    <RootNamespace>DotNet.SystemCollections.Analyzers.Vsix</RootNamespace>
+    <AssemblyName>DotNet.SystemCollections.Analyzers.Vsix</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>

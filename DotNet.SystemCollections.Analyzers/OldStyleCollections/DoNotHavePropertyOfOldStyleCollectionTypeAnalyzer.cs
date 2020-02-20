@@ -1,12 +1,10 @@
-using Robotmaster.CollectionRecommendation.Helpers.Collections;
-
-namespace Robotmaster.CollectionRecommendation.OldStyleCollections
+namespace DotNet.SystemCollections.Analyzers.OldStyleCollections
 {
-    using System.Collections.Generic;
     using System.Collections.Immutable;
+    using DotNet.SystemCollections.Analyzers.Helpers;
+    using DotNet.SystemCollections.Analyzers.Helpers.Collections;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Diagnostics;
-    using Robotmaster.CollectionRecommendation.Helpers;
 
     /// <summary>
     ///     This is used to analyze and detect for situations where fields are using "Old-Style" collections (i.e. collections from System.Collections).

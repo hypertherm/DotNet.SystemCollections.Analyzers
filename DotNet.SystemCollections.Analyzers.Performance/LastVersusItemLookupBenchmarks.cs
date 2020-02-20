@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BenchmarkDotNet.Attributes;
-
-namespace ConsoleApp1
+﻿namespace DotNet.SystemCollections.Analyzers.Performance
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using BenchmarkDotNet.Attributes;
+
     public class LastVersusItemLookupBenchmarks
     {
-        public int[] sampleIntsArray;
-        public List<int> sampleIntsList;
+        public int[] SampleIntsArray;
+        public List<int> SampleIntsList;
 
         [Params( 100, 1_000, 5_000, 10_000)]
-        public int collectionSize;
+        public int CollectionSize;
 
         /// <summary>
         ///     Setup method for the benchmarks.
@@ -18,20 +18,20 @@ namespace ConsoleApp1
         [GlobalSetup]
         public void SetupStandardSession()
         {
-            sampleIntsArray = Enumerable.Range(0, collectionSize).ToArray();
-            sampleIntsList = new List<int>(Enumerable.Range(0, collectionSize));
+            this.SampleIntsArray = Enumerable.Range(0, this.CollectionSize).ToArray();
+            this.SampleIntsList = new List<int>(Enumerable.Range(0, this.CollectionSize));
         }
 
         [Benchmark]
-        public int GetLastItemOfArrayWithLinq() => sampleIntsArray.Last();
+        public int GetLastItemOfArrayWithLinq() => this.SampleIntsArray.Last();
 
         [Benchmark]
-        public int GetLastItemOfArrayWithIndexer() => sampleIntsArray[sampleIntsArray.Length - 1];
+        public int GetLastItemOfArrayWithIndexer() => this.SampleIntsArray[this.SampleIntsArray.Length - 1];
 
         [Benchmark]
-        public int GetLastItemOfListWithLinq() => sampleIntsList.Last();
+        public int GetLastItemOfListWithLinq() => this.SampleIntsList.Last();
 
         [Benchmark]
-        public int GetLastItemOfListWithIndexer() => sampleIntsList[sampleIntsList.Count - 1];
+        public int GetLastItemOfListWithIndexer() => this.SampleIntsList[this.SampleIntsList.Count - 1];
     }
 }

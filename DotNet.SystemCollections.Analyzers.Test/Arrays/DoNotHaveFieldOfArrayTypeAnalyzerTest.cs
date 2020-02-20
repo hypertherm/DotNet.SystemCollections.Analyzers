@@ -1,11 +1,10 @@
 ﻿using System;
+using DotNet.SystemCollections.Analyzers.Test.Verifiers;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Robotmaster.CollectionRecommendation.Arrays;
-using Robotmaster.CollectionRecommendation.Test.Verifiers;
 
-namespace Robotmaster.CollectionRecommendation.Test.Arrays
+namespace DotNet.SystemCollections.Analyzers.Test.Arrays
 {
     [TestClass]
     public class DoNotHaveFieldOfArrayTypeAnalyzerTest : DiagnosticVerifier
@@ -16,7 +15,7 @@ namespace Robotmaster.CollectionRecommendation.Test.Arrays
         {
             var test = @"";
 
-            VerifyCSharpDiagnostic(test);
+            this.VerifyCSharpDiagnostic(test);
         }
 
         //Diagnostic triggered and checked for
@@ -50,7 +49,7 @@ namespace Robotmaster.CollectionRecommendation.Test.Arrays
                     }
             };
 
-            VerifyCSharpDiagnostic(test, expected);
+            this.VerifyCSharpDiagnostic(test, expected);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()

@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using BenchmarkDotNet.Attributes;
-
-namespace Robotmaster.CollectionRecommendation.Performance
+﻿namespace DotNet.SystemCollections.Analyzers.Performance
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using BenchmarkDotNet.Attributes;
+
     public class IListIndexingVersusLinqFirstBenchmarks
     {
-        public int[] sampleIntsArray;
-        public List<int> sampleIntsList;
+        public int[] SampleIntsArray;
+        public List<int> SampleIntsList;
 
         [Params(10_000, 100_000, 1_000_000)]
         public int CollectionSize;
@@ -18,20 +18,20 @@ namespace Robotmaster.CollectionRecommendation.Performance
         [GlobalSetup]
         public void SetupStandardSession()
         {
-            sampleIntsArray = Enumerable.Range(0, CollectionSize).ToArray();
-            sampleIntsList = new List<int>(Enumerable.Range(0, CollectionSize));
+            this.SampleIntsArray = Enumerable.Range(0, this.CollectionSize).ToArray();
+            this.SampleIntsList = new List<int>(Enumerable.Range(0, this.CollectionSize));
         }
 
         [Benchmark]
-        public int GetFirstItemOfArrayWithLinq() => sampleIntsArray.First();
+        public int GetFirstItemOfArrayWithLinq() => this.SampleIntsArray.First();
 
         [Benchmark]
-        public int GetFirstItemOfArrayWithIndexer() => sampleIntsArray[0];
+        public int GetFirstItemOfArrayWithIndexer() => this.SampleIntsArray[0];
 
         [Benchmark]
-        public int GetFirstItemOfListWithLinq() => sampleIntsList.First();
+        public int GetFirstItemOfListWithLinq() => this.SampleIntsList.First();
 
         [Benchmark]
-        public int GetFirstItemOfListWithIndexer() => sampleIntsList[0];
+        public int GetFirstItemOfListWithIndexer() => this.SampleIntsList[0];
     }
 }

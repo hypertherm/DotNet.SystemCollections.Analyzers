@@ -1,4 +1,4 @@
-﻿namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
+﻿namespace DotNet.SystemCollections.Analyzers.Performance.SampleTypes
 {
     public class Address
     {
@@ -7,8 +7,8 @@
 
         public Address(string streetName, string postalCode)
         {
-            StreetAddress = !string.IsNullOrEmpty(streetName) ? streetName : "Some street name 8888";
-            PostalCode = !string.IsNullOrEmpty(postalCode) ? postalCode : "012 345";
+            this.StreetAddress = !string.IsNullOrEmpty(streetName) ? streetName : "Some street name 8888";
+            this.PostalCode = !string.IsNullOrEmpty(postalCode) ? postalCode : "012 345";
         }
     }
 }

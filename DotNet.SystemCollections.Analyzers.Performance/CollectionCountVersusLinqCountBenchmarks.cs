@@ -1,4 +1,4 @@
-﻿namespace Robotmaster.CollectionRecommendation.Performance
+﻿namespace DotNet.SystemCollections.Analyzers.Performance
 {
     using System.Collections;
     using System.Collections.Generic;
@@ -19,7 +19,7 @@
         private Stack<int> sampleStack;
 
         [Params(25, 50, 100)]
-        public int collectionSize;
+        public int CollectionSize;
 
         /// <summary>
         ///     Setup method for the benchmarks.
@@ -27,55 +27,55 @@
         [GlobalSetup]
         public void SetupStandardSession()
         {
-            sampleArray = Enumerable.Range(0, collectionSize).ToArray();
-            sampleList = Enumerable.Range(0, collectionSize).ToList();
-            sampleLinkedList = new LinkedList<int>(Enumerable.Range(0, collectionSize));
-            sampleDictionary = Enumerable.Range(0, collectionSize).ToDictionary(x => x);
-            sampleHashSet = new HashSet<int>(Enumerable.Range(0, collectionSize));
-            sampleQueue = new Queue<int>(Enumerable.Range(0, collectionSize));
-            sampleStack = new Stack<int>(Enumerable.Range(0, collectionSize));
+            this.sampleArray = Enumerable.Range(0, this.CollectionSize).ToArray();
+            this.sampleList = Enumerable.Range(0, this.CollectionSize).ToList();
+            this.sampleLinkedList = new LinkedList<int>(Enumerable.Range(0, this.CollectionSize));
+            this.sampleDictionary = Enumerable.Range(0, this.CollectionSize).ToDictionary(x => x);
+            this.sampleHashSet = new HashSet<int>(Enumerable.Range(0, this.CollectionSize));
+            this.sampleQueue = new Queue<int>(Enumerable.Range(0, this.CollectionSize));
+            this.sampleStack = new Stack<int>(Enumerable.Range(0, this.CollectionSize));
         }
 
         [Benchmark]
-        public int ComputingNumberOfElementsInArrayUsingCollectionCount() => sampleArray.Length;
+        public int ComputingNumberOfElementsInArrayUsingCollectionCount() => this.sampleArray.Length;
 
         [Benchmark]
-        public int ComputingNumberOfElementsInArrayUsingLinqCount() => sampleArray.Count();
+        public int ComputingNumberOfElementsInArrayUsingLinqCount() => this.sampleArray.Count();
 
         [Benchmark]
-        public int ComputingNumberOfElementsInListUsingCollectionCount() => sampleList.Count;
+        public int ComputingNumberOfElementsInListUsingCollectionCount() => this.sampleList.Count;
 
         [Benchmark]
-        public int ComputingNumberOfElementsInListUsingLinqCount() => sampleList.Count();
+        public int ComputingNumberOfElementsInListUsingLinqCount() => this.sampleList.Count();
 
         [Benchmark]
-        public int ComputingNumberOfElementsInLinkedListUsingCollectionCount() => sampleLinkedList.Count;
+        public int ComputingNumberOfElementsInLinkedListUsingCollectionCount() => this.sampleLinkedList.Count;
 
         [Benchmark]
-        public int ComputingNumberOfElementsInLinkedListUsingLinqCount() => sampleLinkedList.Count();
+        public int ComputingNumberOfElementsInLinkedListUsingLinqCount() => this.sampleLinkedList.Count();
 
         [Benchmark]
-        public int ComputingNumberOfElementsInDictionaryUsingCollectionCount() => sampleDictionary.Count;
+        public int ComputingNumberOfElementsInDictionaryUsingCollectionCount() => this.sampleDictionary.Count;
 
         [Benchmark]
-        public int ComputingNumberOfElementsInDictionaryUsingLinqCount() => sampleDictionary.Count();
+        public int ComputingNumberOfElementsInDictionaryUsingLinqCount() => this.sampleDictionary.Count();
 
         [Benchmark]
-        public int ComputingNumberOfElementsInHashSetUsingCollectionCount() => sampleHashSet.Count;
+        public int ComputingNumberOfElementsInHashSetUsingCollectionCount() => this.sampleHashSet.Count;
 
         [Benchmark]
-        public int ComputingNumberOfElementsInHashSetUsingLinqCount() => sampleHashSet.Count();
+        public int ComputingNumberOfElementsInHashSetUsingLinqCount() => this.sampleHashSet.Count();
 
         [Benchmark]
-        public int ComputingNumberOfElementsInQueueUsingCollectionCount() => sampleQueue.Count;
+        public int ComputingNumberOfElementsInQueueUsingCollectionCount() => this.sampleQueue.Count;
 
         [Benchmark]
-        public int ComputingNumberOfElementsInQueueUsingLinqCount() => sampleQueue.Count();
+        public int ComputingNumberOfElementsInQueueUsingLinqCount() => this.sampleQueue.Count();
 
         [Benchmark]
-        public int ComputingNumberOfElementsInStackUsingCollectionCount() => sampleStack.Count;
+        public int ComputingNumberOfElementsInStackUsingCollectionCount() => this.sampleStack.Count;
 
         [Benchmark]
-        public int ComputingNumberOfElementsInStackUsingLinqCount() => sampleStack.Count();
+        public int ComputingNumberOfElementsInStackUsingLinqCount() => this.sampleStack.Count();
     }
 }

@@ -1,13 +1,13 @@
-﻿using System.Collections.Immutable;
-using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Robotmaster.CollectionRecommendation.Helpers;
-using Robotmaster.CollectionRecommendation.Helpers.Collections;
-
-namespace Robotmaster.CollectionRecommendation.Collections
+﻿namespace DotNet.SystemCollections.Analyzers.Collections
 {
+    using System.Collections.Immutable;
+    using System.Linq;
+    using DotNet.SystemCollections.Analyzers.Helpers;
+    using DotNet.SystemCollections.Analyzers.Helpers.Collections;
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.CSharp;
+    using Microsoft.CodeAnalysis.Diagnostics;
+
     /// <summary>
     ///     This analyzer is used to monitor and detect when an IList calls the LINQ <see cref="Enumerable.Last{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> or <see cref="Enumerable.LastOrDefault{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
     /// </summary>

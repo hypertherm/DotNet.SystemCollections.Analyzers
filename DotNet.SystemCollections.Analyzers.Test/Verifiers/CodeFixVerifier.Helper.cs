@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.Formatting;
 using Microsoft.CodeAnalysis.Simplification;
 
-namespace Robotmaster.CollectionRecommendation.Test.Verifiers
+namespace DotNet.SystemCollections.Analyzers.Test.Verifiers
 {
     /// <summary>
     /// Diagnostic Producer class with extra methods dealing with applying codefixes

@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
+﻿namespace DotNet.SystemCollections.Analyzers.Performance.SampleTypes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class ComplexPerson
     {
         internal string FirstName { get; }
@@ -38,16 +38,16 @@ namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
             Gender gender,
             IList<string> interests)
         {
-            FirstName = !string.IsNullOrEmpty(firstName) ? firstName  :"Some Name";
-            LastName = !string.IsNullOrEmpty(lastName) ? lastName : "Some Name";
-            Weight = weight > 0.00 && weight <= 635.00 ? weight : throw new ArgumentException(nameof(weight));
-            HomeAddress = address ?? throw new ArgumentNullException(nameof(address));
-            Birthday = birthday != DateTime.MaxValue || birthday != DateTime.MinValue ? birthday : throw new ArgumentException(nameof(birthday));
-            Profession = !string.IsNullOrEmpty(profession) ? profession: throw new ArgumentNullException(nameof(profession));
-            PhoneNumber = !string.IsNullOrEmpty(phoneNumber) ? phoneNumber: throw new ArgumentNullException(nameof(phoneNumber));
-            Citizenship = citizenship;
-            Gender = gender;
-            Interests = interests.Count != 0 ? interests : (IList<string>)Enumerable.Empty<string>();
+            this.FirstName = !string.IsNullOrEmpty(firstName) ? firstName  :"Some Name";
+            this.LastName = !string.IsNullOrEmpty(lastName) ? lastName : "Some Name";
+            this.Weight = weight > 0.00 && weight <= 635.00 ? weight : throw new ArgumentException(nameof(weight));
+            this.HomeAddress = address ?? throw new ArgumentNullException(nameof(address));
+            this.Birthday = birthday != DateTime.MaxValue || birthday != DateTime.MinValue ? birthday : throw new ArgumentException(nameof(birthday));
+            this.Profession = !string.IsNullOrEmpty(profession) ? profession: throw new ArgumentNullException(nameof(profession));
+            this.PhoneNumber = !string.IsNullOrEmpty(phoneNumber) ? phoneNumber: throw new ArgumentNullException(nameof(phoneNumber));
+            this.Citizenship = citizenship;
+            this.Gender = gender;
+            this.Interests = interests.Count != 0 ? interests : (IList<string>)Enumerable.Empty<string>();
         }
     }
 }

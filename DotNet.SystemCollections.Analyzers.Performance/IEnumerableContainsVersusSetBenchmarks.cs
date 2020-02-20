@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using BenchmarkDotNet.Attributes;
-using Robotmaster.CollectionRecommendation.Performance.SampleTypes;
-
-namespace Robotmaster.CollectionRecommendation.Performance
+﻿namespace DotNet.SystemCollections.Analyzers.Performance
 {
-    public class LastVersusItemLookupBenchmarks
-    {
-        private static readonly string sampleRandomGenerateString = PersonInstanceCreator.GenerateRandomStringBasedOnLength(500);
+    using System.Collections.Generic;
+    using System.Linq;
+    using BenchmarkDotNet.Attributes;
+    using DotNet.SystemCollections.Analyzers.Performance.SampleTypes;
 
-        public string[] sampleStringArray;
-        public List<string> sampleStringList;
-        public ISet<string> sampleStringSet;
+    public class IEnumerableContainsVersusSetBenchmarks
+    {
+        private static readonly string SampleRandomGenerateString = PersonInstanceCreator.GenerateRandomStringBasedOnLength(500);
+
+        public string[] SampleStringArray;
+        public List<string> SampleStringList;
+        public ISet<string> SampleStringSet;
 
         [Params(5_000, 10_000)]
         public int CollectionSize;
@@ -23,21 +22,21 @@ namespace Robotmaster.CollectionRecommendation.Performance
         [GlobalSetup]
         public void SetupStandardSession()
         {
-            sampleStringArray = Enumerable.Repeat(sampleRandomGenerateString, CollectionSize).ToArray();
-            sampleStringArray[sampleStringArray.Length - 1] = "Hello World";
-            sampleStringList = new List<string>(Enumerable.Repeat(sampleRandomGenerateString, CollectionSize));
-            sampleStringList[sampleStringList.Count - 1] = "Hello World";
-            sampleStringSet = new HashSet<string>(Enumerable.Repeat(sampleRandomGenerateString, CollectionSize - 1));
-            sampleStringSet.Add("Hello World");
+            this.SampleStringArray = Enumerable.Repeat(SampleRandomGenerateString, this.CollectionSize).ToArray();
+            this.SampleStringArray[this.SampleStringArray.Length - 1] = "Hello World";
+            this.SampleStringList = new List<string>(Enumerable.Repeat(SampleRandomGenerateString, this.CollectionSize));
+            this.SampleStringList[this.SampleStringList.Count - 1] = "Hello World";
+            this.SampleStringSet = new HashSet<string>(Enumerable.Repeat(SampleRandomGenerateString, this.CollectionSize - 1));
+            this.SampleStringSet.Add("Hello World");
         }
 
         [Benchmark]
-        public bool RetrieveStringValueInArrayWithContains() => sampleStringArray.Contains("Hello World");
+        public bool RetrieveStringValueInArrayWithContains() => this.SampleStringArray.Contains("Hello World");
 
         [Benchmark]
-        public bool RetrieveStringValueInListWithContains() => sampleStringList.Contains("Hello World");
+        public bool RetrieveStringValueInListWithContains() => this.SampleStringList.Contains("Hello World");
 
         [Benchmark]
-        public bool RetrieveStringValueInSetWithContains() => sampleStringSet.Contains("Hello World");
+        public bool RetrieveStringValueInSetWithContains() => this.SampleStringSet.Contains("Hello World");
     }
 }

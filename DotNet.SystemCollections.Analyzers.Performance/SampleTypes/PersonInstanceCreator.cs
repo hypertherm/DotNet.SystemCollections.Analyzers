@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
+﻿namespace DotNet.SystemCollections.Analyzers.Performance.SampleTypes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     internal static class PersonInstanceCreator
     {
         private const string Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";

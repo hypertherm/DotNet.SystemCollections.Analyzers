@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
+﻿namespace DotNet.SystemCollections.Analyzers.Performance.SampleTypes
 {
+    using System;
+
     public class SimplePerson
     {
         internal string FirstName { get; }
@@ -12,9 +12,9 @@ namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
 
         public SimplePerson(string firstName, string lastName, DateTime birthday)
         {
-            FirstName = !string.IsNullOrEmpty(firstName) ? firstName : throw new ArgumentNullException(nameof(firstName));
-            LastName = !string.IsNullOrEmpty(lastName) ? lastName: throw new ArgumentNullException(nameof(lastName));
-            Birthday = birthday != DateTime.MaxValue || birthday != DateTime.MinValue ? birthday : throw new ArgumentException(nameof(birthday));
+            this.FirstName = !string.IsNullOrEmpty(firstName) ? firstName : throw new ArgumentNullException(nameof(firstName));
+            this.LastName = !string.IsNullOrEmpty(lastName) ? lastName: throw new ArgumentNullException(nameof(lastName));
+            this.Birthday = birthday != DateTime.MaxValue || birthday != DateTime.MinValue ? birthday : throw new ArgumentException(nameof(birthday));
         }
     }
 }

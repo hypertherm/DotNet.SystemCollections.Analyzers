@@ -1,4 +1,4 @@
-﻿namespace Robotmaster.CollectionRecommendation.Performance.SampleTypes
+﻿namespace DotNet.SystemCollections.Analyzers.Performance.SampleTypes
 {
     public enum Profession
     {

@@ -1,10 +1,10 @@
-namespace Robotmaster.CollectionRecommendation.Arrays
+namespace DotNet.SystemCollections.Analyzers.Arrays
 {
     using System.Collections.Generic;
     using System.Collections.Immutable;
+    using DotNet.SystemCollections.Analyzers.Helpers;
     using Microsoft.CodeAnalysis;
     using Microsoft.CodeAnalysis.Diagnostics;
-    using Robotmaster.CollectionRecommendation.Helpers;
 
     /// <summary>
     ///     This is used to analyze and detect for situations where properties are arrays instead of <see cref="IReadOnlyList{T}"/>.

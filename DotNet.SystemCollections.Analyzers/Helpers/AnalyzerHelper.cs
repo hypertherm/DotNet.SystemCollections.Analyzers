@@ -2,12 +2,11 @@
 // Copyright (c) Hypertherm Robotic Software Inc. All rights reserved.
 // </copyright>
 
-using Microsoft.CodeAnalysis;
-
-namespace Robotmaster.CollectionRecommendation.Helpers
+namespace DotNet.SystemCollections.Analyzers.Helpers
 {
     using System;
     using System.Collections.Generic;
+    using Microsoft.CodeAnalysis;
 
     /// <summary>
     ///     This is a set of common helper methods, useful to all PDK analyzers.
