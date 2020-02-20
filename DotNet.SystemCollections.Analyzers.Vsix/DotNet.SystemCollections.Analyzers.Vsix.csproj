@@ -54,9 +54,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Robotmaster.CollectionRecommendation\Robotmaster.CollectionRecommendation.csproj">
-      <Project>{574d2071-597a-4340-ae85-7897252e3687}</Project>
-      <Name>Robotmaster.CollectionRecommendation</Name>
+    <ProjectReference Include="..\DotNet.SystemCollections.Analyzers\DotNet.SystemCollections.Analyzers.csproj">
+      <Project>{dfb0ed75-bfcc-4a53-85d5-9e6c74ce7a48}</Project>
+      <Name>DotNet.SystemCollections.Analyzers</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
