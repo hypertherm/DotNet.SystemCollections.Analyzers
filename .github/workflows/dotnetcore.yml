@@ -16,7 +16,8 @@ jobs:
     - name: Test with dotnet
       run:  dotnet test --configuration Release --no-build
     - name: Build and publish
-      run: dotnet publish --configuration Release
+      run: MSBuild.exe DotNet.SystemCollections.Analyzers.Performance.csproj /t:restore 
+        | dotnet publish --configuration Release
     - name: Understand the folder tree
       run: tree
       shell: pwsh
