@@ -42,8 +42,6 @@ This repository contains implementations for common performance and code quality
 
 * [Contributing](#contributing)
   
-  * [Contribution Checklist](#contribution-checklist)
-  
 * [Release Notes](#release-notes)
 
 * [Roadmap](#roadmap)
