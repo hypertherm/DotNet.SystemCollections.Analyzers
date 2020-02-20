@@ -37,7 +37,7 @@ namespace DotNet.SystemCollections.Analyzers.Collections
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 4;
+        private const int IdNumber = 003;
 
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.Count{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.

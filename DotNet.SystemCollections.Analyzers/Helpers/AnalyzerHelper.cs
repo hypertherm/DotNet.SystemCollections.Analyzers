@@ -16,12 +16,12 @@ namespace DotNet.SystemCollections.Analyzers.Helpers
         /// <summary>
         ///     This is the title for all of the PDK analyzers.
         /// </summary>
-        internal const string AnalyzerTitle = "Collection Recommendations";
+        internal const string AnalyzerTitle = "DotNet.SystemCollections.Analyzers";
 
         /// <summary>
         ///     This is the common prefix for the complete analyzer ID, used to identify all of the RCR-related analyzer rules.
         /// </summary>
-        private const string AnalyzerIdPrefix = "RCR";
+        private const string AnalyzerIdPrefix = "SCA";
 
         /// <summary>
         ///     This is the prefix represents the Global prefix for full (i.e. fully qualified) names of types.

@@ -37,7 +37,7 @@
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 18;
+        private const int IdNumber = 005;
 
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.ElementAt{TSource}"/> extension method.

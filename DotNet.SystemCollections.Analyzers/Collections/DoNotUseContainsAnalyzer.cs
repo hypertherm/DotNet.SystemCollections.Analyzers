@@ -37,7 +37,7 @@
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 10;
+        private const int IdNumber = 002;
 
         /// <summary>
         ///     This is the name of the <see cref="Enumerable.Contains{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.

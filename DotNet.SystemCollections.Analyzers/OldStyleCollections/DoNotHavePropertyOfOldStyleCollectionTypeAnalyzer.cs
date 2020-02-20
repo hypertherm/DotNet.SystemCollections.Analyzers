@@ -35,7 +35,7 @@ namespace DotNet.SystemCollections.Analyzers.OldStyleCollections
         /// <summary>
         ///     The number portion of the analyzer's <see cref="DiagnosticId"/>.
         /// </summary>
-        private const int IdNumber = 12;
+        private const int IdNumber = 1007;
 
 #pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
