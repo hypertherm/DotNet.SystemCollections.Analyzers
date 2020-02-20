@@ -6,7 +6,7 @@
 
 TODO: Wait until project public for Codacy C# Grade
 
-TODO Wait until release pipeline is ready Azure DevOps (build status), NuGet Downloads, Visual Studio Marketplace Rating
+![.NET Core](https://github.com/hypertherm/DotNet.SystemCollections.Analyzers/workflows/.NET%20Core/badge.svg)
 
 ## Basic Overview
 
