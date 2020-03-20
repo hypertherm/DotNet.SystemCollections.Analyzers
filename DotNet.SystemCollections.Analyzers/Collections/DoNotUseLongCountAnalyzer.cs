@@ -20,20 +20,21 @@ namespace DotNet.SystemCollections.Analyzers.Collections
         public static readonly string DiagnosticId = AnalyzerHelper.GetCompleteAnalyzerId(IdNumber);
 
         /// <summary>
+        ///     This is the rule (i.e. <see cref="DiagnosticDescriptor"/>) handled by this analyzer.
+        /// </summary>
+#pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
+        internal static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, AnalyzerCategory.Collections, DiagnosticSeverity.Warning, true, Description);
+#pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
+
+        /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        internal const string MessageFormat = "This ICollection is calling the LongCount() extension method; it should use the Count property instead.";
+        private const string MessageFormat = "This ICollection is calling the LongCount() extension method; it should use the Count property instead.";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
-        /// 
         private const string Description = "All ICollections should use the Count property instead using of the Enumerable.LongCount() extension method. Using the LongCount() extension method will trigger a O(n) whereas retrieving the number of elements from the Count property and casting it to a int64 is an O(1) operation.";
-
-        /// <summary>
-        ///     The category of the analyzer's rule.
-        /// </summary>
-        private const string Category = "Collections";
 
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
@@ -45,12 +46,17 @@ namespace DotNet.SystemCollections.Analyzers.Collections
         /// </summary>
         private const string LongCountMethodName = nameof(Enumerable.LongCount);
 
-#pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
-#pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
-
+        /// <summary>
+        ///     Gets the set of rules handled by this analyzer.
+        /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
+        /// <summary>
+        ///     This is used to initialize the analyzer.
+        /// </summary>
+        /// <param name="context">
+        ///     The context in which the analysis takes place.
+        /// </param>
         public override void Initialize(AnalysisContext context)
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);

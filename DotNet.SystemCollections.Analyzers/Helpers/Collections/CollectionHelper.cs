@@ -8,6 +8,9 @@
     using Microsoft.CodeAnalysis.CSharp.Syntax;
     using Microsoft.CodeAnalysis.Diagnostics;
 
+    /// <summary>
+    ///     This is a helper class that assists with the analysis of collection usages.
+    /// </summary>
     internal class CollectionHelper
     {
         /// <summary>
@@ -16,7 +19,7 @@
         internal const string PropertyGetterPrefix = "get_";
 
         /// <summary>
-        ///     This is the full name of the <see cref="Enumerable"/> class
+        ///     This is the full name of the <see cref="Enumerable"/> class.
         /// </summary>
         internal static readonly string EnumerableClassFullName = typeof(Enumerable).FullName;
 
@@ -40,7 +43,9 @@
         /// </summary>
         private static readonly string EnumerableInterfaceFullType = typeof(IEnumerable).FullName;
 
-
+        /// <summary>
+        ///     This is the set of methods that require specific checks.
+        /// </summary>
         private static readonly HashSet<string> MethodRequiringSpecificChecks = new HashSet<string> { "Contains" };
 
         /// <summary>
@@ -120,7 +125,7 @@
         ///     The named type.
         /// </param>
         /// <returns>
-        ///     
+        ///     This returns whether or not this corresponds to an old-style collection class.
         /// </returns>
         internal static bool IsOldStyleCollectionClass(INamedTypeSymbol iNamedTypeSymbol) => iNamedTypeSymbol.TypeKind == TypeKind.Class && string.Equals(iNamedTypeSymbol.ContainingNamespace.GetFullNameWithoutPrefix(), OldStyleCollectionNamespace, StringComparison.Ordinal);
 
@@ -183,7 +188,7 @@
         private static bool IsIEnumerable(ITypeSymbol iTypeSymbol) => (iTypeSymbol is INamedTypeSymbol iNamedTypeSymbol) && HasExpectedInterface(iNamedTypeSymbol, EnumerableInterfaceFullType);
 
         /// <summary>
-        ///     This is used to determine if the given <paramref name="iNamedTypeSymbol"/> does not correspond to the <see cref="IList{T}" /> interface type.
+        ///     This is used to determine if the given <paramref name="iTypeSymbol"/> does not correspond to the <see cref="IList{T}" /> interface type.
         /// </summary>
         /// <param name="iTypeSymbol">
         ///     The type.

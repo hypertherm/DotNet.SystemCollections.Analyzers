@@ -20,19 +20,21 @@
         public static readonly string DiagnosticId = AnalyzerHelper.GetCompleteAnalyzerId(IdNumber);
 
         /// <summary>
+        ///     This is the rule (i.e. <see cref="DiagnosticDescriptor"/>) handled by this analyzer.
+        /// </summary>
+#pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
+        internal static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, AnalyzerCategory.Collections, DiagnosticSeverity.Warning, true, Description);
+#pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
+
+        /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        internal const string MessageFormat = "This IList is calling the Last()/LastOrDefault() extension method; it should access the item directly instead.";
+        private const string MessageFormat = "This IList is calling the Last()/LastOrDefault() extension method; it should access the item directly instead.";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
         private const string Description = "All IList should access their last item directly instead using of the Enumerable.Last()/Enumerable.LastOrDefault() extension method. Retrieving the last element of an IList with Last() or LastOrDefault() is going to trigger a O(n) operation whereas accessing the last element of the collection through its index will be a O(1) operation.";
-
-        /// <summary>
-        ///     The category of the analyzer's rule.
-        /// </summary>
-        private const string Category = "Collections";
 
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
@@ -49,12 +51,17 @@
         /// </summary>
         private const string LastOrDefaultMethodName = nameof(Enumerable.LastOrDefault);
 
-#pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
-#pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
-
+        /// <summary>
+        ///     Gets the set of rules handled by this analyzer.
+        /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
+        /// <summary>
+        ///     This is used to initialize the analyzer.
+        /// </summary>
+        /// <param name="context">
+        ///     The context in which the analysis takes place.
+        /// </param>
         public override void Initialize(AnalysisContext context)
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);

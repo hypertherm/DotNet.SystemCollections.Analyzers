@@ -4,6 +4,9 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+	<NoWarn>SA1633</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,14 +16,13 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <PackageId>Robotmaster.CollectionRecommendation</PackageId>
+    <PackageId>Dotnet.SystemCollections.Analyzers</PackageId>
     <PackageVersion>1.0.0.0</PackageVersion>
-    <Authors>Ryan.Schimpel</Authors>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>Robotmaster.CollectionRecommendation</Description>
+    <Description>Dotnet.SystemCollections.Analyzers</Description>
     <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
-    <PackageTags>Robotmaster.CollectionRecommendation, analyzers</PackageTags>
+    <PackageTags>Dotnet.SystemCollections.Analyzers, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
   </PropertyGroup>
 

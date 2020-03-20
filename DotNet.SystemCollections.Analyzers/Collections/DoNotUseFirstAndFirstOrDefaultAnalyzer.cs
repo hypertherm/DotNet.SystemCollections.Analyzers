@@ -20,19 +20,21 @@
         public static readonly string DiagnosticId = AnalyzerHelper.GetCompleteAnalyzerId(IdNumber);
 
         /// <summary>
+        ///     This is the rule (i.e. <see cref="DiagnosticDescriptor"/>) that is handled by this analyzer.
+        /// </summary>
+#pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
+        internal static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, AnalyzerCategory.Collections, DiagnosticSeverity.Warning, true, Description);
+#pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
+
+        /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        internal const string MessageFormat = "This IList is calling the First() or FirstOrDefault() extension method; it should use indexing instead.";
+        private const string MessageFormat = "This IList is calling the First() or FirstOrDefault() extension method; it should use indexing instead.";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.
         /// </summary>
         private const string Description = "All IList collections can access their first element by indexing the underlying data structure instead using of the Enumerable.First() or Enumerable.FirstOrDefault() extension method.";
-
-        /// <summary>
-        ///     The category of the analyzer's rule.
-        /// </summary>
-        private const string Category = "Collections";
 
         /// <summary>
         ///     The number portion of the above <see cref="DiagnosticId"/>.
@@ -49,12 +51,17 @@
         /// </summary>
         private const string FirstOrDefaultMethodName = nameof(Enumerable.FirstOrDefault);
 
-#pragma warning disable RS1017 // DiagnosticId for analyzers must be a non-null constant.
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(DiagnosticId, AnalyzerHelper.AnalyzerTitle, MessageFormat, Category, DiagnosticSeverity.Warning, true, Description);
-#pragma warning restore RS1017 // DiagnosticId for analyzers must be a non-null constant.
-
+        /// <summary>
+        ///     Gets the set of rules that are handled by this analyzer.
+        /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
+        /// <summary>
+        ///     This is used to initialize the analyzer.
+        /// </summary>
+        /// <param name="context">
+        ///     The context in which the analysis takes place.
+        /// </param>
         public override void Initialize(AnalysisContext context)
         {
             context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.Analyze | GeneratedCodeAnalysisFlags.ReportDiagnostics);

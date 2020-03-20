@@ -1,8 +1,4 @@
-﻿// <copyright file="AnalyzerHelper.cs" company="Hypertherm Robotic Software Inc.">
-// Copyright (c) Hypertherm Robotic Software Inc. All rights reserved.
-// </copyright>
-
-namespace DotNet.SystemCollections.Analyzers.Helpers
+﻿namespace DotNet.SystemCollections.Analyzers.Helpers
 {
     using System;
     using System.Collections.Generic;
@@ -152,7 +148,7 @@ namespace DotNet.SystemCollections.Analyzers.Helpers
         ///     This is used to get the full name of the given <paramref name="iNamedTypeSymbol"/> without any prefix.
         /// </summary>
         /// <param name="iNamedTypeSymbol">
-        ///     The <see cref="INamedTypeSymbol"/> 
+        ///     The <see cref="INamedTypeSymbol"/>.
         /// </param>
         /// <returns>
         ///     This returns the full name of the <paramref name="iNamedTypeSymbol"/> without any prefix.
@@ -172,13 +168,12 @@ namespace DotNet.SystemCollections.Analyzers.Helpers
             // Return the type's full name.
             return fullName;
         }
-        
 
         /// <summary>
         ///     This is used to get the full name of the given <paramref name="iNamespaceSymbol"/> without any prefix.
         /// </summary>
         /// <param name="iNamespaceSymbol">
-        ///     The <see cref="INamespaceSymbol"/> 
+        ///     The <see cref="INamespaceSymbol"/>.
         /// </param>
         /// <returns>
         ///     This returns the full name of the <paramref name="iNamespaceSymbol"/> without any prefix.
