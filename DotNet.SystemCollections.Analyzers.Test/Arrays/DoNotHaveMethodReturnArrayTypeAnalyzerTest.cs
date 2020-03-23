@@ -1,25 +1,38 @@
-using System;
-using DotNet.SystemCollections.Analyzers.Arrays;
-using DotNet.SystemCollections.Analyzers.Test.Verifiers;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
 namespace DotNet.SystemCollections.Analyzers.Test.Arrays
 {
+    using System;
+    using DotNet.SystemCollections.Analyzers.Arrays;
+    using DotNet.SystemCollections.Analyzers.Test.Verifiers;
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.Diagnostics;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    /// <summary>
+    ///     This tester is used to test the <see cref="DoNotHaveMethodReturnArrayTypeAnalyzer"/>.
+    /// </summary>
     [TestClass]
     public class DoNotHaveMethodReturnArrayTypeAnalyzerTest : DiagnosticVerifier
     {
-        //No diagnostics expected to show up
+        /// <summary>
+        ///     Test when given an empty input.
+        /// </summary>
+        /// <remarks>
+        ///     No diagnostics expected to show up.
+        /// </remarks>
         [TestMethod]
         public void TestEmptyInput()
         {
-            var test = @"";
+            var test = string.Empty;
 
             this.VerifyCSharpDiagnostic(test);
         }
 
-        //Diagnostic triggered and checked for
+        /// <summary>
+        ///     Test when given a matching case.
+        /// </summary>
+        /// <remarks>
+        ///     Diagnostic triggered and checked for.
+        /// </remarks>
         [TestMethod]
         public void TestMatchingCase()
         {
@@ -43,18 +56,23 @@ namespace DotNet.SystemCollections.Analyzers.Test.Arrays
             var expected = new DiagnosticResult
             {
                 Id = DoNotHaveMethodReturnArrayTypeAnalyzer.DiagnosticId,
-                Message = String.Format(DoNotHaveMethodReturnArrayTypeAnalyzer.MessageFormat, "MethodName"),
+                Message = string.Format(DoNotHaveMethodReturnArrayTypeAnalyzer.MessageFormat, "MethodName"),
                 Severity = DiagnosticSeverity.Warning,
-                Locations =
-                    new[]
-                    {
-                        new DiagnosticResultLocation("Test0.cs", 13, 22)
-                    }
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 13, 22),
+                },
             };
 
             this.VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        ///     This is used to return the appropriate C# analyzer to test.
+        /// </summary>
+        /// <returns>
+        ///     Returns a new <see cref="DoNotHaveMethodReturnArrayTypeAnalyzer"/>.
+        /// </returns>
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new DoNotHaveMethodReturnArrayTypeAnalyzer();

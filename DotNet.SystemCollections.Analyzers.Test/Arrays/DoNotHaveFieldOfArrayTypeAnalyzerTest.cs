@@ -1,25 +1,38 @@
-﻿using System;
-using DotNet.SystemCollections.Analyzers.Arrays;
-using DotNet.SystemCollections.Analyzers.Test.Verifiers;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace DotNet.SystemCollections.Analyzers.Test.Arrays
+﻿namespace DotNet.SystemCollections.Analyzers.Test.Arrays
 {
+    using System;
+    using DotNet.SystemCollections.Analyzers.Arrays;
+    using DotNet.SystemCollections.Analyzers.Test.Verifiers;
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.Diagnostics;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    /// <summary>
+    ///     This tester is used to test the <see cref="DoNotHaveFieldOfArrayTypeAnalyzer"/>.
+    /// </summary>
     [TestClass]
     public class DoNotHaveFieldOfArrayTypeAnalyzerTest : DiagnosticVerifier
     {
-        //No diagnostics expected to show up
+        /// <summary>
+        ///     Test when given an empty input.
+        /// </summary>
+        /// <remarks>
+        ///     No diagnostics expected to show up.
+        /// </remarks>
         [TestMethod]
         public void TestEmptyInput()
         {
-            var test = @"";
+            var test = string.Empty;
 
             this.VerifyCSharpDiagnostic(test);
         }
 
-        //Diagnostic triggered and checked for
+        /// <summary>
+        ///     Test when given a matching case.
+        /// </summary>
+        /// <remarks>
+        ///     Diagnostic triggered and checked for.
+        /// </remarks>
         [TestMethod]
         public void TestMatchingCase()
         {
@@ -41,18 +54,23 @@ namespace DotNet.SystemCollections.Analyzers.Test.Arrays
             var expected = new DiagnosticResult
             {
                 Id = DoNotHaveFieldOfArrayTypeAnalyzer.DiagnosticId,
-                Message = String.Format(DoNotHaveFieldOfArrayTypeAnalyzer.MessageFormat, "field"),
+                Message = string.Format(DoNotHaveFieldOfArrayTypeAnalyzer.MessageFormat, "field"),
                 Severity = DiagnosticSeverity.Warning,
-                Locations =
-                    new[]
-                    {
-                        new DiagnosticResultLocation("Test0.cs", 13, 30)
-                    }
+                Locations = new[]
+                {
+                    new DiagnosticResultLocation("Test0.cs", 13, 30),
+                },
             };
 
             this.VerifyCSharpDiagnostic(test, expected);
         }
 
+        /// <summary>
+        ///     Gets the relevant C# diagnostic analyzer to test.
+        /// </summary>
+        /// <returns>
+        ///     This returns a new <see cref="DoNotHaveFieldOfArrayTypeAnalyzer"/>.
+        /// </returns>
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new DoNotHaveFieldOfArrayTypeAnalyzer();

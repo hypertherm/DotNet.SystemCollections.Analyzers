@@ -1,51 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.CodeAnalysis.Text;
-
-namespace DotNet.SystemCollections.Analyzers.Test.Verifiers
+﻿namespace DotNet.SystemCollections.Analyzers.Test.Verifiers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Linq;
+    using Microsoft.CodeAnalysis;
+    using Microsoft.CodeAnalysis.CSharp;
+    using Microsoft.CodeAnalysis.Diagnostics;
+    using Microsoft.CodeAnalysis.Text;
+
     /// <summary>
     /// Class for turning strings into documents and getting the diagnostics on them
-    /// All methods are static
+    /// All methods are static.
     /// </summary>
     public abstract partial class DiagnosticVerifier
     {
+        /// <summary>
+        ///     This is the default file path prefix.
+        /// </summary>
+        internal const string DefaultFilePathPrefix = "Test";
+
+        /// <summary>
+        ///     This is the C# default file extension.
+        /// </summary>
+        internal const string CSharpDefaultFileExt = "cs";
+
+        /// <summary>
+        ///     This is the VB default file extension.
+        /// </summary>
+        internal const string VisualBasicDefaultExt = "vb";
+
+        /// <summary>
+        ///     This is the test project's name.
+        /// </summary>
+        internal const string TestProjectName = "TestProject";
+
         private static readonly MetadataReference CorlibReference = MetadataReference.CreateFromFile(typeof(object).Assembly.Location);
         private static readonly MetadataReference SystemCoreReference = MetadataReference.CreateFromFile(typeof(Enumerable).Assembly.Location);
         private static readonly MetadataReference CSharpSymbolsReference = MetadataReference.CreateFromFile(typeof(CSharpCompilation).Assembly.Location);
         private static readonly MetadataReference CodeAnalysisReference = MetadataReference.CreateFromFile(typeof(Compilation).Assembly.Location);
 
-        internal static string DefaultFilePathPrefix = "Test";
-        internal static string CSharpDefaultFileExt = "cs";
-        internal static string VisualBasicDefaultExt = "vb";
-        internal static string TestProjectName = "TestProject";
-
-        #region  Get Diagnostics
-
         /// <summary>
-        /// Given classes in the form of strings, their language, and an IDiagnosticAnalyzer to apply to it, return the diagnostics found in the string after converting it to a document.
+        ///     Given an analyzer and a document to apply it to, run the analyzer and gather an array of diagnostics found in it.
+        ///     The returned diagnostics are then ordered by location in the source document.
         /// </summary>
-        /// <param name="sources">Classes in the form of strings</param>
-        /// <param name="language">The language the source classes are in</param>
-        /// <param name="analyzer">The analyzer to be run on the sources</param>
-        /// <returns>An IEnumerable of Diagnostics that surfaced in the source code, sorted by Location</returns>
-        private static Diagnostic[] GetSortedDiagnostics(string[] sources, string language, DiagnosticAnalyzer analyzer)
-        {
-            return GetSortedDiagnosticsFromDocuments(analyzer, GetDocuments(sources, language));
-        }
-
-        /// <summary>
-        /// Given an analyzer and a document to apply it to, run the analyzer and gather an array of diagnostics found in it.
-        /// The returned diagnostics are then ordered by location in the source document.
-        /// </summary>
-        /// <param name="analyzer">The analyzer to run on the documents</param>
-        /// <param name="documents">The Documents that the analyzer will be run on</param>
-        /// <returns>An IEnumerable of Diagnostics that surfaced in the source code, sorted by Location</returns>
+        /// <param name="analyzer">
+        ///     The analyzer to run on the documents.
+        /// </param>
+        /// <param name="documents">
+        ///     The Documents that the analyzer will be run on.
+        /// </param>
+        /// <returns>
+        ///     An IEnumerable of Diagnostics that surfaced in the source code, sorted by Location.
+        /// </returns>
         protected static Diagnostic[] GetSortedDiagnosticsFromDocuments(DiagnosticAnalyzer analyzer, Document[] documents)
         {
             var projects = new HashSet<Project>();
@@ -86,24 +93,54 @@ namespace DotNet.SystemCollections.Analyzers.Test.Verifiers
         }
 
         /// <summary>
-        /// Sort diagnostics by location in source document
+        ///     Create a Document from a string through creating a project that contains it.
         /// </summary>
-        /// <param name="diagnostics">The list of Diagnostics to be sorted</param>
-        /// <returns>An IEnumerable containing the Diagnostics in order of Location</returns>
-        private static Diagnostic[] SortDiagnostics(IEnumerable<Diagnostic> diagnostics)
+        /// <param name="source">
+        ///     Classes in the form of a string.
+        /// </param>
+        /// <param name="language">
+        ///     The language the source code is in.
+        /// </param>
+        /// <returns>
+        ///     A Document created from the source string.
+        /// </returns>
+        protected static Document CreateDocument(string source, string language = LanguageNames.CSharp)
         {
-            return diagnostics.OrderBy(d => d.Location.SourceSpan.Start).ToArray();
+            return CreateProject(new[] { source }, language).Documents.First();
         }
 
-        #endregion
-
-        #region Set up compilation and documents
         /// <summary>
-        /// Given an array of strings as sources and a language, turn them into a project and return the documents and spans of it.
+        ///     Given classes in the form of strings, their language, and an IDiagnosticAnalyzer to apply to it, return the diagnostics found in the string after converting it to a document.
         /// </summary>
-        /// <param name="sources">Classes in the form of strings</param>
-        /// <param name="language">The language the source code is in</param>
-        /// <returns>A Tuple containing the Documents produced from the sources and their TextSpans if relevant</returns>
+        /// <param name="sources">
+        ///     Classes in the form of strings.
+        /// </param>
+        /// <param name="language">
+        ///     The language the source classes are in.
+        /// </param>
+        /// <param name="analyzer">
+        ///     The analyzer to be run on the sources.
+        /// </param>
+        /// <returns>
+        ///     An IEnumerable of Diagnostics that surfaced in the source code, sorted by Location.
+        /// </returns>
+        private static Diagnostic[] GetSortedDiagnostics(string[] sources, string language, DiagnosticAnalyzer analyzer)
+        {
+            return GetSortedDiagnosticsFromDocuments(analyzer, GetDocuments(sources, language));
+        }
+
+        /// <summary>
+        ///     Given an array of strings as sources and a language, turn them into a project and return the documents and spans of it.
+        /// </summary>
+        /// <param name="sources">
+        ///     Classes in the form of strings.
+        /// </param>
+        /// <param name="language">
+        ///     The language the source code is in.
+        /// </param>
+        /// <returns>
+        ///     A Tuple containing the Documents produced from the sources and their TextSpans if relevant.
+        /// </returns>
         private static Document[] GetDocuments(string[] sources, string language)
         {
             if (language != LanguageNames.CSharp && language != LanguageNames.VisualBasic)
@@ -123,22 +160,17 @@ namespace DotNet.SystemCollections.Analyzers.Test.Verifiers
         }
 
         /// <summary>
-        /// Create a Document from a string through creating a project that contains it.
+        ///     Create a project using the inputted strings as sources.
         /// </summary>
-        /// <param name="source">Classes in the form of a string</param>
-        /// <param name="language">The language the source code is in</param>
-        /// <returns>A Document created from the source string</returns>
-        protected static Document CreateDocument(string source, string language = LanguageNames.CSharp)
-        {
-            return CreateProject(new[] { source }, language).Documents.First();
-        }
-
-        /// <summary>
-        /// Create a project using the inputted strings as sources.
-        /// </summary>
-        /// <param name="sources">Classes in the form of strings</param>
-        /// <param name="language">The language the source code is in</param>
-        /// <returns>A Project created out of the Documents created from the source strings</returns>
+        /// <param name="sources">
+        ///     Classes in the form of strings.
+        /// </param>
+        /// <param name="language">
+        ///     The language the source code is in.
+        /// </param>
+        /// <returns>
+        ///     A Project created out of the Documents created from the source strings.
+        /// </returns>
         private static Project CreateProject(string[] sources, string language = LanguageNames.CSharp)
         {
             string fileNamePrefix = DefaultFilePathPrefix;
@@ -162,9 +194,22 @@ namespace DotNet.SystemCollections.Analyzers.Test.Verifiers
                 solution = solution.AddDocument(documentId, newFileName, SourceText.From(source));
                 count++;
             }
+
             return solution.GetProject(projectId);
         }
-        #endregion
+
+        /// <summary>
+        ///     Sort diagnostics by location in source document.
+        /// </summary>
+        /// <param name="diagnostics">
+        ///     The list of Diagnostics to be sorted.
+        /// </param>
+        /// <returns>
+        ///     An IEnumerable containing the Diagnostics in order of Location.
+        /// </returns>
+        private static Diagnostic[] SortDiagnostics(IEnumerable<Diagnostic> diagnostics)
+        {
+            return diagnostics.OrderBy(d => d.Location.SourceSpan.Start).ToArray();
+        }
     }
 }
-
