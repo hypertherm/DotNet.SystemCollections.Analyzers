@@ -13,6 +13,9 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <NoWarn>SA1633</NoWarn>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -228,11 +231,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CollectionCountVersusLinqCountBenchmarks.cs" />
-    <Compile Include="HashSetVersusDistinctBenchmarks.cs" />
-    <Compile Include="IListIndexingVersusLinqFirstBenchmarks.cs" />
-    <Compile Include="IEnumerableContainsVersusSetBenchmarks.cs" />
-    <Compile Include="ItemIndexingVersusElementAtBenchmarks.cs" />
-    <Compile Include="LastVersusItemLookupBenchmarks.cs" />
+    <Compile Include="HashSetVersusLinqContainsBenchmarks.cs" />
+    <Compile Include="HashSetVersusLinqDistinctBenchmarks.cs" />
+    <Compile Include="ListIndexerVersusLinqFirstBenchmarks.cs" />
+    <Compile Include="ListIndexerVersusLinqElementAtBenchmarks.cs" />
+    <Compile Include="ListIndexerVersusLinqLastBenchmarks.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SampleTypes\Address.cs" />

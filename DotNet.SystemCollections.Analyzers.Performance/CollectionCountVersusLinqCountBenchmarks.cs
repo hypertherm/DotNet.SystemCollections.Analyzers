@@ -1,5 +1,6 @@
 ﻿namespace DotNet.SystemCollections.Analyzers.Performance
 {
+    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
@@ -10,6 +11,14 @@
     /// </summary>
     public class CollectionCountVersusLinqCountBenchmarks
     {
+        /// <summary>
+        ///     This Benchmark.NET parameter controls the size of the collections.
+        /// </summary>
+#pragma warning disable SA1401 // Fields should be private
+        [Params(25, 50, 100)]
+        public int CollectionSize;
+#pragma warning restore SA1401 // Fields should be private
+
         private int[] sampleArray;
         private List<int> sampleList;
         private LinkedList<int> sampleLinkedList;
@@ -17,9 +26,6 @@
         private HashSet<int> sampleHashSet;
         private Queue<int> sampleQueue;
         private Stack<int> sampleStack;
-
-        [Params(25, 50, 100)]
-        public int CollectionSize;
 
         /// <summary>
         ///     Setup method for the benchmarks.
@@ -36,46 +42,130 @@
             this.sampleStack = new Stack<int>(Enumerable.Range(0, this.CollectionSize));
         }
 
+        /// <summary>
+        ///     Benchmark for determining performance of computing the number of elements in an <see cref="Array"/> using the <see cref="Array.Length"/> property.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="Array"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInArrayUsingCollectionCount() => this.sampleArray.Length;
+        public int ComputingNumberOfElementsInArrayUsingLengthProperty() => this.sampleArray.Length;
 
+        /// <summary>
+        ///     Benchmark for determining performance of computing the number of elements in an <see cref="Array"/> using the LINQ <see cref="Enumerable.Count{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="Array"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInArrayUsingLinqCount() => this.sampleArray.Count();
+        public int ComputingNumberOfElementsInArrayUsingLinqCountMethod() => this.sampleArray.Count();
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="IList{T}"/> using the <see cref="ICollection.Count"/> property.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="IList{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInListUsingCollectionCount() => this.sampleList.Count;
+        public int ComputingNumberOfElementsInListUsingCollectionCountProperty() => this.sampleList.Count;
 
+        /// <summary>
+        ///     Benchmark for determining performance of computing the number of elements in a <see cref="IList{T}"/> using the LINQ <see cref="Enumerable.Count{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="IList{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInListUsingLinqCount() => this.sampleList.Count();
+        public int ComputingNumberOfElementsInListUsingLinqCountMethod() => this.sampleList.Count();
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="LinkedList{T}"/> using the <see cref="ICollection.Count"/> property.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="LinkedList{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInLinkedListUsingCollectionCount() => this.sampleLinkedList.Count;
+        public int ComputingNumberOfElementsInLinkedListUsingCollectionCountProperty() => this.sampleLinkedList.Count;
 
+        /// <summary>
+        ///     Benchmark for determining performance of computing the number of elements in a <see cref="LinkedList{T}"/> using the LINQ <see cref="Enumerable.Count{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="LinkedList{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInLinkedListUsingLinqCount() => this.sampleLinkedList.Count();
+        public int ComputingNumberOfElementsInLinkedListUsingLinqCountMethod() => this.sampleLinkedList.Count();
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="IDictionary{TKey,TValue}"/> using the <see cref="ICollection.Count"/> property.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="IDictionary{TKey,TValue}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInDictionaryUsingCollectionCount() => this.sampleDictionary.Count;
+        public int ComputingNumberOfElementsInDictionaryUsingCollectionCountProperty() => this.sampleDictionary.Count;
 
+        /// <summary>
+        ///     Benchmark for determining performance of computing the number of elements in a <see cref="IDictionary{TKey,TValue}"/> using the LINQ <see cref="Enumerable.Count{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="IDictionary{TKey,TValue}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInDictionaryUsingLinqCount() => this.sampleDictionary.Count();
+        public int ComputingNumberOfElementsInDictionaryUsingLinqCountMethod() => this.sampleDictionary.Count();
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="ISet{T}"/> using the <see cref="ICollection.Count"/> property.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="ISet{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInHashSetUsingCollectionCount() => this.sampleHashSet.Count;
+        public int ComputingNumberOfElementsInSetUsingCollectionCountProperty() => this.sampleHashSet.Count;
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="ISet{T}"/> using the LINQ <see cref="Enumerable.Count{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="ISet{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInHashSetUsingLinqCount() => this.sampleHashSet.Count();
+        public int ComputingNumberOfElementsInSetUsingLinqCountMethod() => this.sampleHashSet.Count();
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="Queue{T}"/> using the <see cref="ICollection.Count"/> property.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="Queue{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInQueueUsingCollectionCount() => this.sampleQueue.Count;
+        public int ComputingNumberOfElementsInQueueUsingCollectionCountProperty() => this.sampleQueue.Count;
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="Queue{T}"/> using the LINQ <see cref="Enumerable.Count{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="Queue{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInQueueUsingLinqCount() => this.sampleQueue.Count();
+        public int ComputingNumberOfElementsInQueueUsingLinqCountMethod() => this.sampleQueue.Count();
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="Stack{T}"/> using the <see cref="ICollection.Count"/> property.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="Stack{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInStackUsingCollectionCount() => this.sampleStack.Count;
+        public int ComputingNumberOfElementsInStackUsingCollectionCountProperty() => this.sampleStack.Count;
 
+        /// <summary>
+        ///     This benchmark determines the performance of computing the number of elements in a <see cref="Stack{T}"/> using the LINQ <see cref="Enumerable.Count{TSource}(System.Collections.Generic.IEnumerable{TSource})"/> extension method.
+        /// </summary>
+        /// <returns>
+        ///     This returns the number of elements in the <see cref="Stack{T}"/> (should equal <see cref="CollectionSize"/>.)
+        /// </returns>
         [Benchmark]
-        public int ComputingNumberOfElementsInStackUsingLinqCount() => this.sampleStack.Count();
+        public int ComputingNumberOfElementsInStackUsingLinqCountMethod() => this.sampleStack.Count();
     }
 }
