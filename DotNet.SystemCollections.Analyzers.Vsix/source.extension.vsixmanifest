@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="DotNet.SystemCollections.Analyzers.f1cc5803-a3c6-4cbf-8787-1e32078d3a68" Version="0.1" Language="en-US" Publisher="Robotmaster"/>
+        <Identity Id="DotNet.SystemCollections.Analyzers.f1cc5803-a3c6-4cbf-8787-1e32078d3a68" Version="0.1" Language="en-US" />
         <DisplayName>DotNet.SystemCollections.Analyzers</DisplayName>
         <Description xml:space="preserve">A suite of code analyzers for common performance and code quality best practices surronding the use of data structures and their APIs located under System.Collections &amp; System.Linq.</Description>
     </Metadata>
