@@ -10,7 +10,7 @@ TODO: Wait until project public for Codacy C# Grade
 
 ## Basic Overview
 
-This repository contains implementations for common performance and code quality best practices surronding the use of data structures and their APIs located under System.Collections & System.Linq.
+This repository contains implementation for common performance and code quality best practices surronding the use of data structures and their APIs located under System.Collections & System.Linq.
 
 ## Table of Content
 
@@ -63,13 +63,13 @@ An analyzer library for `C#` and `VB.NET` empowered by Roslyn to help .NET devel
 
 ### __Why should you use it in your .NET projects__
 
-There are many code analysis libraries for .NET, but they do not focused on how we should use data structures such as an `List<T>`. Using a framework like .NET makes it easier for software developers to create an impact on their business and solve problems for their customers. The problem is that even though you can use a list everywhere just because you're used to its APIs doesn't mean you should. Each data structure serves a different purpose and knowing when to use within an algorithm makes the difference between something that is slow between something that is fast.
+There are many code analysis libraries for .NET, but they do not focus on how we should use data structures such as an `List<T>`. Using a framework like .NET makes it easier for software developers to create an impact on their business and solve problems for their customers. The problem is that even though you can use a list everywhere just because you're used to its APIs doesn't mean you should. Each data structure is built to serve a different purpose and knowing when to use each one within an algorithm could make a considerable difference in performance.
 
-The purpose of the library is to empower the software developers using __.NET is a fantastic platform for application development__ and leveraging best practices can make the difference between a slow and fast application.
+The purpose of the library is to empower the software developers using .NET. __It is a fantastic platform for application development__ and leveraging best practices can make the difference between a slow and fast application.
 
 ### __Goals__
 
-The goal of this library is to analyze the code and pinpoint both quality and performance best-practices concerning the usage of types found in System.Collections such `IEnumerable<T>` or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations.
+The goal of this library is to analyze the code and pinpoint both quality and performance best-practices concerning the usage of types found in System.Collections such as `IEnumerable<T>` or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations.
 
 ### __Disclaimer__
 
@@ -145,4 +145,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## __About Robotmaster__
 
-Hypertherm's Robotic Software team develops Robotmaster, the world’s leading CAD/CAM robot programming software, used by some of the largest multinationals such as Boeing and Mercedes and the smallest industrial manufacturing shops performing short customized runs. To know more about Robotmaster, you can read more on our [website](https://www.robotmaster.com/en/).
+Hypertherm's Robotic Software team develops Robotmaster, the world’s leading CAD/CAM robot programming software, used by some of the largest multinationals such as Boeing and Mercedes and the smallest industrial manufacturing shops performing short customized runs. To know more about Robotmaster, please visit our [website](https://www.robotmaster.com/en/).
