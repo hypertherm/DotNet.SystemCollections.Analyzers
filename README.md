@@ -121,7 +121,10 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 
 2. Click "Build".
 
-3. Switch "Treat warnings as errors" from "All" to "Specific warnings" or "None".
+3. Update your warning settings in Visual Studio by either
+   1. Switching "Treat warnings as errors" from "Specific warnings" or "None" to "All"
+
+   2. Add specific warnings from the library as errors.
 
 ## __Contributing__
 
