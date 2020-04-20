@@ -12,16 +12,16 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.100
+        dotnet-version: latest
     - name: Restore NuGet packages
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release
     - name: Test with dotnet
       run:  dotnet test --configuration Release --no-build
-    - name: Publish
-      run: dotnet publish --configuration Release
-    - name: Understand the folder tree
-      run: tree
+    - name: Pack
+      run: dotnet pack ~D:\a\DotNet.SystemCollections.Analyzers\DotNet.SystemCollections.Analyzers\DotNet.SystemCollections.Analyzers\DotNet.SystemCollections.Analyzers.csproj --configuration Release
+    - name: GitHub Package Publish
+      run: dotnet nuget push "bin/Release/DotNet.SystemCollections.Analyzers.1.0.0.nupkg" --source "github"
       shell: pwsh
       
