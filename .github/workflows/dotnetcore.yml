@@ -23,7 +23,7 @@ jobs:
     - name: Test with dotnet
       run:  dotnet test --configuration Release --no-build | tree /F
     - name: Pack
-      run: dotnet pack ~D/DotNet.SystemCollections.Analyzers/DotNet.SystemCollections.Analyzers.csproj --configuration Release
+      run: dotnet pack DotNet.SystemCollections.Analyzers/DotNet.SystemCollections.Analyzers.csproj --configuration Release
     - name: GitHub Package Publish
       run: dotnet nuget push "bin/Release/DotNet.SystemCollections.Analyzers.1.0.0.nupkg" --source "github"
       shell: pwsh
