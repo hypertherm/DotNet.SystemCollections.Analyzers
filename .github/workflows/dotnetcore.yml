@@ -12,6 +12,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -20,8 +22,6 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release
-    - name: Test with dotnet
-      run:  dotnet test --configuration Release --no-build | tree /F
     - name: Pack
       run: dotnet pack DotNet.SystemCollections.Analyzers/DotNet.SystemCollections.Analyzers.csproj --configuration Release
     - name: GitHub Package Publish
