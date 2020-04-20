@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <Company>Hypertherm Robotics Software Inc.</Company>
+    <Authors>Robotmaster</Authors>
+    <PackageId>DotNet.SystemCollections.Analyzers</PackageId>
+    <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections!</PackageDescription>
+    <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
+    <Version>0.0.1</Version>
     <TargetFramework>netstandard1.3</TargetFramework>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
