@@ -1,0 +1,37 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+
+steps:
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'config'
+    nugetConfigPath: 'nuget.config'
+    externalFeedCredentials: 'ProGet'
+- script: dotnet build --configuration $(buildConfiguration)
+  displayName: 'dotnet build $(buildConfiguration)'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'test'
+    projects: '**/*.csproj'
+    testRunTitle: 'Evaluating .NET analyzers functionality'
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'pack'
+    packagesToPack: '**/DotNet.SystemCollections.Analyzers.csproj'
+    includesymbols: true
+    includesource: true
+    versioningScheme: 'byBuildNumber'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: '**/DotNet.SystemCollections.Analyzers.csproj'
