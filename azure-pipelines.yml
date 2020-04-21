@@ -1,3 +1,8 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
 trigger:
 - master
 
@@ -20,16 +25,19 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '**/DotNet.SystemCollections.Analyzers.Test.csproj'
+    projects: '**/*.csproj'
     testRunTitle: 'Evaluating .NET analyzers functionality'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
     packagesToPack: '**/DotNet.SystemCollections.Analyzers.csproj'
     includesymbols: true
     includesource: true
-    versioningScheme: 'byBuildNumber'
-
+    versioningScheme: 'byPrereleaseNumber'
+    majorVersion: '1'
+    minorVersion: '0'
+    patchVersion: '0'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
