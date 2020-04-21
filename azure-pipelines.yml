@@ -20,7 +20,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'test'
-    projects: '**/*.csproj'
+    projects: '**/DotNet.SystemCollections.Analyzers.Test.csproj'
     testRunTitle: 'Evaluating .NET analyzers functionality'
 - task: DotNetCoreCLI@2
   inputs:
