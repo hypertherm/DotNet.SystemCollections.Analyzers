@@ -8,4 +8,4 @@ packages
 *.user
 *.orig
 *_actual.txt
-Robotmaster.Rise.Test/Cells/cell_Kr60_Maka_proc/
+*.xml
