@@ -4,13 +4,17 @@
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 
-TODO: Wait until project public for Codacy C# Grade
-
 ![.NET Core](https://github.com/hypertherm/DotNet.SystemCollections.Analyzers/workflows/.NET%20Core/badge.svg)
 
 ## Basic Overview
 
-This repository contains implementation for common performance and code quality best practices surronding the use of data structures and their APIs located under System.Collections & System.Linq.
+This repository is dedicated to common performance and code quality analyzers to follow the best practices surrounding the use of data structures and their APIs located under System.Collections & System.Linq.
+
+## __Disclaimer__
+
+This project was developed as an internal hackathon project as a proof of concept and depicts the idea. It’s still a prototype and using it could give you false positives. Moreover, the ruleset in the library hasn't been finalized and is subject to change. We're still working on these ideas to make sure they are accurate and reflect the best development practices in .NET. We welcome and encourage contributions on those ideas. For those interested in helping us that way, please read the contribution guidelines for the project.
+
+Nonetheless, it could provide useful insights to the developers. You can either consult the project’s roadmap or subscribe to the project’s notifications to know when the project will move outside of its prototype phase.
 
 ## Table of Content
 
@@ -23,8 +27,6 @@ This repository contains implementation for common performance and code quality 
   * [Why should you use it in your .NET projects](#why-should-you-use-it-in-your-net-projects)
   
   * [Goals](#goals)
-
-  * [Prototype Disclaimer](#disclaimer)
 
 * [Ruleset](#ruleset)
 
@@ -63,19 +65,12 @@ An analyzer library for `C#` and `VB.NET` empowered by Roslyn to help .NET devel
 
 ### __Why should you use it in your .NET projects__
 
-There are many code analysis libraries for .NET, but they do not focus on how we should use data structures such as an `List<T>`. Using a framework like .NET makes it easier for software developers to create an impact on their business and solve problems for their customers. The problem is that even though you can use a list everywhere just because you're used to its APIs doesn't mean you should. Each data structure is built to serve a different purpose and knowing when to use each one within an algorithm could make a considerable difference in performance.
-
-The purpose of the library is to empower the software developers using .NET. __It is a fantastic platform for application development__ and leveraging best practices can make the difference between a slow and fast application.
+There are many code analysis libraries for .NET, but they do not focus on how we should use data structures such as an `List<T>`. Using a framework like .NET makes it easier for software developers to create an impact on their business and solve problems for their customers. The problem is that even though you can use a list everywhere just because you're used to its APIs doesn't mean you should. Each data structure is built to serve a different purpose and knowing when to use each one within an algorithm could make a considerable difference in performance in the hot paths.
 
 ### __Goals__
 
-The goal of this library is to analyze the code and pinpoint both quality and performance best-practices concerning the usage of types found in System.Collections such as `IEnumerable<T>` or extensions methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations.
+The purpose of this library is to empower the software developers using .NET and enable them to leverage the best practices which sometimes could make a difference from quality or performance point of view. The goal is to pinpoint the issues concerning the usage of types found in System.Collections such as `IEnumerable<T>` or extension methods found in System.Linq. This tool is here to help developers make better performance decisions through a set of micro-optimizations.
 
-### __Disclaimer__
-
-This project was developed as an internal hackathon project. It’s still a prototype so using it could give you false positives. Moreover, the ruleset in the library hasn't been finalized and is subject to change. We're still working on these ideas to make sure they reflect the best development practices in .NET and welcome and encourage contributions on those ideas. For those interested in helping us that way, please read the contribution guidelines for the project.
-
- Nonetheless, it can provide useful insights to the things we should avoid doing as developers. You can either consult the project’s roadmap to know when the project will move outside of its prototype phase or subscribe on the project’s notifications to made aware of releases and project updates.
 
 ## __Ruleset__
 
@@ -89,7 +84,7 @@ This project was developed as an internal hackathon project. It’s still a prot
 
 ### __More details__
 
-See the [ruleset.md](ruleset.md) file for details.
+See the [ruleset](ruleset.md) file for details.
 
 ## __Installation__
 
@@ -115,7 +110,7 @@ Installing the package from the Package Manager: `Install-Package DotNet.SystemC
 
 ### __Treating warnings as compiling errors__
 
-Each project in Visual Studio has a "treat warnings as errors" option. Go through each of your projects and change that setting:
+Each project in Visual Studio has a "treat warnings as errors" option. If you wish to treat the warnings given by the analyzers as errors:
 
 1. Right-click on your project, select "Properties".
 
@@ -128,13 +123,13 @@ Each project in Visual Studio has a "treat warnings as errors" option. Go throug
 
 ## __Contributing__
 
-Please note we have a code of conduct, follow it in all your interactions with the project.
+Please note that we have a code of conduct. Please follow it in all your interactions with this project.
 
-See the [CONTRIBUTING.md](contributing.md) file for more details.
+See the [contributing](CONTRIBUTING.md) file for more details.
 
 ## __Release Notes__
 
-See the [release-notes.md](release-notes.md) file for details.
+See the [release-notes](release-notes.md) file for details.
 
 ## __Roadmap__
 
@@ -144,7 +139,7 @@ Version 2.0 - Automatic code suggestions for best practices
 
 ## __License__
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [license](LICENSE.md) file for details
 
 ## __About Robotmaster__
 
