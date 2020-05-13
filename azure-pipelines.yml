@@ -42,7 +42,6 @@ steps:
   displayName: Custom NuGet Pack
   inputs:
     command: 'custom'
-    projects: '''$(Build.Repository.LocalPath)/**/DotNet.SystemCollections.Analyzers.csproj'''
     custom: 'nuget pack ''$(Build.Repository.LocalPath)/**/DotNet.SystemCollections.Analyzers.nuspec'''
     arguments: '-Properties Configuration=Release -Version 1.1.0.0'
 
