@@ -42,7 +42,7 @@ steps:
   displayName: Pack
   inputs:
     command: 'pack'
-    packagesToPack: '$(Build.Repository.LocalPath)/**/DotNet.SystemCollections.Analyzers.csproj'
+    packagesToPack: '$(Build.Repository.LocalPath)/**/DotNet.SystemCollections.Analyzers.nuspec'
     packDirectory: '$(build.artifactstagingdirectory)'
     nobuild: true
     versioningScheme: 'byPrereleaseNumber'
