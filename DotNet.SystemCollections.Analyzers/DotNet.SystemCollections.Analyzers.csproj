@@ -15,6 +15,16 @@
 	<NoWarn>SA1633</NoWarn>
   </PropertyGroup>
 
+  <Target Name="SetNuspecProperties" BeforeTargets="GenerateNuspec">
+    <PropertyGroup>
+      <NuspecProperties>$(NuspecProperties);id=$(AssemblyName)</NuspecProperties>
+      <NuspecProperties>$(NuspecProperties);config=$(Configuration)</NuspecProperties>
+      <NuspecProperties>$(NuspecProperties);version=$(PackageVersion)</NuspecProperties>
+      <NuspecProperties>$(NuspecProperties);description=$(Description)</NuspecProperties>
+      <NuspecProperties>$(NuspecProperties);authors=$(Authors)</NuspecProperties>
+    </PropertyGroup>
+  </Target>
+
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>$(AssemblyName).Test</_Parameter1>
@@ -23,7 +33,7 @@
 
   <PropertyGroup>
     <PackageId>Dotnet.SystemCollections.Analyzers</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
+    <PackageVersion>1.2.0.0</PackageVersion>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Description>Dotnet.SystemCollections.Analyzers</Description>
     <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
@@ -50,20 +60,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Collections\DoNotUseAnyAnalyzer.cs">
+    <Compile Update="CollectionAnalyzers\DoNotUseAnyAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Collections\DoNotUseLongCountAnalyzer.cs">
+    <Compile Update="CollectionAnalyzers\DoNotUseLongCountAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Arrays\DoNotHavePropertyOfArrayTypeAnalyzer.cs">
+    <Compile Update="ArrayAnalyzers\DoNotHavePropertyOfArrayTypeAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="OldStyleCollections\DoNotHavePropertyOfOldStyleCollectionTypeAnalyzer.cs">
+    <Compile Update="OldStyleCollectionAnalyzers\DoNotHavePropertyOfOldStyleCollectionTypeAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
