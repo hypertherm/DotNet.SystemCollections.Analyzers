@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata minClientVersion="2.7">
+    <id>DotNet.SystemCollection.Analyzer</id>
+    <version>0.0.0</version>
+    <title>DotNet.SystemCollection.Analyzer</title>
+    <authors>Robotmaster</authors>
+    <owners>Hypertherm Robotics Software Inc</owners>
+    <projectUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A set of code analyzers and code fix providers to help developers use the proper .NET Collection and API in their algorithms </description>
+    <releaseNotes>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers/blob/master/release-notes.md</releaseNotes>
+    <copyright>Copyright 2002-2020 Hypertherm Robotic Software Inc. All rights reserved.</copyright>
+    <tags>Dotnet.SystemCollections.Analyzers Performance Optimization DotNetAnalyzers Roslyn Diagnostic Analyzer</tags>
+    <developmentDependency>true</developmentDependency>
+  </metadata>
+  <files>
+
+    <!-- Binaries and symbols -->
+    <file src="bin\Release\netstandard1.3\DotNet.SystemCollections.Analyzers.dll" target="analyzers\dotnet\cs" />
+    <file src="bin\Release\netstandard1.3\DotNet.SystemCollections.Analyzers.pdb" target="analyzers\dotnet\cs" />
+
+    <!-- Rulesets -->
+    <file src="..\ruleset.md" target="rulesets\" />
+	
+    <!-- Scripts -->
+    <file src="tools\install.ps1" target="tools\" />
+    <file src="tools\uninstall.ps1" target="tools\" />
+
+  </files>
+</package>
