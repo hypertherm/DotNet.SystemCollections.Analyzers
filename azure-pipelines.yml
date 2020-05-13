@@ -39,13 +39,6 @@ steps:
     testRunTitle: 'Evaluating .NET analyzers functionality'
 
 - task: DotNetCoreCLI@2
-  displayName: Custom NuGet Pack
-  inputs:
-    command: 'custom'
-    custom: 'nuget pack ''$(Build.Repository.LocalPath)/**/DotNet.SystemCollections.Analyzers.nuspec'''
-    arguments: '-Properties Configuration=Release -Version 1.1.0.0'
-
-- task: DotNetCoreCLI@2
   displayName: Pack
   inputs:
     command: 'pack'
