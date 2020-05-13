@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0"?>
 <package>
   <metadata minClientVersion="2.7">
-    <id>DotNet.SystemCollection.Analyzer</id>
+    <id>DotNet.SystemCollection.Analyzers</id>
     <version>0.0.0</version>
-    <title>DotNet.SystemCollection.Analyzer</title>
+    <title>DotNet.SystemCollection.Analyzers</title>
     <authors>Robotmaster</authors>
     <owners>Hypertherm Robotics Software Inc</owners>
     <projectUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</projectUrl>
