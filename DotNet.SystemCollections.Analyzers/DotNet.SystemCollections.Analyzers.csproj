@@ -6,18 +6,18 @@
     <PackageId>DotNet.SystemCollections.Analyzers</PackageId>
     <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections!</PackageDescription>
     <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
-    <Version>0.0.1</Version>
+    <Version>0.0.9</Version>
     <TargetFramework>netstandard1.3</TargetFramework>
     <NuspecFile>DotNet.SystemCollections.Analyzers.nuspec</NuspecFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
     <PackageTags>Dotnet.SystemCollections.Analyzers, analyzers</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-	<NoWarn>SA1633</NoWarn>
+	  <NoWarn>SA1633</NoWarn>
   </PropertyGroup>
+
   <ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>$(AssemblyName).Test</_Parameter1>
