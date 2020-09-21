@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <Company>Hypertherm Robotics Software Inc.</Company>
-    <Authors>Robotmaster</Authors>
+    <Authors>Hypertherm Inc.</Authors>
     <PackageId>DotNet.SystemCollections.Analyzers</PackageId>
-    <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections!</PackageDescription>
+    <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections and System.Linq.</PackageDescription>
     <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
-    <Version>0.0.12</Version>
+    <Version>0.0.40</Version>
+    <copyright>Copyright 2002-$([System.DateTime]::Now.Year) Hypertherm Inc. All rights reserved.</copyright>
     <TargetFramework>netstandard1.3</TargetFramework>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
-    <NuspecFile>DotNet.SystemCollections.Analyzers.nuspec</NuspecFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
@@ -48,7 +48,6 @@
     <EmbeddedResource Remove="bin\**" />
     <None Remove="bin\**" />
   </ItemGroup>
-  
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
