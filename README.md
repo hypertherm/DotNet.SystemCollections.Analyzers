@@ -4,7 +4,7 @@
 ![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 
-![.NET Core](https://github.com/hypertherm/DotNet.SystemCollections.Analyzers/workflows/.NET%20Core/badge.svg)
+[![Azure DevOps Build Status](https://dev.azure.com/hypertherm/Robotmaster/_apis/build/status/CI-CD/hypertherm.DotNet.SystemCollections.Analyzers?branchName=refs%2Fpull%2F52%2Fmerge)](https://dev.azure.com/hypertherm/Robotmaster/_build/latest?definitionId=18&branchName=refs%2Fpull%2F52%2Fmerge)
 
 ## Basic Overview
 
