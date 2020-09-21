@@ -51,13 +51,6 @@ steps:
     patchVersion: '0'
     
 - task: DotNetCoreCLI@2
-  inputs:
-    command: 'pack'
-    packagesToPack: '**/*.csproj'
-    nobuild: true
-    includesymbols: true
-    versioningScheme: 'off'
-- task: DotNetCoreCLI@2
   displayName: Push
   inputs:
     command: 'push'
