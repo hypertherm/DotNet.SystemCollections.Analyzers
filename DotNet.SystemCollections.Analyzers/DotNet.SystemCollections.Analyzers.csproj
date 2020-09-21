@@ -1,17 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Company>Hypertherm Robotics Software Inc.</Company>
     <Authors>Robotmaster</Authors>
-    <Copyright>Copyright 2002-$([System.DateTime]::Now.Year) Hypertherm Inc. All rights reserved.</Copyright>
     <PackageId>DotNet.SystemCollections.Analyzers</PackageId>
     <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections!</PackageDescription>
     <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
-    <Version>0.0.9</Version>
-    <IsPackable>true</IsPackable>
+    <Version>0.0.12</Version>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <NuspecFile>DotNet.SystemCollections.Analyzers.nuspec</NuspecFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
@@ -35,6 +33,14 @@
   <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="tools" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    
+    <!-- Binaries and symbols -->
+    <None Include="bin\$(OutputPath)\netstandard1.3\$(AssemblyName).dll" CopyToOutputDirectory="Always" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
+    <None Include="bin\$(OutputPath)\netstandard1.3\$(AssemblyName).pdb" CopyToOutputDirectory="Always" Pack="true" targPackagePathet="analyzers\dotnet\cs" Visible="false" />
+
+    <!-- Rulesets -->
+    <None Include="..\ruleset.md" PackagePath="rulesets\" />
+
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +48,7 @@
     <EmbeddedResource Remove="bin\**" />
     <None Remove="bin\**" />
   </ItemGroup>
+  
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
