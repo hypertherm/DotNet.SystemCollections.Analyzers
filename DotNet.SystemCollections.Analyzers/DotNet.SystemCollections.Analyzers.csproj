@@ -3,6 +3,7 @@
   <PropertyGroup>
     <Company>Hypertherm Robotics Software Inc.</Company>
     <Authors>Robotmaster</Authors>
+    <Copyright>Copyright 2002-$([System.DateTime]::Now.Year) Hypertherm Inc. All rights reserved.</Copyright>
     <PackageId>DotNet.SystemCollections.Analyzers</PackageId>
     <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections!</PackageDescription>
     <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
