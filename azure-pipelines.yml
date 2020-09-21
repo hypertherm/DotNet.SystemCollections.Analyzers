@@ -42,7 +42,7 @@ steps:
   displayName: Pack
   inputs:
     command: 'pack'
-    arguments: '**/*.csproj'
+    arguments: '**/DotNet.SystemCollections.Analyzers.csproj'
     packDirectory: '$(build.artifactstagingdirectory)'
     nobuild: true
     versioningScheme: 'byPrereleaseNumber'
