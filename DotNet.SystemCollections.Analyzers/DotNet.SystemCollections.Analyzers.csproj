@@ -8,6 +8,7 @@
     <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
     <Version>0.0.9</Version>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
     <NuspecFile>DotNet.SystemCollections.Analyzers.nuspec</NuspecFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
