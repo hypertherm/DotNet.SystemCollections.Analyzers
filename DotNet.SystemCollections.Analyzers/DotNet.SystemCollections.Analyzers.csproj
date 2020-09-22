@@ -1,18 +1,24 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Company>Hypertherm Robotics Software Inc.</Company>
-    <Authors>Robotmaster</Authors>
+    <Authors>Hypertherm Inc.</Authors>
     <PackageId>DotNet.SystemCollections.Analyzers</PackageId>
-    <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections!</PackageDescription>
+    <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections and System.Linq.</PackageDescription>
     <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
-    <Version>0.0.1</Version>
+    <Version>0.0.40</Version>
+    <copyright>Copyright 2002-$([System.DateTime]::Now.Year) Hypertherm Inc. All rights reserved.</copyright>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <IncludeBuildOutput>false</IncludeBuildOutput>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <NuspecFile>DotNet.SystemCollections.Analyzers.nuspec</NuspecFile>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-	<NoWarn>SA1633</NoWarn>
+    <PackageTags>Dotnet.SystemCollections.Analyzers Performance Optimization DotNetAnalyzers Roslyn Diagnostic Analyzer</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <NoWarn>SA1633</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,16 +27,23 @@
     </AssemblyAttribute>
   </ItemGroup>
 
-  <PropertyGroup>
-    <PackageId>Dotnet.SystemCollections.Analyzers</PackageId>
-    <PackageVersion>1.0.0.0</PackageVersion>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Description>Dotnet.SystemCollections.Analyzers</Description>
-    <PackageReleaseNotes>Summary of changes made in this release of the package.</PackageReleaseNotes>
-    <Copyright>Copyright</Copyright>
-    <PackageTags>Dotnet.SystemCollections.Analyzers, analyzers</PackageTags>
-    <NoPackageAnalysis>true</NoPackageAnalysis>
-  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.2.0" PrivateAssets="all" />
+    <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="tools" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    
+    <!-- Binaries and symbols -->
+    <None Include="bin\$(OutputPath)\netstandard1.3\$(AssemblyName).dll" CopyToOutputDirectory="Always" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
+    <None Include="bin\$(OutputPath)\netstandard1.3\$(AssemblyName).pdb" CopyToOutputDirectory="Always" Pack="true" targPackagePathet="analyzers\dotnet\cs" Visible="false" />
+
+    <!-- Rulesets -->
+    <None Include="..\ruleset.md" PackagePath="rulesets\" />
+
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Remove="bin\**" />
@@ -50,20 +63,20 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Collections\DoNotUseAnyAnalyzer.cs">
+    <Compile Update="CollectionAnalyzers\DoNotUseAnyAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Collections\DoNotUseLongCountAnalyzer.cs">
+    <Compile Update="CollectionAnalyzers\DoNotUseLongCountAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Arrays\DoNotHavePropertyOfArrayTypeAnalyzer.cs">
+    <Compile Update="ArrayAnalyzers\DoNotHavePropertyOfArrayTypeAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="OldStyleCollections\DoNotHavePropertyOfOldStyleCollectionTypeAnalyzer.cs">
+    <Compile Update="OldStyleCollectionAnalyzers\DoNotHavePropertyOfOldStyleCollectionTypeAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

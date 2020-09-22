@@ -42,14 +42,14 @@ steps:
   displayName: Pack
   inputs:
     command: 'pack'
-    packagesToPack: '$(Build.Repository.LocalPath)/**/DotNet.SystemCollections.Analyzers.csproj'
+    arguments: '**/DotNet.SystemCollections.Analyzers.csproj'
     packDirectory: '$(build.artifactstagingdirectory)'
     nobuild: true
     versioningScheme: 'byPrereleaseNumber'
     majorVersion: '1'
     minorVersion: '0'
     patchVersion: '0'
-
+    
 - task: DotNetCoreCLI@2
   displayName: Push
   inputs:

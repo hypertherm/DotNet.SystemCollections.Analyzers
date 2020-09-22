@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.SystemCollections.An
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.SystemCollections.Analyzers.Performance", "DotNet.SystemCollections.Analyzers.Performance\DotNet.SystemCollections.Analyzers.Performance.csproj", "{D24A4DDA-3E0F-4E98-92A9-13056F79E7A4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SystemCollection.Analyzers", "SystemCollection.Analyzers", "{604CE5F9-2FFF-49AD-B632-B8E3E8410E03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +32,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DFB0ED75-BFCC-4A53-85D5-9E6C74CE7A48} = {604CE5F9-2FFF-49AD-B632-B8E3E8410E03}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB9A21EA-763C-4F02-9BFD-CEDADFE1D61E}
