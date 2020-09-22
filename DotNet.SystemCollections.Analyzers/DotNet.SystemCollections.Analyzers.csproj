@@ -9,11 +9,13 @@
     <Version>0.0.40</Version>
     <copyright>Copyright 2002-$([System.DateTime]::Now.Year) Hypertherm Inc. All rights reserved.</copyright>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
+    <NuspecFile>DotNet.SystemCollections.Analyzers.nuspec</NuspecFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
-    <PackageTags>Dotnet.SystemCollections.Analyzers, analyzers</PackageTags>
+    <PackageTags>Dotnet.SystemCollections.Analyzers Performance Optimization DotNetAnalyzers Roslyn Diagnostic Analyzer</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <NoPackageAnalysis>true</NoPackageAnalysis>
 	  <NoWarn>SA1633</NoWarn>
