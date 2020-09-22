@@ -6,7 +6,6 @@
     <PackageId>DotNet.SystemCollections.Analyzers</PackageId>
     <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections and System.Linq.</PackageDescription>
     <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
-    <Version>0.0.40</Version>
     <copyright>Copyright 2002-$([System.DateTime]::Now.Year) Hypertherm Inc. All rights reserved.</copyright>
     <TargetFramework>netstandard1.3</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
