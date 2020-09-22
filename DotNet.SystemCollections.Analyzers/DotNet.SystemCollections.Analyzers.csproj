@@ -18,7 +18,7 @@
     <PackageTags>Dotnet.SystemCollections.Analyzers Performance Optimization DotNetAnalyzers Roslyn Diagnostic Analyzer</PackageTags>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <NoPackageAnalysis>true</NoPackageAnalysis>
-	  <NoWarn>SA1633</NoWarn>
+    <NoWarn>SA1633</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
