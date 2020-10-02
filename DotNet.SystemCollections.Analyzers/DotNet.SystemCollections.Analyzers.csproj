@@ -11,7 +11,6 @@
     <TargetFramework>netstandard1.3</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
-    <NuspecFile>DotNet.SystemCollections.Analyzers.nuspec</NuspecFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
     <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
@@ -19,6 +18,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <NoWarn>SA1633</NoWarn>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,22 +33,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="tools" />
-    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-    
     <!-- Binaries and symbols -->
-    <None Include="bin\$(OutputPath)\netstandard1.3\$(AssemblyName).dll" CopyToOutputDirectory="Always" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
-    <None Include="bin\$(OutputPath)\netstandard1.3\$(AssemblyName).pdb" CopyToOutputDirectory="Always" Pack="true" targPackagePathet="analyzers\dotnet\cs" Visible="false" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="$(OutputPath)\$(AssemblyName).pdb" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 
     <!-- Rulesets -->
-    <None Include="..\ruleset.md" PackagePath="rulesets\" />
+    <None Include="..\ruleset.md" Pack="true" PackagePath="rulesets\" />
 
-  </ItemGroup>
+    <!-- Tools -->
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
 
-  <ItemGroup>
-    <Compile Remove="bin\**" />
-    <EmbeddedResource Remove="bin\**" />
-    <None Remove="bin\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -69,7 +63,6 @@
     <Compile Update="CollectionAnalyzers\DoNotUseLongCountAnalyzer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
   </ItemGroup>
 
   <ItemGroup>
