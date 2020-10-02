@@ -1,6 +1,7 @@
 bin/
 obj/
 packages/
+.idea/
 # The following line ignores packages when setup as a symlink
 packages 
 .vs/
