@@ -133,9 +133,7 @@ See the [release-notes](release-notes.md) file for details.
 
 ## __Roadmap__
 
-Version 1.0 - Finalization of the ruleset covered by the library
-
-Version 2.0 - Automatic code suggestions for best practices
+See the [road map](documentation/roadmap.md) file for details.
 
 ## __License__
 
