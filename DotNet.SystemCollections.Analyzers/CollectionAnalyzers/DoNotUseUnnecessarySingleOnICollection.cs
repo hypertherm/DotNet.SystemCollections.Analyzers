@@ -29,7 +29,7 @@ namespace DotNet.SystemCollections.Analyzers.Collections
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        private const string MessageFormat = "This ICollection is calling the Single()/SingleOrDefault() extension method; it should use the Count property instead.";
+        private const string MessageFormat = "This ICollection is calling the Single()/SingleOrDefault() extension method; it should use the Count property instead";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.

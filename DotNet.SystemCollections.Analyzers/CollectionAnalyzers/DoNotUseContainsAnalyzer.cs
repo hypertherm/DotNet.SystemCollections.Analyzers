@@ -29,7 +29,7 @@
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        private const string MessageFormat = "This IEnumerable is calling the Contains() extension method; the developer should either use a Dictionary or a Set collection to make the operation O(1) instead of O(n).";
+        private const string MessageFormat = "This IEnumerable is calling the Contains() extension method; the developer should either use a Dictionary or a Set collection to make the operation O(1) instead of O(n)";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.

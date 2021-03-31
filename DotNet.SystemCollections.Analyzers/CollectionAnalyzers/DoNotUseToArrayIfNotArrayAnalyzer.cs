@@ -29,7 +29,7 @@
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        private const string MessageFormat = "This non-Array IEnumerable is calling the ToArray() method.";
+        private const string MessageFormat = "This non-Array IEnumerable is calling the ToArray() method";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <Company>Hypertherm Robotics Software Inc.</Company>
@@ -8,9 +8,8 @@
     <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
     <Version>0.0.40</Version>
     <copyright>Copyright 2002-$([System.DateTime]::Now.Year) Hypertherm Inc. All rights reserved.</copyright>
-    <TargetFramework>netstandard1.3</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
     <NuspecFile>DotNet.SystemCollections.Analyzers.nuspec</NuspecFile>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
@@ -28,17 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.2.0" PrivateAssets="all" />
-    <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="tools" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
     
     <!-- Binaries and symbols -->
-    <None Include="bin\$(OutputPath)\netstandard1.3\$(AssemblyName).dll" CopyToOutputDirectory="Always" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
-    <None Include="bin\$(OutputPath)\netstandard1.3\$(AssemblyName).pdb" CopyToOutputDirectory="Always" Pack="true" targPackagePathet="analyzers\dotnet\cs" Visible="false" />
+    <None Include="bin\$(OutputPath)\$(TargetFramework)\$(AssemblyName).dll" CopyToOutputDirectory="Always" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
+    <None Include="bin\$(OutputPath)\$(TargetFramework)\$(AssemblyName).pdb" CopyToOutputDirectory="Always" Pack="true" targPackagePathet="analyzers\dotnet\cs" Visible="false" />
 
     <!-- Rulesets -->
     <None Include="..\ruleset.md" PackagePath="rulesets\" />
@@ -52,9 +46,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.4.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="2.9.8" PrivateAssets="all" />
-    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.10" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.9.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.9.0" PrivateAssets="all" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

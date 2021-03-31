@@ -29,7 +29,7 @@
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        private const string MessageFormat = "This non-List IEnumerable is calling the ToList() method.";
+        private const string MessageFormat = "This non-List IEnumerable is calling the ToList() method";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.

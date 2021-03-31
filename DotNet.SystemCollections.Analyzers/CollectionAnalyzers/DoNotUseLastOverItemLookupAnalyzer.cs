@@ -29,7 +29,7 @@
         /// <summary>
         ///     This is the format of the analyzer's rule.
         /// </summary>
-        private const string MessageFormat = "This IList is calling the Last()/LastOrDefault() extension method; it should access the item directly instead.";
+        private const string MessageFormat = "This IList is calling the Last()/LastOrDefault() extension method; it should access the item directly instead";
 
         /// <summary>
         ///     This is the description of the analyzer's rule.
