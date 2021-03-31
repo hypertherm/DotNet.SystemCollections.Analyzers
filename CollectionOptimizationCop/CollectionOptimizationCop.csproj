@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Company>Hypertherm Inc.</Company>
+    <Authors>Hypertherm Inc.</Authors>
+    <PackageId>CollectionOptimizationCop</PackageId>
+    <PackageDescription>This package will analyze your usage of collections and APIs from System.Collections and System.Linq.</PackageDescription>
+    <RepositoryUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</RepositoryUrl>
+    <!--The version prefix sets the version and can only contain major.minor.patch[.build]. This line is overridden by the build server.-->
+    <VersionPrefix>0.0.41</VersionPrefix>
+    <!--The version suffix can contain alphanumeric (+ hyphen) string: [0-9A-Za-z-]* information. This line is overridden by the build server for the release and master branches-->
+    <VersionSuffix>beta</VersionSuffix>
+    <copyright>Copyright 2002-$([System.DateTime]::Now.Year) Hypertherm Inc. All rights reserved.</copyright>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <NuspecFile>CollectionOptimizationCop.nuspec</NuspecFile>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <TreatWarningsAsErrors>True</TreatWarningsAsErrors>
+    <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
+    <PackageTags>Dotnet.SystemCollections.Analyzers CollectionOptimizationCop Performance Optimization DotNetAnalyzers Roslyn Diagnostic Analyzer</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <NoWarn>SA1633</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>$(AssemblyName).Test</_Parameter1>
+    </AssemblyAttribute>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="tools" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    
+    <!-- Binaries and symbols -->
+    <None Include="bin\$(OutputPath)\$(TargetFramework)\$(AssemblyName).dll" CopyToOutputDirectory="Always" Pack="true" PackagePath="analyzers\dotnet\cs" Visible="false" />
+    <None Include="bin\$(OutputPath)\$(TargetFramework)\$(AssemblyName).pdb" CopyToOutputDirectory="Always" Pack="true" targPackagePathet="analyzers\dotnet\cs" Visible="false" />
+
+    <!-- Rulesets -->
+    <None Include="..\ruleset.md" PackagePath="rulesets\" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis" Version="3.9.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.9.0" PrivateAssets="all" />
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="CollectionAnalyzers\DoNotUseAnyAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="CollectionAnalyzers\DoNotUseLongCountAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ArrayAnalyzers\DoNotHavePropertyOfArrayTypeAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="OldStyleCollectionAnalyzers\DoNotHavePropertyOfOldStyleCollectionTypeAnalyzer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+</Project>

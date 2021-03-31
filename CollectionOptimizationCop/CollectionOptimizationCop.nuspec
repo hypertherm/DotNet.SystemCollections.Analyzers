@@ -1,0 +1,33 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata minClientVersion="2.7">
+    <id>CollectionOptimizationCop</id>
+    <version>0.0.41-beta</version>
+    <title>DotNet SystemCollections Analyzers</title>
+    <authors>Hypertherm Inc.</authors>
+    <owners>Hypertherm Inc.</owners>
+    <projectUrl>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>This package will analyze your usage of collections and APIs from System.Collections and System.Linq.</description>
+    <releaseNotes>https://github.com/hypertherm/DotNet.SystemCollections.Analyzers/blob/master/release-notes.md</releaseNotes>
+    <copyright>Copyright 2002-2021 Hypertherm Inc. All rights reserved.</copyright>
+    <tags>Dotnet.SystemCollections.Analyzers CollectionOptimizationCop Performance Optimization DotNetAnalyzers Roslyn Diagnostic Analyzer</tags>
+    <developmentDependency>true</developmentDependency>
+    <license type="file">LICENSE.md</license>
+  </metadata>
+  <files>
+    <file src="..\LICENSE.md" target="" />
+
+    <!-- Binaries and symbols -->
+    <file src="bin\Release\**\CollectionOptimizationCop.dll" target="analyzers\dotnet\cs" />
+    <file src="bin\Release\**\CollectionOptimizationCop.pdb" target="analyzers\dotnet\cs" />
+
+    <!-- Rulesets -->
+    <file src="..\ruleset.md" target="rulesets\" />
+
+    <!-- Scripts -->
+    <file src="tools\install.ps1" target="tools\" />
+    <file src="tools\uninstall.ps1" target="tools\" />
+
+  </files>
+</package>
