@@ -4,8 +4,8 @@ You can learn more about the rules covered by the repository by diving into the 
 
 ## Performance
 
-See more [here](#documentation/performanceRules.md).
+See more [here](documentation/performanceRules.md).
 
 ## Code Quality
 
-See more [here](#documentation/codeQualityRules.md).
+See more [here](documentation/codeQualityRules.md).
